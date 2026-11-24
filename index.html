@@ -1,3001 +1,2485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#405743">
-
-<title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
-
-<style>
-:root{
-  --forest:#293d2d;
-  --sage:#73816a;
-  --ivory:#f8f1df;
-  --gold:#c79e4d;
-  --gold-light:#ecd38d;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px)
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
-}
-
-html{
-  scroll-behavior:smooth;
-  scroll-snap-type:y mandatory;
-  background:#d7d0bc
-}
-
-body{
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  min-height:100svh;
-  margin:auto;
-  overflow-x:hidden;
-  background:var(--ivory);
-  color:var(--forest);
-  font-family:Baskerville,"Iowan Old Style",Georgia,serif;
-  box-shadow:0 0 45px #0005
-}
-
-body.locked{
-  height:100svh;
-  overflow:hidden
-}
-
-.screen{
-  position:relative;
-  width:100%;
-  min-height:100vh;
-  min-height:100svh;
-  overflow:hidden;
-  scroll-snap-align:start;
-  scroll-snap-stop:always
-}
-
-button,
-a{
-  -webkit-tap-highlight-color:transparent
-}
-
-.label{
-  color:var(--gold-light);
-  font-family:"Avenir Next","Segoe UI",Arial,sans-serif;
-  font-size:8px;
-  font-weight:600;
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-/* ===============================
-   OPENING
-================================ */
-
-#openingScreen{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  width:min(100%,430px);
-  height:100vh;
-  height:100svh;
-  margin:auto;
-
-  background:
-    radial-gradient(
-      circle at 50% 12%,
-      #ccdcbb40,
-      transparent 40%
-    ),
-    linear-gradient(
-      160deg,
-      #7b8d72,
-      #53684f 48%,
-      #304733
-    );
-
-  transition:
-    opacity .75s,
-    visibility .75s
-}
-
-#openingScreen.finished{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none
-}
-
-.opening-frame{
-  position:absolute;
-  inset:
-    max(12px,var(--safe-top))
-    13px
-    max(12px,var(--safe-bottom));
-
-  border:1px solid #e8cf8e94;
-  border-radius:27px;
-  pointer-events:none
-}
-
-.opening-title{
-  position:absolute;
-  top:max(7%,calc(var(--safe-top) + 22px));
-  left:20px;
-  right:20px;
-  text-align:center;
-  z-index:10;
-  transition:.45s
-}
-
-.opening-active .opening-title{
-  opacity:0;
-  transform:translateY(-14px)
-}
-
-.opening-arabic{
-  color:var(--gold-light);
-  font-size:clamp(21px,6.4vw,26px);
-  line-height:1.65
-}
-
-.opening-subtitle{
-  color:#e0d8c2;
-  font:7px "Segoe UI",Arial,sans-serif;
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-.envelope-stage{
-  position:absolute;
-  inset:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:
-    110px
-    24px
-    90px;
-
-  perspective:1200px
-}
-
-.envelope-box{
-  position:relative;
-  width:min(350px,86vw);
-  aspect-ratio:350/270;
-
-  filter:
-    drop-shadow(
-      0 22px 28px
-      #111b1261
-    );
-
-  transition:
-    transform .8s 1.15s
-}
-
-.opening-active .envelope-box{
-  transform:scale(1.05)
-}
-
-.envelope-back{
-  position:absolute;
-  inset:0;
-
-  border:
-    1px solid
-    #e5cc889e;
-
-  border-radius:9px;
-
-  background:
-    radial-gradient(
-      circle,
-      #ffffff14,
-      transparent 52%
-    ),
-    linear-gradient(
-      150deg,
-      #7c9074,
-      #536a54
-    )
-}
-
-.envelope-interior{
-  position:absolute;
-
-  left:3%;
-  right:3%;
-  top:3%;
-
-  height:69%;
-
-  border-radius:
-    8px 8px 45% 45%;
-
-  background:
-    linear-gradient(
-      #253c2b,
-      #4c654d
-    )
-}
-
-.envelope-glow{
-  position:absolute;
-
-  left:8%;
-  right:8%;
-  top:15%;
-
-  height:70%;
-
-  opacity:0;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      ellipse,
-      #fff8d0fa,
-      #f2cf759e 35%,
-      transparent 75%
-    );
-
-  transform:scale(.35);
-
-  transition:
-    opacity .8s .42s,
-    transform 1s .4s
-}
-
-.opening-active .envelope-glow{
-  opacity:1;
-  transform:scale(1.45)
-}
-
-.envelope-flap{
-  position:absolute;
-
-  left:0;
-  top:0;
-
-  width:100%;
-  height:56%;
-
-  z-index:8;
-
-  transform-origin:top;
-  transform-style:preserve-3d;
-
-  transition:
-    transform 1.1s
-    cubic-bezier(.62,0,.22,1)
-}
-
-.flap-front,
-.flap-back{
-  position:absolute;
-  inset:0;
-
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      50% 100%
-    );
-
-  backface-visibility:hidden
-}
-
-.flap-front{
-  background:
-    linear-gradient(
-      145deg,
-      #84967b,
-      #536a55
-    )
-}
-
-.flap-back{
-  background:
-    linear-gradient(
-      #d5bd85,
-      #81632e
-    );
-
-  transform:
-    rotateX(180deg)
-}
-
-.opening-active .envelope-flap{
-  transform:rotateX(180deg);
-  z-index:2
-}
-
-.envelope-front{
-  position:absolute;
-  inset:0;
-  z-index:6;
-  overflow:hidden
-}
-
-.front-left{
-  position:absolute;
-
-  left:0;
-  bottom:0;
-
-  width:50%;
-  height:100%;
-
-  clip-path:
-    polygon(
-      0 0,
-      100% 50%,
-      0 100%
-    );
-
-  background:#617861
-}
-
-.front-right{
-  position:absolute;
-
-  right:0;
-  bottom:0;
-
-  width:50%;
-  height:100%;
-
-  clip-path:
-    polygon(
-      100% 0,
-      0 50%,
-      100% 100%
-    );
-
-  background:#576f59
-}
-
-.front-bottom{
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:54%;
-
-  clip-path:
-    polygon(
-      0 100%,
-      50% 0,
-      100% 100%
-    );
-
-  background:#73866e
-}
-
-.wax-seal{
-  position:absolute;
-
-  left:50%;
-  top:52%;
-
-  z-index:15;
-
-  width:clamp(72px,21vw,88px);
-  height:clamp(72px,21vw,88px);
-
-  transform:
-    translate(-50%,-50%);
-
-  cursor:pointer;
-
-  border:
-    4px double
-    #f4dda1;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 32% 27%,
-      #edd178,
-      #bb8732 48%,
-      #6f4a16
-    );
-
-  color:#fff1c4;
-
-  box-shadow:
-    0 8px 19px #2115037a,
-    inset 0 0 0 5px #67410e40
-}
-
-.wax-seal span{
-  font:
-    italic
-    clamp(14px,4vw,17px)
-    Georgia,
-    serif;
-
-  line-height:1.05
-}
-
-.opening-active .wax-seal{
-  opacity:0;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.4)
-}
-
-.opening-flash{
-  position:absolute;
-  inset:0;
-
-  z-index:35;
-
-  opacity:0;
-
-  background:
-    radial-gradient(
-      circle,
-      #fffce2fa,
-      #ffe091a6 26%,
-      transparent 70%
-    );
-
-  transform:scale(.5);
-
-  transition:
-    opacity .7s .8s,
-    transform .9s .8s;
-
-  pointer-events:none
-}
-
-.opening-active .opening-flash{
-  opacity:1;
-  transform:scale(1.7)
-}
-
-.you-are-invited{
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:8%;
-
-  z-index:42;
-
-  color:#e5ca82;
-  text-align:center
-}
-
-.invited-ornament{
-  font-size:20px
-}
-
-.invited-text{
-  margin-top:5px;
-
-  font:
-    8px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-/* ===============================
-   SCREEN 2
-================================ */
-
-#coupleScreen{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:
-    max(14px,var(--safe-top))
-    16px
-    max(14px,var(--safe-bottom));
-
-  text-align:center;
-
-  background:
-    #f5f0e5
-    url("Screen-2.jpg")
-    center/cover
-    no-repeat
-}
-
-.couple-content{
-  width:100%;
-  max-width:390px;
-
-  opacity:0;
-
-  transform:
-    translateY(20px)
-}
-
-body.reveal-couple .couple-content{
-  animation:
-    reveal 1.2s forwards
-}
-
-@keyframes reveal{
-  to{
-    opacity:1;
-    transform:none
-  }
-}
-
-.bismillah{
-  color:#926d28;
-
-  font-family:
-    "Geeza Pro",
-    "Traditional Arabic",
-    serif;
-
-  font-size:
-    clamp(23px,7vw,31px);
-
-  line-height:1.55
-}
-
-.screen2-ornament{
-  color:#ad8435;
-  font-size:17px;
-  margin:2px 0 4px
-}
-
-.faith-heading{
-  color:#654f34;
-
-  font:
-    600
-    clamp(8px,2.4vw,10px)
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:2.6px;
-  line-height:1.55;
-  text-transform:uppercase
-}
-
-.heart-divider{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:120px;
-  margin:5px auto;
-
-  color:#a7833e;
-  font-size:9px
-}
-
-.heart-divider::before,
-.heart-divider::after{
-  content:"";
-
-  flex:1;
-  height:1px;
-  margin:0 9px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b58d43
-    )
-}
-
-.heart-divider::after{
-  transform:
-    rotate(180deg)
-}
-
-.blessing-copy{
-  max-width:300px;
-  margin:4px auto 6px;
-
-  color:#5d5548;
-
-  font-size:
-    clamp(11px,3vw,13px);
-
-  font-style:italic;
-  line-height:1.38
-}
-
-.couple-name{
-  max-width:385px;
-  margin:7px auto 0;
-
-  color:#393128;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    "Brush Script MT",
-    cursive;
-
-  font-size:
-    clamp(41px,11vw,52px);
-
-  font-weight:400;
-  line-height:.98;
-
-  text-wrap:balance;
-
-  text-shadow:
-    0 1px 1px #fff
-}
-
-.couple-name.long{
-  font-size:
-    clamp(35px,9.5vw,45px);
-
-  line-height:1.01
-}
-
-.parent-role{
-  margin-top:4px;
-
-  color:#927842;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    cursive;
-
-  font-size:
-    clamp(11px,3vw,13px)
-}
-
-.parent-name{
-  margin-top:1px;
-
-  color:#625746;
-
-  font:
-    clamp(8px,2.3vw,10px)
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:.6px
-}
-
-.ampersand{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:115px;
-
-  margin:
-    5px auto
-    2px;
-
-  color:#ae8436;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    cursive;
-
-  font-size:27px
-}
-
-.ampersand::before,
-.ampersand::after{
-  content:"";
-
-  flex:1;
-  height:1px;
-  margin:0 8px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b99145
-    )
-}
-
-.ampersand::after{
-  transform:
-    rotate(180deg)
-}
-
-.tagline{
-  margin-top:7px;
-
-  color:#8f7137;
-
-  font:
-    600
-    clamp(5.5px,1.65vw,7px)
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:1.5px;
-  line-height:1.5;
-  text-transform:uppercase
-}
-
-.tagline span{
-  margin:0 4px;
-  color:#b48635
-}
-
-.scroll-hint{
-  margin-top:4px;
-
-  color:#8c7139;
-
-  font:
-    600
-    6px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:1.8px;
-  text-transform:uppercase
-}
-
-.scroll-arrow{
-  margin-top:2px;
-
-  color:#aa8135;
-  font-size:17px;
-
-  animation:
-    bounce 1.4s infinite
-}
-
-@keyframes bounce{
-  50%{
-    transform:
-      translateY(5px)
-  }
-}
-
-/* ===============================
-   SHARED BACKGROUND
-================================ */
-
-#revealScreen,
-#finalScreen{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:
-    max(20px,var(--safe-top))
-    14px
-    max(20px,var(--safe-bottom));
-
-  text-align:center;
-
-  background:
-    linear-gradient(
-      #1b1d171f,
-      #1a1c164d
-    ),
-    url("Screens.jpg")
-    center/cover
-    no-repeat
-}
-
-.dark-panel{
-  position:relative;
-  z-index:5;
-
-  width:
-    min(375px,93vw);
-
-  border:
-    1px solid
-    #e2c47894;
-
-  border-radius:24px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #23261fa3,
-      #36352c80
-    );
-
-  box-shadow:
-    0 18px 40px
-    #0a0c094d,
-    inset
-    0 0 0 1px
-    #fff6d515;
-
-  backdrop-filter:
-    blur(6px)
-}
-
-.dark-panel::before{
-  content:"";
-
-  position:absolute;
-  inset:8px;
-
-  border:
-    1px solid
-    #e5ca842e;
-
-  border-radius:17px;
-  pointer-events:none
-}
-
-.ornament{
-  color:#e4c675;
-  font-size:16px;
-  letter-spacing:7px
-}
-
-.panel-title{
-  margin-top:6px;
-
-  color:#fff5dc;
-
-  font-size:
-    clamp(28px,7.8vw,36px);
-
-  font-style:italic;
-  line-height:1.08
-}
-
-/* ===============================
-   SCRATCH + COUNTDOWN
-================================ */
-
-.reveal-panel{
-  padding:
-    clamp(18px,3.8vh,27px)
-    15px
-}
-
-.scratch-description{
-  max-width:285px;
-
-  margin:
-    6px auto
-    10px;
-
-  color:#f0e6cfd9;
-
-  font:
-    9px/1.45
-    "Segoe UI",
-    Arial,
-    sans-serif
-}
-
-.scratch-card-shell{
-  position:relative;
-
-  width:
-    min(225px,61vw);
-
-  aspect-ratio:1;
-
-  margin:auto;
-  padding:8px;
-
-  border:
-    1px solid
-    #c79b48;
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fffaf0,
-      #ead5ac
-    );
-
-  box-shadow:
-    0 15px 30px
-    #0506044d,
-    inset
-    0 0 0 4px
-    #fff9ec,
-    inset
-    0 0 0 6px
-    #ae7d2d75
-}
-
-.scratch-square-area{
-  position:relative;
-
-  width:100%;
-  height:100%;
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    #9e6d209e;
-
-  border-radius:12px;
-
-  background:#fffaf0
-}
-
-.square-result{
-  position:absolute;
-  inset:0;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  padding:13px;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      #ddb86029,
-      transparent 42%
-    ),
-    linear-gradient(
-      145deg,
-      #fffdf6,
-      #f2e2c2
-    )
-}
-
-.reveal-label{
-  color:#9e7937;
-
-  font:
-    600 7px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-.date-day{
-  margin-top:4px;
-
-  color:#3a473b;
-
-  font-size:
-    clamp(49px,14vw,62px);
-
-  line-height:.88
-}
-
-.date-month{
-  margin-top:6px;
-
-  color:#987238;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    cursive;
-
-  font-size:
-    clamp(23px,6.5vw,28px)
-}
-
-.date-year{
-  color:#3d483d;
-
-  font-size:21px;
-  letter-spacing:4px
-}
-
-.date-divider{
-  width:85px;
-  height:1px;
-
-  margin:8px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b38a40,
-      transparent
-    )
-}
-
-.date-time{
-  color:#88652f;
-  font-size:15px
-}
-
-#scratchCanvas{
-  position:absolute;
-  inset:0;
-
-  z-index:8;
-
-  width:100%;
-  height:100%;
-
-  cursor:grab;
-  touch-action:none;
-
-  transition:
-    opacity .7s,
-    transform .7s
-}
-
-#scratchCanvas.cleared{
-  opacity:0;
-
-  transform:
-    scale(1.04);
-
-  pointer-events:none
-}
-
-#scratchStatus{
-  min-height:12px;
-
-  margin-top:9px;
-
-  color:#efd384;
-
-  font:
-    7px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:1.2px;
-  text-transform:uppercase
-}
-
-.merged-divider{
-  width:120px;
-  height:1px;
-
-  margin:13px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d8b869,
-      transparent
-    )
-}
-
-.countdown-area{
-  max-height:0;
-  overflow:hidden;
-
-  opacity:0;
-
-  transform:
-    translateY(15px);
-
-  transition:
-    max-height 1.2s,
-    opacity .8s .2s,
-    transform .8s .2s
-}
-
-.reveal-panel.date-revealed .countdown-area{
-  max-height:260px;
-
-  opacity:1;
-  transform:none
-}
-
-.countdown-heading{
-  color:#fff5dc;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    cursive;
-
-  font-size:
-    clamp(26px,7vw,32px);
-
-  line-height:1.05
-}
-
-.countdown-subtitle{
-  margin-top:5px;
-
-  color:#e7ddc5;
-
-  font:
-    6px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:2px;
-  text-transform:uppercase
-}
-
-.countdown-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:4px;
-
-  margin-top:11px
-}
-
-.count-box{
-  padding:9px 1px;
-
-  border:
-    1px solid
-    #e7cc846f;
-
-  border-radius:8px;
-
-  background:
-    #fffadd0d
-}
-
-.count-number{
-  display:block;
-
-  color:#f1d68b;
-
-  font-size:
-    clamp(18px,5.3vw,23px)
-}
-
-.count-label{
-  display:block;
-
-  margin-top:5px;
-
-  color:#e6dcc3;
-
-  font:
-    5px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:.5px;
-  text-transform:uppercase
-}
-
-/* ===============================
-   FLOWER SHOWER
-================================ */
-
-.flower-shower{
-  position:absolute;
-  inset:0;
-
-  z-index:50;
-
-  overflow:hidden;
-  pointer-events:none
-}
-
-.falling-piece{
-  position:absolute;
-
-  left:var(--left);
-  top:-50px;
-
-  width:var(--size);
-  height:var(--size);
-
-  opacity:0;
-
-  animation:
-    fall
-    var(--duration)
-    var(--delay)
-    linear
-    forwards
-}
-
-.falling-piece.petal::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  border-radius:
-    80% 20%
-    65% 35%;
-
-  background:
-    var(--piece-color)
-}
-
-.falling-piece.flower::before{
-  content:"✿";
-
-  color:
-    var(--piece-color);
-
-  font-size:
-    var(--size)
-}
-
-.falling-piece.leaf::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  border-radius:
-    100% 0
-    100% 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      #b6bd9c,
-      #75856a
-    )
-}
-
-@keyframes fall{
-  8%{
-    opacity:1
-  }
-
-  100%{
-    opacity:0;
-
-    transform:
-      translate3d(
-        var(--drift),
-        110vh,
-        0
-      )
-      rotate(540deg)
-  }
-}
-
-/* ===============================
-   FINAL SCREEN
-================================ */
-
-.final-panel{
-  padding:
-    clamp(19px,4vh,30px)
-    19px
-}
-
-.venue-icon{
-  width:45px;
-  height:45px;
-
-  margin:
-    10px auto 8px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border:
-    1px solid
-    #e6c775a6;
-
-  border-radius:50%;
-
-  color:#e3c36f
-}
-
-.venue-name{
-  color:#fff5dd;
-
-  font-family:
-    "Snell Roundhand",
-    "Apple Chancery",
-    "Segoe Script",
-    cursive;
-
-  font-size:
-    clamp(25px,7vw,32px)
-}
-
-.venue-city{
-  margin-top:5px;
-
-  color:#e7cd89;
-
-  font:
-    8px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:2px;
-  text-transform:uppercase
-}
-
-.venue-address{
-  margin-top:6px;
-
-  color:#e3dac5;
-
-  font:
-    8px
-    "Segoe UI",
-    Arial,
-    sans-serif
-}
-
-.map-button{
-  display:inline-block;
-
-  margin-top:11px;
-  padding:11px 19px;
-
-  border:
-    1px solid
-    #e6c673b3;
-
-  border-radius:28px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #c59942,
-      #714d1d
-    );
-
-  color:#fff7e2;
-  text-decoration:none;
-
-  font:
-    7px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:2px;
-  text-transform:uppercase
-}
-
-.final-divider{
-  display:flex;
-  align-items:center;
-
-  width:140px;
-  margin:15px auto
-}
-
-.final-divider::before,
-.final-divider::after{
-  content:"";
-
-  flex:1;
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d8b869
-    )
-}
-
-.final-divider::after{
-  transform:
-    rotate(180deg)
-}
-
-.final-divider span{
-  margin:0 9px;
-
-  color:#e4c675
-}
-
-.dua-arabic{
-  color:#f0d589;
-
-  font-family:
-    "Geeza Pro",
-    "Traditional Arabic",
-    serif;
-
-  font-size:
-    clamp(18px,5.2vw,23px);
-
-  line-height:1.55
-}
-
-.dua-transliteration{
-  margin-top:8px;
-
-  color:#f4ead1;
-
-  font-size:
-    clamp(11px,3vw,13px);
-
-  font-style:italic;
-  line-height:1.45
-}
-
-.dua-meaning{
-  max-width:290px;
-
-  margin:7px auto 0;
-
-  color:#ddd4c0;
-
-  font:
-    8px/1.5
-    "Segoe UI",
-    Arial,
-    sans-serif
-}
-
-.closing-line{
-  width:60px;
-  height:1px;
-
-  margin:11px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d8b869,
-      transparent
-    )
-}
-
-.closing-title{
-  color:#fff5dd;
-
-  font-size:
-    clamp(19px,5.5vw,24px);
-
-  font-style:italic;
-  line-height:1.12
-}
-
-.closing-message{
-  max-width:300px;
-
-  margin:7px auto 0;
-
-  color:#ddd4c1;
-
-  font:
-    8px/1.5
-    "Segoe UI",
-    Arial,
-    sans-serif
-}
-
-.closing-couple{
-  margin-top:10px;
-
-  color:#efd384;
-
-  font:
-    7px/1.4
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:1.6px;
-  text-transform:uppercase
-}
-
-.restart-button{
-  margin-top:10px;
-  padding:9px 18px;
-
-  cursor:pointer;
-
-  border:
-    1px solid
-    #e1c26f9e;
-
-  border-radius:25px;
-
-  background:transparent;
-  color:#eee1bf;
-
-  font:
-    7px
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  letter-spacing:2px;
-  text-transform:uppercase
-}
-
-/* ===============================
-   SMALL PHONES
-================================ */
-
-@media(max-height:700px){
-
-  #coupleScreen{
-    padding-top:10px;
-    padding-bottom:10px
-  }
-
-  .bismillah{
-    font-size:20px
-  }
-
-  .faith-heading{
-    font-size:7px
-  }
-
-  .blessing-copy{
-    font-size:10px;
-    margin:2px auto
-  }
-
-  .couple-name{
-    font-size:34px;
-    margin-top:3px
-  }
-
-  .couple-name.long{
-    font-size:29px
-  }
-
-  .parent-role{
-    font-size:10px;
-    margin-top:1px
-  }
-
-  .tagline{
-    margin-top:3px
-  }
-
-  .reveal-panel{
-    padding:12px
-  }
-
-  .scratch-description{
-    margin:3px auto 7px
-  }
-
-  .scratch-card-shell{
-    width:
-      min(185px,53vw)
-  }
-
-  .merged-divider{
-    margin:9px auto
-  }
-
-  .countdown-grid{
-    margin-top:7px
-  }
-
-  .final-panel{
-    padding:12px 16px
-  }
-
-  .venue-icon{
-    margin:6px auto
-  }
-
-  .final-divider{
-    margin:9px auto
-  }
-
-  .dua-arabic{
-    font-size:17px
-  }
-
-  .dua-transliteration{
-    margin-top:4px
-  }
-
-  .closing-line{
-    margin:7px auto
-  }
-
-  .closing-title{
-    font-size:18px
-  }
-
-  .closing-message{
-    margin-top:4px
-  }
-
-  .restart-button{
-    margin-top:7px
-  }
-}
-
-@media(min-width:431px){
-
-  #openingScreen{
-    left:50%;
-
-    transform:
-      translateX(-50%)
-  }
-}
-
-</style>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#405743">
+
+  <title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
+
+  <!-- WhatsApp and social-media preview -->
+
+  <meta
+    name="description"
+    content="Together in Faith, Forever in Love. Nikah invitation of Sameena Sultana and Mohammed Faisal Hussain on 24 December 2026."
+  >
+
+  <link
+    rel="canonical"
+    href="https://ajjuparvez.github.io/wedding-invitation/"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="Sameena Sultana &amp; Mohammed Faisal Hussain"
+  >
+
+  <meta
+    property="og:description"
+    content="Together in Faith, Forever in Love • Nikah Invitation • 24 December 2026"
+  >
+
+  <meta
+    property="og:url"
+    content="https://ajjuparvez.github.io/wedding-invitation/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://ajjuparvez.github.io/wedding-invitation/wedding-preview.jpg"
+  >
+
+  <meta
+    property="og:image:secure_url"
+    content="https://ajjuparvez.github.io/wedding-invitation/wedding-preview.jpg"
+  >
+
+  <meta
+    property="og:image:type"
+    content="image/jpeg"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Nikah invitation of Sameena Sultana and Mohammed Faisal Hussain"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Sameena Sultana &amp; Mohammed Faisal Hussain"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Together in Faith, Forever in Love • Nikah Invitation • 24 December 2026"
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://ajjuparvez.github.io/wedding-invitation/wedding-preview.jpg"
+  >
+
+  <style>
+    :root {
+      --forest: #293d2d;
+      --sage: #73816a;
+      --ivory: #f8f1df;
+      --gold: #c79e4d;
+      --gold-light: #ecd38d;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      background: #d7d0bc;
+    }
+
+    body {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: auto;
+      overflow-x: hidden;
+      background: var(--ivory);
+      color: var(--forest);
+      font-family: Baskerville, "Iowan Old Style", Georgia, serif;
+      box-shadow: 0 0 45px rgba(0, 0, 0, 0.33);
+    }
+
+    body.locked {
+      height: 100svh;
+      overflow: hidden;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .screen {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .label {
+      color: var(--gold-light);
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Audio control */
+
+    .audio-control {
+      position: fixed;
+      right: 14px;
+      bottom: max(16px, calc(var(--safe-bottom) + 10px));
+      z-index: 900;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      border: 1px solid rgba(238, 210, 135, 0.78);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #485140f0, #27362af5);
+      color: #f5dda0;
+      font-size: 17px;
+      box-shadow: 0 8px 22px rgba(10, 15, 11, 0.3);
+    }
+
+    .audio-control.visible {
+      display: flex;
+    }
+
+    /* Opening */
+
+    #openingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      width: min(100%, 430px);
+      height: 100vh;
+      height: 100svh;
+      margin: auto;
+      background:
+        radial-gradient(
+          circle at 50% 12%,
+          rgba(204, 220, 187, 0.25),
+          transparent 40%
+        ),
+        linear-gradient(
+          160deg,
+          #7b8d72,
+          #53684f 48%,
+          #304733
+        );
+      transition: opacity 0.75s, visibility 0.75s;
+    }
+
+    #openingScreen.finished {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-frame {
+      position: absolute;
+      inset:
+        max(12px, var(--safe-top))
+        13px
+        max(12px, var(--safe-bottom));
+      border: 1px solid rgba(232, 207, 142, 0.58);
+      border-radius: 27px;
+      pointer-events: none;
+    }
+
+    .opening-title {
+      position: absolute;
+      top: max(7%, calc(var(--safe-top) + 22px));
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      text-align: center;
+      transition: 0.45s;
+    }
+
+    .opening-active .opening-title {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+
+    .opening-arabic {
+      color: var(--gold-light);
+      font-size: clamp(21px, 6.4vw, 26px);
+      line-height: 1.65;
+    }
+
+    .opening-subtitle {
+      color: #e0d8c2;
+      font: 7px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .envelope-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 110px 24px 90px;
+      perspective: 1200px;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: min(350px, 86vw);
+      aspect-ratio: 350 / 270;
+      filter: drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
+      transition: transform 0.8s 1.15s;
+    }
+
+    .opening-active .envelope-box {
+      transform: scale(1.05);
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(229, 204, 136, 0.62);
+      border-radius: 9px;
+      background: linear-gradient(150deg, #7c9074, #536a54);
+    }
+
+    .envelope-interior {
+      position: absolute;
+      left: 3%;
+      right: 3%;
+      top: 3%;
+      height: 69%;
+      border-radius: 8px 8px 45% 45%;
+      background: linear-gradient(#253c2b, #4c654d);
+    }
+
+    .envelope-glow {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 15%;
+      height: 70%;
+      opacity: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255, 248, 208, 0.98),
+          rgba(242, 207, 117, 0.62) 35%,
+          transparent 75%
+        );
+      transform: scale(0.35);
+      transition: opacity 0.8s 0.42s, transform 1s 0.4s;
+    }
+
+    .opening-active .envelope-glow {
+      opacity: 1;
+      transform: scale(1.45);
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 8;
+      width: 100%;
+      height: 56%;
+      transform-origin: top;
+      transform-style: preserve-3d;
+      transition: transform 1.1s cubic-bezier(0.62, 0, 0.22, 1);
+    }
+
+    .flap-front,
+    .flap-back {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      backface-visibility: hidden;
+    }
+
+    .flap-front {
+      background: linear-gradient(145deg, #84967b, #536a55);
+    }
+
+    .flap-back {
+      background: linear-gradient(#d5bd85, #81632e);
+      transform: rotateX(180deg);
+    }
+
+    .opening-active .envelope-flap {
+      z-index: 2;
+      transform: rotateX(180deg);
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      overflow: hidden;
+    }
+
+    .front-left {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      background: #617861;
+    }
+
+    .front-right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      background: #576f59;
+    }
+
+    .front-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 54%;
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      background: #73866e;
+    }
+
+    .wax-seal {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      z-index: 15;
+      width: clamp(72px, 21vw, 88px);
+      height: clamp(72px, 21vw, 88px);
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      border: 4px double #f4dda1;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle at 32% 27%,
+          #edd178,
+          #bb8732 48%,
+          #6f4a16
+        );
+      color: #fff1c4;
+      box-shadow:
+        0 8px 19px rgba(33, 21, 3, 0.48),
+        inset 0 0 0 5px rgba(103, 65, 14, 0.25);
+      font: italic clamp(14px, 4vw, 17px) Georgia, serif;
+      line-height: 1.05;
+      transition: 0.38s;
+    }
+
+    .opening-active .wax-seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    .opening-flash {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      opacity: 0;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 252, 226, 0.98),
+          rgba(255, 224, 145, 0.65) 26%,
+          transparent 70%
+        );
+      transform: scale(0.5);
+      transition: opacity 0.7s 0.8s, transform 0.9s 0.8s;
+      pointer-events: none;
+    }
+
+    .opening-active .opening-flash {
+      opacity: 1;
+      transform: scale(1.7);
+    }
+
+    .you-are-invited {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: max(7%, calc(var(--safe-bottom) + 20px));
+      z-index: 42;
+      color: #e5ca82;
+      text-align: center;
+    }
+
+    .invited-ornament {
+      font-size: 20px;
+    }
+
+    .invited-text {
+      font: 8px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Couple */
+
+    #coupleScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:
+        max(18px, var(--safe-top))
+        18px
+        max(18px, var(--safe-bottom));
+      text-align: center;
+      background:
+        #f5f0e5
+        url("Screen-2.jpg")
+        center / cover
+        no-repeat;
+    }
+
+    .couple-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 390px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    body.reveal-couple .couple-content {
+      animation: reveal 1.2s forwards;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .bismillah {
+      color: #926d28;
+      font-family: "Geeza Pro", "Traditional Arabic", serif;
+      font-size: clamp(23px, 7vw, 31px);
+      line-height: 1.55;
+    }
+
+    .screen2-ornament {
+      color: #ad8435;
+      font-size: 17px;
+      margin: 2px 0 4px;
+    }
+
+    .faith-heading {
+      color: #654f34;
+      font: 600 clamp(8px, 2.4vw, 10px) "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2.6px;
+      line-height: 1.55;
+      text-transform: uppercase;
+    }
+
+    .heart-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      margin: 5px auto;
+      color: #a7833e;
+      font-size: 9px;
+    }
+
+    .heart-divider::before,
+    .heart-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin: 0 9px;
+      background: linear-gradient(90deg, transparent, #b58d43);
+    }
+
+    .heart-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .blessing-copy {
+      max-width: 300px;
+      margin: 4px auto 6px;
+      color: #5d5548;
+      font-size: clamp(11px, 3vw, 13px);
+      font-style: italic;
+      line-height: 1.38;
+    }
+
+    .couple-name {
+      max-width: 385px;
+      margin: 7px auto 0;
+      color: #393128;
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        "Brush Script MT",
+        cursive;
+      font-size: clamp(41px, 11vw, 52px);
+      font-weight: 400;
+      line-height: 0.98;
+      text-wrap: balance;
+      text-shadow: 0 1px 1px #fff;
+    }
+
+    .couple-name.long {
+      font-size: clamp(35px, 9.5vw, 45px);
+      line-height: 1.01;
+    }
+
+    .parent-role {
+      margin-top: 4px;
+      color: #927842;
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(11px, 3vw, 13px);
+    }
+
+    .parent-name {
+      margin-top: 1px;
+      color: #625746;
+      font: clamp(8px, 2.3vw, 10px) "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.6px;
+    }
+
+    .ampersand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 115px;
+      margin: 5px auto 2px;
+      color: #ae8436;
+      font-family: "Segoe Script", cursive;
+      font-size: 27px;
+    }
+
+    .ampersand::before,
+    .ampersand::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin: 0 8px;
+      background: linear-gradient(90deg, transparent, #b99145);
+    }
+
+    .ampersand::after {
+      transform: rotate(180deg);
+    }
+
+    .tagline {
+      margin-top: 7px;
+      color: #8f7137;
+      font: 600 clamp(5.5px, 1.65vw, 7px) "Segoe UI", Arial, sans-serif;
+      letter-spacing: 1.5px;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .tagline span {
+      margin: 0 4px;
+      color: #b48635;
+    }
+
+    .scroll-hint {
+      margin-top: 4px;
+      color: #8c7139;
+      font: 600 6px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+      margin-top: 2px;
+      color: #aa8135;
+      font-size: 17px;
+      animation: bounce 1.4s infinite;
+    }
+
+    @keyframes bounce {
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    /* Shared background */
+
+    #revealScreen,
+    #finalScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:
+        max(20px, var(--safe-top))
+        14px
+        max(20px, var(--safe-bottom));
+      text-align: center;
+      background:
+        linear-gradient(
+          rgba(27, 29, 23, 0.12),
+          rgba(26, 28, 22, 0.3)
+        ),
+        url("Screens.jpg")
+        center / cover
+        no-repeat;
+    }
+
+    .dark-panel {
+      position: relative;
+      z-index: 5;
+      width: min(375px, 93vw);
+      border: 1px solid rgba(226, 196, 120, 0.58);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(35, 38, 31, 0.64),
+          rgba(54, 53, 44, 0.5)
+        );
+      box-shadow:
+        0 18px 40px rgba(10, 12, 9, 0.3),
+        inset 0 0 0 1px rgba(255, 246, 213, 0.08);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .dark-panel::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(229, 202, 132, 0.18);
+      border-radius: 17px;
+      pointer-events: none;
+    }
+
+    .ornament {
+      color: #e4c675;
+      font-size: 16px;
+      letter-spacing: 7px;
+    }
+
+    .panel-title {
+      margin-top: 6px;
+      color: #fff5dc;
+      font-size: clamp(28px, 7.8vw, 36px);
+      font-style: italic;
+      line-height: 1.08;
+    }
+
+    /* Scratch and countdown */
+
+    .reveal-panel {
+      padding: clamp(18px, 3.8vh, 27px) 15px;
+    }
+
+    .scratch-description {
+      max-width: 285px;
+      margin: 6px auto 10px;
+      color: rgba(240, 230, 207, 0.86);
+      font: 9px/1.45 "Segoe UI", Arial, sans-serif;
+    }
+
+    .scratch-card-shell {
+      position: relative;
+      width: min(225px, 61vw);
+      aspect-ratio: 1;
+      margin: auto;
+      padding: 8px;
+      border: 1px solid #c79b48;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #fffaf0, #ead5ac);
+      box-shadow:
+        0 15px 30px rgba(5, 6, 4, 0.3),
+        inset 0 0 0 4px #fff9ec,
+        inset 0 0 0 6px rgba(174, 125, 45, 0.46);
+    }
+
+    .scratch-square-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(158, 109, 32, 0.62);
+      border-radius: 12px;
+      background: #fffaf0;
+    }
+
+    .square-result {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 13px;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(221, 184, 96, 0.16),
+          transparent 42%
+        ),
+        linear-gradient(145deg, #fffdf6, #f2e2c2);
+    }
+
+    .reveal-label {
+      color: #9e7937;
+      font: 600 7px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .date-day {
+      margin-top: 4px;
+      color: #3a473b;
+      font-size: clamp(49px, 14vw, 62px);
+      line-height: 0.88;
+    }
+
+    .date-month {
+      margin-top: 6px;
+      color: #987238;
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(23px, 6.5vw, 28px);
+    }
+
+    .date-year {
+      color: #3d483d;
+      font-size: 21px;
+      letter-spacing: 4px;
+    }
+
+    .date-divider {
+      width: 85px;
+      height: 1px;
+      margin: 8px auto;
+      background: linear-gradient(90deg, transparent, #b38a40, transparent);
+    }
+
+    .date-time {
+      color: #88652f;
+      font-size: 15px;
+    }
+
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+      transition: opacity 0.7s, transform 0.7s;
+    }
+
+    #scratchCanvas.cleared {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    #scratchStatus {
+      min-height: 12px;
+      margin-top: 9px;
+      color: #efd384;
+      font: 7px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .merged-divider {
+      width: 120px;
+      height: 1px;
+      margin: 13px auto;
+      background: linear-gradient(90deg, transparent, #d8b869, transparent);
+    }
+
+    .countdown-area {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(15px);
+      transition:
+        max-height 1.2s,
+        opacity 0.8s 0.2s,
+        transform 0.8s 0.2s;
+    }
+
+    .reveal-panel.date-revealed .countdown-area {
+      max-height: 260px;
+      opacity: 1;
+      transform: none;
+    }
+
+    .countdown-heading {
+      color: #fff5dc;
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(26px, 7vw, 32px);
+      line-height: 1.05;
+    }
+
+    .countdown-subtitle {
+      margin-top: 5px;
+      color: #e7ddc5;
+      font: 6px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-top: 11px;
+    }
+
+    .count-box {
+      padding: 9px 1px;
+      border: 1px solid rgba(231, 204, 132, 0.45);
+      border-radius: 8px;
+      background: rgba(255, 250, 229, 0.05);
+    }
+
+    .count-number {
+      display: block;
+      color: #f1d68b;
+      font-size: clamp(18px, 5.3vw, 23px);
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 5px;
+      color: #e6dcc3;
+      font: 5px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Flowers */
+
+    .flower-shower {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .falling-piece {
+      position: absolute;
+      left: var(--left);
+      top: -50px;
+      width: var(--size);
+      height: var(--size);
+      opacity: 0;
+      animation:
+        flowerFall var(--duration)
+        var(--delay)
+        linear
+        forwards;
+    }
+
+    .falling-piece.petal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 80% 20% 65% 35%;
+      background: var(--piece-color);
+    }
+
+    .falling-piece.flower::before {
+      content: "✿";
+      color: var(--piece-color);
+      font-size: var(--size);
+    }
+
+    .falling-piece.leaf::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, #b6bd9c, #75856a);
+    }
+
+    @keyframes flowerFall {
+      8% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate3d(
+            var(--drift),
+            110vh,
+            0
+          )
+          rotate(540deg);
+      }
+    }
+
+    /* Final screen */
+
+    .final-panel {
+      padding: clamp(19px, 4vh, 30px) 19px;
+    }
+
+    .venue-icon {
+      width: 45px;
+      height: 45px;
+      margin: 10px auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(230, 199, 117, 0.65);
+      border-radius: 50%;
+      color: #e3c36f;
+    }
+
+    .venue-name {
+      color: #fff5dd;
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(25px, 7vw, 32px);
+    }
+
+    .venue-city {
+      margin-top: 5px;
+      color: #e7cd89;
+      font: 8px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .venue-address {
+      margin-top: 6px;
+      color: #e3dac5;
+      font: 8px "Segoe UI", Arial, sans-serif;
+    }
+
+    .map-button {
+      display: inline-block;
+      margin-top: 11px;
+      padding: 11px 19px;
+      border: 1px solid rgba(230, 198, 115, 0.7);
+      border-radius: 28px;
+      background: linear-gradient(145deg, #c59942, #714d1d);
+      color: #fff7e2;
+      text-decoration: none;
+      font: 7px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .final-divider {
+      display: flex;
+      align-items: center;
+      width: 140px;
+      margin: 15px auto;
+    }
+
+    .final-divider::before,
+    .final-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d8b869);
+    }
+
+    .final-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .final-divider span {
+      margin: 0 9px;
+      color: #e4c675;
+    }
+
+    .dua-arabic {
+      color: #f0d589;
+      font-family: "Geeza Pro", "Traditional Arabic", serif;
+      font-size: clamp(18px, 5.2vw, 23px);
+      line-height: 1.55;
+    }
+
+    .dua-transliteration {
+      margin-top: 8px;
+      color: #f4ead1;
+      font-size: clamp(11px, 3vw, 13px);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .dua-meaning {
+      max-width: 290px;
+      margin: 7px auto 0;
+      color: #ddd4c0;
+      font: 8px/1.5 "Segoe UI", Arial, sans-serif;
+    }
+
+    .closing-line {
+      width: 60px;
+      height: 1px;
+      margin: 11px auto;
+      background: linear-gradient(90deg, transparent, #d8b869, transparent);
+    }
+
+    .closing-title {
+      color: #fff5dd;
+      font-size: clamp(19px, 5.5vw, 24px);
+      font-style: italic;
+      line-height: 1.12;
+    }
+
+    .closing-message {
+      max-width: 300px;
+      margin: 7px auto 0;
+      color: #ddd4c1;
+      font: 8px/1.5 "Segoe UI", Arial, sans-serif;
+    }
+
+    .closing-couple {
+      margin-top: 10px;
+      color: #efd384;
+      font: 7px/1.4 "Segoe UI", Arial, sans-serif;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .restart-button {
+      margin-top: 10px;
+      padding: 9px 18px;
+      cursor: pointer;
+      border: 1px solid rgba(225, 194, 111, 0.62);
+      border-radius: 25px;
+      background: transparent;
+      color: #eee1bf;
+      font: 7px "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-height: 700px) {
+      #coupleScreen {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .bismillah {
+        font-size: 20px;
+      }
+
+      .faith-heading {
+        font-size: 7px;
+      }
+
+      .blessing-copy {
+        font-size: 10px;
+        margin: 2px auto;
+      }
+
+      .couple-name {
+        font-size: 34px;
+        margin-top: 3px;
+      }
+
+      .couple-name.long {
+        font-size: 29px;
+      }
+
+      .parent-role {
+        font-size: 10px;
+        margin-top: 1px;
+      }
+
+      .tagline {
+        margin-top: 3px;
+      }
+
+      .reveal-panel {
+        padding: 12px;
+      }
+
+      .scratch-description {
+        margin: 3px auto 7px;
+      }
+
+      .scratch-card-shell {
+        width: min(185px, 53vw);
+      }
+
+      .merged-divider {
+        margin: 9px auto;
+      }
+
+      .countdown-grid {
+        margin-top: 7px;
+      }
+
+      .final-panel {
+        padding: 12px 16px;
+      }
+
+      .venue-icon {
+        margin: 6px auto;
+      }
+
+      .final-divider {
+        margin: 9px auto;
+      }
+
+      .dua-arabic {
+        font-size: 17px;
+      }
+
+      .dua-transliteration {
+        margin-top: 4px;
+      }
+
+      .closing-line {
+        margin: 7px auto;
+      }
+
+      .closing-title {
+        font-size: 18px;
+      }
+
+      .closing-message {
+        margin-top: 4px;
+      }
+
+      .restart-button {
+        margin-top: 7px;
+      }
+    }
+
+    @media (min-width: 431px) {
+      #openingScreen {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="locked">
 
-<audio
-  id="backgroundAudio"
-  preload="auto"
-  loop
->
-  <source
-    src="islamic-background.mp3"
-    type="audio/mpeg"
-  >
-</audio>
-
-<!-- SCREEN 1 -->
-
-<section id="openingScreen" class="screen">
-
-  <div class="opening-frame"></div>
-
-  <div class="opening-title">
-
-    <div class="opening-arabic">
-      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-    </div>
-
-    <div class="opening-subtitle">
-      A Celebration of Love &amp; Family
-    </div>
-
-  </div>
-
-  <div class="envelope-stage">
-
-    <div
-      class="envelope-box"
-      id="envelopeBox"
+  <audio id="backgroundAudio" preload="auto" loop>
+    <source
+      src="islamic-background.mp3"
+      type="audio/mpeg"
     >
+  </audio>
 
-      <div class="envelope-back"></div>
-      <div class="envelope-interior"></div>
-      <div class="envelope-glow"></div>
+  <button
+    type="button"
+    class="audio-control"
+    id="audioControl"
+    aria-label="Mute background audio"
+    title="Mute background audio"
+  >
+    🔊
+  </button>
 
-      <div class="envelope-flap">
-        <div class="flap-front"></div>
-        <div class="flap-back"></div>
+  <!-- Screen 1 -->
+
+  <section id="openingScreen" class="screen">
+
+    <div class="opening-frame"></div>
+
+    <div class="opening-title">
+
+      <div class="opening-arabic">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
 
-      <div class="envelope-front">
-        <div class="front-left"></div>
-        <div class="front-right"></div>
-        <div class="front-bottom"></div>
+      <div class="opening-subtitle">
+        A Celebration of Love &amp; Family
+      </div>
+
+    </div>
+
+    <div class="envelope-stage">
+
+      <div class="envelope-box" id="envelopeBox">
+
+        <div class="envelope-back"></div>
+        <div class="envelope-interior"></div>
+        <div class="envelope-glow"></div>
+
+        <div class="envelope-flap">
+          <div class="flap-front"></div>
+          <div class="flap-back"></div>
+        </div>
+
+        <div class="envelope-front">
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="front-bottom"></div>
+        </div>
+
+        <button
+          type="button"
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Tap to open the invitation"
+        >
+          Tap<br>
+          to<br>
+          Open
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="opening-flash"></div>
+
+    <div class="you-are-invited">
+
+      <div class="invited-ornament">
+        ❧
+      </div>
+
+      <div class="invited-text">
+        You Are Invited
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Screen 2 -->
+
+  <section id="coupleScreen" class="screen">
+
+    <div class="couple-content">
+
+      <div class="bismillah">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+      </div>
+
+      <div class="screen2-ornament">
+        ❦
+      </div>
+
+      <div class="faith-heading">
+        Together in Faith<br>
+        Forever in Love
+      </div>
+
+      <div class="heart-divider">
+        ♥
+      </div>
+
+      <div class="blessing-copy">
+        With the blessings of Allah<br>
+        and the love of our families,<br>
+        we invite you to the Nikah ceremony of
+      </div>
+
+      <div class="couple-name">
+        Sameena Sultana
+      </div>
+
+      <div class="parent-role">
+        Beloved daughter of
+      </div>
+
+      <div class="parent-name">
+        Amjad &amp; Begum
+      </div>
+
+      <div class="ampersand">
+        &amp;
+      </div>
+
+      <div class="couple-name long">
+        Mohammed Faisal Hussain
+      </div>
+
+      <div class="parent-role">
+        Beloved son of
+      </div>
+
+      <div class="parent-name">
+        Taher &amp; Begum
+      </div>
+
+      <div class="tagline">
+        Two Hearts
+        <span>♥</span>
+        One Deen
+        <span>♥</span>
+        A Lifetime Together
+      </div>
+
+      <div class="scroll-hint">
+        Scroll to reveal our special day
+      </div>
+
+      <div class="scroll-arrow">
+        ↓
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Screen 3 -->
+
+  <section id="revealScreen" class="screen">
+
+    <div
+      class="flower-shower"
+      id="flowerShower"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="dark-panel reveal-panel"
+      id="revealPanel"
+    >
+
+      <div class="ornament">
+        ◇ ❦ ◇
+      </div>
+
+      <div class="label">
+        Save the Date
+      </div>
+
+      <h2 class="panel-title">
+        Scratch to Reveal
+      </h2>
+
+      <div class="scratch-description">
+        Gently scratch the gold card to reveal
+        the Nikah date and time.
+      </div>
+
+      <div class="scratch-card-shell">
+
+        <div class="scratch-square-area">
+
+          <div class="square-result">
+
+            <div class="reveal-label">
+              Nikah Ceremony
+            </div>
+
+            <div class="date-day">
+              24
+            </div>
+
+            <div class="date-month">
+              December
+            </div>
+
+            <div class="date-year">
+              2026
+            </div>
+
+            <div class="date-divider"></div>
+
+            <div class="date-time">
+              9:00 PM
+            </div>
+
+          </div>
+
+          <canvas
+            id="scratchCanvas"
+            aria-label="Scratch to reveal the Nikah date"
+          ></canvas>
+
+        </div>
+
+      </div>
+
+      <div
+        id="scratchStatus"
+        aria-live="polite"
+      >
+        Start scratching the gold card
+      </div>
+
+      <div class="countdown-area">
+
+        <div class="merged-divider"></div>
+
+        <div class="countdown-heading">
+          Counting Down to Forever
+        </div>
+
+        <div class="countdown-subtitle">
+          Until our special day
+        </div>
+
+        <div class="countdown-grid">
+
+          <div class="count-box">
+            <span class="count-number" id="days">00</span>
+            <span class="count-label">Days</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="hours">00</span>
+            <span class="count-label">Hours</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="minutes">00</span>
+            <span class="count-label">Minutes</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="seconds">00</span>
+            <span class="count-label">Seconds</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Screen 4 -->
+
+  <section id="finalScreen" class="screen">
+
+    <div class="dark-panel final-panel">
+
+      <div class="ornament">
+        ◇ ❦ ◇
+      </div>
+
+      <div class="label">
+        Nikah Ceremony
+      </div>
+
+      <h2 class="panel-title">
+        Venue
+      </h2>
+
+      <div class="venue-icon">
+        ◎
+      </div>
+
+      <div class="venue-name">
+        H-Convention Center
+      </div>
+
+      <div class="venue-city">
+        Medak
+      </div>
+
+      <div class="venue-address">
+        H-Convention Center, Medak
+      </div>
+
+      <a
+        class="map-button"
+        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 View on Google Maps
+      </a>
+
+      <div class="final-divider">
+        <span>❦</span>
+      </div>
+
+      <div class="dua-arabic">
+        بَارَكَ اللَّهُ لَكُمَا<br>
+        وَبَارَكَ عَلَيْكُمَا<br>
+        وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+      </div>
+
+      <div class="dua-transliteration">
+        Barakallahu lakuma wa baraka
+        'alaykuma wa jama'a baynakuma fi khayr
+      </div>
+
+      <div class="dua-meaning">
+        May Allah bless both of you, shower His
+        blessings upon you, and unite you both
+        in goodness.
+      </div>
+
+      <div class="closing-line"></div>
+
+      <div class="closing-title">
+        Your presence will make<br>
+        our celebration complete
+      </div>
+
+      <div class="closing-message">
+        We would be honoured to celebrate this
+        beautiful beginning with you and your family.
+        Your presence and duas are sincerely requested.
+      </div>
+
+      <div class="closing-couple">
+        Sameena Sultana ♥ Mohammed Faisal Hussain
       </div>
 
       <button
         type="button"
-        class="wax-seal"
-        id="waxSeal"
+        class="restart-button"
+        id="restartButton"
       >
-        <span>
-          Tap<br>
-          to<br>
-          Open
-        </span>
+        View Again
       </button>
 
     </div>
 
-  </div>
-
-  <div class="opening-flash"></div>
-
-  <div class="you-are-invited">
-
-    <div class="invited-ornament">
-      ❧
-    </div>
-
-    <div class="invited-text">
-      You Are Invited
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 2 -->
-
-<section id="coupleScreen" class="screen">
-
-  <div class="couple-content">
-
-    <div class="bismillah">
-      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-    </div>
-
-    <div class="screen2-ornament">
-      ❦
-    </div>
-
-    <div class="faith-heading">
-      Together in Faith<br>
-      Forever in Love
-    </div>
-
-    <div class="heart-divider">
-      ♥
-    </div>
-
-    <div class="blessing-copy">
-      With the blessings of Allah<br>
-      and the love of our families,<br>
-      we invite you to the Nikah ceremony of
-    </div>
-
-    <div class="couple-name">
-      Sameena Sultana
-    </div>
-
-    <div class="parent-role">
-      Beloved daughter of
-    </div>
-
-    <div class="parent-name">
-      Amjad &amp; Asra
-    </div>
-
-    <div class="ampersand">
-      &amp;
-    </div>
-
-    <div class="couple-name long">
-      Mohammed Faisal Hussain
-    </div>
-
-    <div class="parent-role">
-      Beloved son of
-    </div>
-
-    <div class="parent-name">
-      Taher &amp; XXXX
-    </div>
-
-    <div class="tagline">
-      Two Hearts
-      <span>♥</span>
-      One Deen
-      <span>♥</span>
-      A Lifetime Together
-    </div>
-
-    <div class="scroll-hint">
-      Scroll to reveal our special day
-    </div>
-
-    <div class="scroll-arrow">
-      ↓
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 3 -->
-
-<section id="revealScreen" class="screen">
-
-  <div
-    class="flower-shower"
-    id="flowerShower"
-  ></div>
-
-  <div
-    class="dark-panel reveal-panel"
-    id="revealPanel"
-  >
-
-    <div class="ornament">
-      ◇ ❦ ◇
-    </div>
-
-    <div class="label">
-      Save the Date
-    </div>
-
-    <h2 class="panel-title">
-      Scratch to Reveal
-    </h2>
-
-    <div class="scratch-description">
-      Gently scratch the gold card to reveal
-      the Nikah date and time.
-    </div>
-
-    <div class="scratch-card-shell">
-
-      <div class="scratch-square-area">
-
-        <div class="square-result">
-
-          <div class="reveal-label">
-            Nikah Ceremony
-          </div>
-
-          <div class="date-day">
-            24
-          </div>
-
-          <div class="date-month">
-            December
-          </div>
-
-          <div class="date-year">
-            2026
-          </div>
-
-          <div class="date-divider"></div>
-
-          <div class="date-time">
-            9:00 PM
-          </div>
-
-        </div>
-
-        <canvas id="scratchCanvas"></canvas>
-
-      </div>
-
-    </div>
-
-    <div id="scratchStatus">
-      Start scratching the gold card
-    </div>
-
-    <div class="countdown-area">
-
-      <div class="merged-divider"></div>
-
-      <div class="countdown-heading">
-        Count Down to Forever
-      </div>
-
-      <div class="countdown-subtitle">
-        Until our special day
-      </div>
-
-      <div class="countdown-grid">
-
-        <div class="count-box">
-          <span
-            class="count-number"
-            id="days"
-          >
-            00
-          </span>
-
-          <span class="count-label">
-            Days
-          </span>
-        </div>
-
-        <div class="count-box">
-
-          <span
-            class="count-number"
-            id="hours"
-          >
-            00
-          </span>
-
-          <span class="count-label">
-            Hours
-          </span>
-
-        </div>
-
-        <div class="count-box">
-
-          <span
-            class="count-number"
-            id="minutes"
-          >
-            00
-          </span>
-
-          <span class="count-label">
-            Minutes
-          </span>
-
-        </div>
-
-        <div class="count-box">
-
-          <span
-            class="count-number"
-            id="seconds"
-          >
-            00
-          </span>
-
-          <span class="count-label">
-            Seconds
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 4 -->
-
-<section id="finalScreen" class="screen">
-
-  <div class="dark-panel final-panel">
-
-    <div class="ornament">
-      ◇ ❦ ◇
-    </div>
-
-    <div class="label">
-      Nikah Ceremony
-    </div>
-
-    <h2 class="panel-title">
-      Venue
-    </h2>
-
-    <div class="venue-icon">
-      ◎
-    </div>
-
-    <div class="venue-name">
-      H-Convention Center
-    </div>
-
-    <div class="venue-city">
-      Medak
-    </div>
-
-    <div class="venue-address">
-      H-Convention Center, Medak
-    </div>
-
-    <a
-      class="map-button"
-      href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      📍 View on Google Maps
-    </a>
-
-    <div class="final-divider">
-      <span>❦</span>
-    </div>
-
-    <div class="dua-arabic">
-      بَارَكَ اللَّهُ لَكُمَا<br>
-      وَبَارَكَ عَلَيْكُمَا<br>
-      وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
-    </div>
-
-    <div class="dua-transliteration">
-      Barakallahu lakuma wa baraka
-      'alaykuma wa jama'a baynakuma fi khayr
-    </div>
-
-    <div class="dua-meaning">
-      May Allah bless both of you,
-      shower His blessings upon you,
-      and unite you both in goodness.
-    </div>
-
-    <div class="closing-line"></div>
-
-    <div class="closing-title">
-      Your presence will make<br>
-      our celebration complete
-    </div>
-
-    <div class="closing-message">
-      We would be honoured to celebrate
-      this beautiful beginning with you
-      and your family. Your presence
-      and duas are sincerely requested.
-    </div>
-
-    <div class="closing-couple">
-      Sameena Sultana ♥ Mohammed Faisal Hussain
-    </div>
-
-    <button
-      type="button"
-      class="restart-button"
-      id="restartButton"
-    >
-      View Again
-    </button>
-
-  </div>
-
-</section>
-
-<script>
-
-const openingScreen =
-  document.getElementById(
-    "openingScreen"
-  );
-
-const envelopeBox =
-  document.getElementById(
-    "envelopeBox"
-  );
-
-const waxSeal =
-  document.getElementById(
-    "waxSeal"
-  );
-
-const backgroundAudio =
-  document.getElementById(
-    "backgroundAudio"
-  );
-
-let invitationOpened =
-  false;
-
-
-/* ===============================
-   ENVELOPE + AUDIO
-================================ */
-
-waxSeal.addEventListener(
-  "click",
-  function(){
-
-    if(invitationOpened){
-      return;
-    }
-
-    invitationOpened = true;
-
-    backgroundAudio.volume =
-      0.35;
-
-    backgroundAudio
-      .play()
-      .catch(
-        function(error){
-
-          console.log(
-            "Audio playback failed:",
-            error
-          );
-
+  </section>
+
+  <script>
+    /* Elements */
+
+    const openingScreen =
+      document.getElementById(
+        "openingScreen"
+      );
+
+    const envelopeBox =
+      document.getElementById(
+        "envelopeBox"
+      );
+
+    const waxSeal =
+      document.getElementById(
+        "waxSeal"
+      );
+
+    const backgroundAudio =
+      document.getElementById(
+        "backgroundAudio"
+      );
+
+    const audioControl =
+      document.getElementById(
+        "audioControl"
+      );
+
+    const canvas =
+      document.getElementById(
+        "scratchCanvas"
+      );
+
+    const ctx =
+      canvas.getContext(
+        "2d",
+        {
+          willReadFrequently: true
         }
       );
 
-    openingScreen
-      .classList
-      .add(
-        "opening-active"
+    const area =
+      document.querySelector(
+        ".scratch-square-area"
       );
 
-    envelopeBox
-      .classList
-      .add(
-        "opening-active"
+    const status =
+      document.getElementById(
+        "scratchStatus"
       );
 
-    setTimeout(
-      function(){
+    const shower =
+      document.getElementById(
+        "flowerShower"
+      );
 
-        openingScreen
-          .classList
-          .add(
-            "finished"
+    const panel =
+      document.getElementById(
+        "revealPanel"
+      );
+
+    const restartButton =
+      document.getElementById(
+        "restartButton"
+      );
+
+    let invitationOpened = false;
+    let audioMuted = false;
+    let audioWasPlayingBeforeHidden = false;
+
+    let scratching = false;
+    let complete = false;
+    let lastX = 0;
+    let lastY = 0;
+    let counter = 0;
+
+    /* Opening and audio */
+
+    waxSeal.addEventListener(
+      "click",
+      function () {
+        if (invitationOpened) {
+          return;
+        }
+
+        invitationOpened = true;
+
+        backgroundAudio.volume = 0.35;
+        backgroundAudio.muted = false;
+        audioMuted = false;
+
+        backgroundAudio
+          .play()
+          .then(
+            function () {
+              audioControl.classList.add(
+                "visible"
+              );
+
+              audioControl.textContent =
+                "🔊";
+            }
+          )
+          .catch(
+            function (error) {
+              console.log(
+                "Background audio could not start:",
+                error
+              );
+            }
           );
 
-      },
-      1750
-    );
-
-    setTimeout(
-      function(){
-
-        openingScreen.style.display =
-          "none";
-
-        document.body
-          .classList
-          .remove(
-            "locked"
-          );
-
-        document.body
-          .classList
-          .add(
-            "reveal-couple"
-          );
-
-        window.scrollTo({
-          top:0,
-          behavior:"auto"
-        });
-
-      },
-      2400
-    );
-
-  }
-);
-
-
-/* ===============================
-   SCRATCH
-================================ */
-
-const canvas =
-  document.getElementById(
-    "scratchCanvas"
-  );
-
-const ctx =
-  canvas.getContext(
-    "2d",
-    {
-      willReadFrequently:true
-    }
-  );
-
-const area =
-  document.querySelector(
-    ".scratch-square-area"
-  );
-
-const status =
-  document.getElementById(
-    "scratchStatus"
-  );
-
-const shower =
-  document.getElementById(
-    "flowerShower"
-  );
-
-const panel =
-  document.getElementById(
-    "revealPanel"
-  );
-
-
-let scratching = false;
-let complete = false;
-
-let lastX = 0;
-let lastY = 0;
-
-let counter = 0;
-
-
-function setup(){
-
-  const r =
-    area.getBoundingClientRect();
-
-  const s =
-    Math.max(
-      1,
-      devicePixelRatio || 1
-    );
-
-  canvas.width =
-    Math.round(
-      r.width * s
-    );
-
-  canvas.height =
-    Math.round(
-      r.height * s
-    );
-
-  canvas.style.width =
-    r.width + "px";
-
-  canvas.style.height =
-    r.height + "px";
-
-  ctx.setTransform(
-    s,
-    0,
-    0,
-    s,
-    0,
-    0
-  );
-
-  draw(
-    r.width,
-    r.height
-  );
-
-}
-
-
-function draw(w,h){
-
-  ctx.globalCompositeOperation =
-    "source-over";
-
-  ctx.clearRect(
-    0,
-    0,
-    w,
-    h
-  );
-
-
-  const g =
-    ctx.createLinearGradient(
-      0,
-      0,
-      w,
-      h
-    );
-
-
-  g.addColorStop(
-    0,
-    "#79531d"
-  );
-
-  g.addColorStop(
-    .22,
-    "#d6ae52"
-  );
-
-  g.addColorStop(
-    .48,
-    "#a2752e"
-  );
-
-  g.addColorStop(
-    .72,
-    "#efd082"
-  );
-
-  g.addColorStop(
-    1,
-    "#76501a"
-  );
-
-
-  ctx.fillStyle = g;
-
-  ctx.fillRect(
-    0,
-    0,
-    w,
-    h
-  );
-
-
-  for(
-    let i = 0;
-    i < 240;
-    i++
-  ){
-
-    ctx.beginPath();
-
-    ctx.arc(
-      Math.random() * w,
-      Math.random() * h,
-      Math.random() * 2 + .4,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "rgba(255,239,181," +
-      (
-        Math.random() * .5 +
-        .13
-      ) +
-      ")";
-
-    ctx.fill();
-
-  }
-
-
-  ctx.strokeStyle =
-    "rgba(255,239,187,.72)";
-
-  ctx.lineWidth = 1.4;
-
-  ctx.strokeRect(
-    9,
-    9,
-    w - 18,
-    h - 18
-  );
-
-
-  ctx.fillStyle =
-    "rgba(255,248,221,.97)";
-
-  ctx.textAlign =
-    "center";
-
-  ctx.textBaseline =
-    "middle";
-
-
-  ctx.font =
-    "17px Georgia";
-
-  ctx.fillText(
-    "◇  ❦  ◇",
-    w / 2,
-    h / 2 - 43
-  );
-
-
-  ctx.font =
-    "italic 24px Georgia";
-
-  ctx.fillText(
-    "Scratch Here",
-    w / 2,
-    h / 2 - 5
-  );
-
-
-  ctx.font =
-    "8px Arial";
-
-  ctx.fillText(
-    "GENTLY RUB WITH YOUR FINGER",
-    w / 2,
-    h / 2 + 27
-  );
-
-}
-
-
-function pos(e){
-
-  const r =
-    canvas
-      .getBoundingClientRect();
-
-  const p =
-    e.touches &&
-    e.touches[0]
-      ? e.touches[0]
-      : e;
-
-  return{
-
-    x:
-      p.clientX -
-      r.left,
-
-    y:
-      p.clientY -
-      r.top
-
-  };
-
-}
-
-
-function erase(x,y){
-
-  ctx.globalCompositeOperation =
-    "destination-out";
-
-  ctx.beginPath();
-
-  ctx.arc(
-    x,
-    y,
-    23,
-    0,
-    Math.PI * 2
-  );
-
-  ctx.fill();
-
-}
-
-
-function start(e){
-
-  if(complete){
-    return;
-  }
-
-  e.preventDefault();
-
-  scratching = true;
-
-  const p = pos(e);
-
-  lastX = p.x;
-  lastY = p.y;
-
-  erase(
-    p.x,
-    p.y
-  );
-
-}
-
-
-function move(e){
-
-  if(
-    !scratching ||
-    complete
-  ){
-    return;
-  }
-
-  e.preventDefault();
-
-  const p = pos(e);
-
-  ctx.globalCompositeOperation =
-    "destination-out";
-
-  ctx.lineWidth = 40;
-  ctx.lineCap = "round";
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    lastX,
-    lastY
-  );
-
-  ctx.lineTo(
-    p.x,
-    p.y
-  );
-
-  ctx.stroke();
-
-  erase(
-    p.x,
-    p.y
-  );
-
-  lastX = p.x;
-  lastY = p.y;
-
-  counter++;
-
-  if(counter >= 10){
-
-    counter = 0;
-    check();
-
-  }
-
-}
-
-
-function stop(){
-
-  if(!scratching){
-    return;
-  }
-
-  scratching = false;
-
-  check();
-
-}
-
-
-function check(){
-
-  if(complete){
-    return;
-  }
-
-  const data =
-    ctx.getImageData(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    ).data;
-
-
-  let clear = 0;
-  let checked = 0;
-
-
-  for(
-    let i = 3;
-    i < data.length;
-    i += 64
-  ){
-
-    checked++;
-
-    if(data[i] < 40){
-      clear++;
-    }
-
-  }
-
-
-  const percent =
-    Math.round(
-      clear /
-      checked *
-      100
-    );
-
-
-  if(percent >= 55){
-
-    finish();
-
-  }
-  else{
-
-    status.textContent =
-      percent +
-      "% revealed - keep scratching";
-
-  }
-
-}
-
-
-function finish(){
-
-  if(complete){
-    return;
-  }
-
-  complete = true;
-
-  canvas
-    .classList
-    .add(
-      "cleared"
-    );
-
-
-  status.textContent =
-    "The special date has been revealed ✨";
-
-
-  panel
-    .classList
-    .add(
-      "date-revealed"
-    );
-
-
-  flowers();
-
-}
-
-
-function flowers(){
-
-  shower.innerHTML = "";
-
-  const colors = [
-    "#fffaf0",
-    "#f3e5c4",
-    "#e8c978",
-    "#d6ac52",
-    "#f8efd9"
-  ];
-
-
-  for(
-    let i = 0;
-    i < 34;
-    i++
-  ){
-
-    const el =
-      document
-        .createElement(
-          "span"
+        openingScreen.classList.add(
+          "opening-active"
         );
 
+        envelopeBox.classList.add(
+          "opening-active"
+        );
 
-    const v =
-      Math.random();
+        setTimeout(
+          function () {
+            openingScreen.classList.add(
+              "finished"
+            );
+          },
+          1750
+        );
 
+        setTimeout(
+          function () {
+            openingScreen.style.display =
+              "none";
 
-    el.className =
-      "falling-piece " +
-      (
-        v > .72
-          ? "flower"
-          : v > .56
-            ? "leaf"
-            : "petal"
-      );
+            document.body.classList.remove(
+              "locked"
+            );
 
+            document.body.classList.add(
+              "reveal-couple"
+            );
 
-    el.style.setProperty(
-      "--left",
-      Math.random() *
-      100 +
-      "%"
-    );
-
-
-    el.style.setProperty(
-      "--size",
-      9 +
-      Math.random() *
-      16 +
-      "px"
-    );
-
-
-    el.style.setProperty(
-      "--duration",
-      2.8 +
-      Math.random() *
-      2.5 +
-      "s"
-    );
-
-
-    el.style.setProperty(
-      "--delay",
-      Math.random() *
-      1.25 +
-      "s"
-    );
-
-
-    el.style.setProperty(
-      "--drift",
-      -55 +
-      Math.random() *
-      110 +
-      "px"
-    );
-
-
-    el.style.setProperty(
-      "--piece-color",
-      colors[
-        Math.floor(
-          Math.random() *
-          colors.length
-        )
-      ]
-    );
-
-
-    shower.appendChild(
-      el
-    );
-
-  }
-
-
-  setTimeout(
-    function(){
-
-      shower.innerHTML =
-        "";
-
-    },
-    6500
-  );
-
-}
-
-
-canvas.addEventListener(
-  "mousedown",
-  start
-);
-
-canvas.addEventListener(
-  "mousemove",
-  move
-);
-
-window.addEventListener(
-  "mouseup",
-  stop
-);
-
-canvas.addEventListener(
-  "touchstart",
-  start,
-  {
-    passive:false
-  }
-);
-
-canvas.addEventListener(
-  "touchmove",
-  move,
-  {
-    passive:false
-  }
-);
-
-canvas.addEventListener(
-  "touchend",
-  stop
-);
-
-canvas.addEventListener(
-  "touchcancel",
-  stop
-);
-
-
-/* ===============================
-   COUNTDOWN
-================================ */
-
-const weddingDate =
-  new Date(
-    "2026-12-24T21:00:00+05:30"
-  ).getTime();
-
-
-function countdown(){
-
-  const d =
-    weddingDate -
-    Date.now();
-
-
-  const v = {
-
-    days:0,
-    hours:0,
-    minutes:0,
-    seconds:0
-
-  };
-
-
-  if(d > 0){
-
-    v.days =
-      Math.floor(
-        d /
-        86400000
-      );
-
-
-    v.hours =
-      Math.floor(
-        d %
-        86400000 /
-        3600000
-      );
-
-
-    v.minutes =
-      Math.floor(
-        d %
-        3600000 /
-        60000
-      );
-
-
-    v.seconds =
-      Math.floor(
-        d %
-        60000 /
-        1000
-      );
-
-  }
-
-
-  Object
-    .keys(v)
-    .forEach(
-      function(k){
-
-        document
-          .getElementById(k)
-          .textContent =
-          String(
-            v[k]
-          )
-          .padStart(
-            2,
-            "0"
-          );
-
+            window.scrollTo({
+              top: 0,
+              behavior: "auto"
+            });
+          },
+          2400
+        );
       }
     );
 
-}
+    /* Mute and unmute */
 
+    audioControl.addEventListener(
+      "click",
+      function () {
+        audioMuted = !audioMuted;
+        backgroundAudio.muted = audioMuted;
 
-countdown();
+        if (audioMuted) {
+          audioControl.textContent =
+            "🔇";
 
-setInterval(
-  countdown,
-  1000
-);
+          audioControl.setAttribute(
+            "aria-label",
+            "Play background audio"
+          );
+        } else {
+          audioControl.textContent =
+            "🔊";
 
+          audioControl.setAttribute(
+            "aria-label",
+            "Mute background audio"
+          );
 
-/* ===============================
-   RESTART
-================================ */
+          backgroundAudio
+            .play()
+            .catch(
+              function (error) {
+                console.log(
+                  "Audio could not resume:",
+                  error
+                );
+              }
+            );
+        }
+      }
+    );
 
-document
-  .getElementById(
-    "restartButton"
-  )
-  .addEventListener(
-    "click",
-    function(){
+    /* Pause when the invitation is in the background */
 
-      backgroundAudio.pause();
-      backgroundAudio.currentTime = 0;
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+        if (document.hidden) {
+          audioWasPlayingBeforeHidden =
+            invitationOpened &&
+            !backgroundAudio.paused &&
+            !backgroundAudio.muted;
 
-      invitationOpened =
-        false;
+          backgroundAudio.pause();
 
+          return;
+        }
 
-      openingScreen.style.display =
-        "block";
+        if (
+          invitationOpened &&
+          audioWasPlayingBeforeHidden &&
+          !audioMuted
+        ) {
+          backgroundAudio
+            .play()
+            .catch(
+              function (error) {
+                console.log(
+                  "Background audio could not resume:",
+                  error
+                );
+              }
+            );
+        }
 
+        audioWasPlayingBeforeHidden =
+          false;
+      }
+    );
 
-      openingScreen
-        .classList
-        .remove(
+    /*
+      pagehide is an additional safeguard for
+      iPhone Safari when the browser is closed
+      or the user navigates away.
+    */
+
+    window.addEventListener(
+      "pagehide",
+      function () {
+        audioWasPlayingBeforeHidden =
+          invitationOpened &&
+          !backgroundAudio.paused &&
+          !backgroundAudio.muted;
+
+        backgroundAudio.pause();
+      }
+    );
+
+    /* Scratch card setup */
+
+    function setup() {
+      const rectangle =
+        area.getBoundingClientRect();
+
+      const scale =
+        Math.max(
+          1,
+          window.devicePixelRatio || 1
+        );
+
+      canvas.width =
+        Math.round(
+          rectangle.width * scale
+        );
+
+      canvas.height =
+        Math.round(
+          rectangle.height * scale
+        );
+
+      canvas.style.width =
+        rectangle.width + "px";
+
+      canvas.style.height =
+        rectangle.height + "px";
+
+      ctx.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        0,
+        0
+      );
+
+      draw(
+        rectangle.width,
+        rectangle.height
+      );
+    }
+
+    function draw(width, height) {
+      ctx.globalCompositeOperation =
+        "source-over";
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      const gradient =
+        ctx.createLinearGradient(
+          0,
+          0,
+          width,
+          height
+        );
+
+      gradient.addColorStop(
+        0,
+        "#79531d"
+      );
+
+      gradient.addColorStop(
+        0.22,
+        "#d6ae52"
+      );
+
+      gradient.addColorStop(
+        0.48,
+        "#a2752e"
+      );
+
+      gradient.addColorStop(
+        0.72,
+        "#efd082"
+      );
+
+      gradient.addColorStop(
+        1,
+        "#76501a"
+      );
+
+      ctx.fillStyle = gradient;
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      for (
+        let index = 0;
+        index < 240;
+        index++
+      ) {
+        ctx.beginPath();
+
+        ctx.arc(
+          Math.random() * width,
+          Math.random() * height,
+          Math.random() * 2 + 0.4,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle =
+          "rgba(255,239,181," +
+          (Math.random() * 0.5 + 0.13) +
+          ")";
+
+        ctx.fill();
+      }
+
+      ctx.strokeStyle =
+        "rgba(255,239,187,0.72)";
+
+      ctx.lineWidth = 1.4;
+
+      ctx.strokeRect(
+        9,
+        9,
+        width - 18,
+        height - 18
+      );
+
+      ctx.fillStyle =
+        "rgba(255,248,221,0.97)";
+
+      ctx.textAlign =
+        "center";
+
+      ctx.textBaseline =
+        "middle";
+
+      ctx.font =
+        "17px Georgia";
+
+      ctx.fillText(
+        "◇  ❦  ◇",
+        width / 2,
+        height / 2 - 43
+      );
+
+      ctx.font =
+        "italic 24px Georgia";
+
+      ctx.fillText(
+        "Scratch Here",
+        width / 2,
+        height / 2 - 5
+      );
+
+      ctx.font =
+        "8px Arial";
+
+      ctx.fillText(
+        "GENTLY RUB WITH YOUR FINGER",
+        width / 2,
+        height / 2 + 27
+      );
+    }
+
+    function pointerPosition(event) {
+      const rectangle =
+        canvas.getBoundingClientRect();
+
+      const pointer =
+        event.touches &&
+        event.touches[0]
+          ? event.touches[0]
+          : event;
+
+      return {
+        x:
+          pointer.clientX -
+          rectangle.left,
+
+        y:
+          pointer.clientY -
+          rectangle.top
+      };
+    }
+
+    function erase(x, y) {
+      ctx.globalCompositeOperation =
+        "destination-out";
+
+      ctx.beginPath();
+
+      ctx.arc(
+        x,
+        y,
+        23,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fill();
+    }
+
+    function start(event) {
+      if (complete) {
+        return;
+      }
+
+      event.preventDefault();
+
+      scratching = true;
+
+      const point =
+        pointerPosition(event);
+
+      lastX = point.x;
+      lastY = point.y;
+
+      erase(
+        point.x,
+        point.y
+      );
+    }
+
+    function move(event) {
+      if (
+        !scratching ||
+        complete
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const point =
+        pointerPosition(event);
+
+      ctx.globalCompositeOperation =
+        "destination-out";
+
+      ctx.lineWidth = 40;
+      ctx.lineCap = "round";
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        lastX,
+        lastY
+      );
+
+      ctx.lineTo(
+        point.x,
+        point.y
+      );
+
+      ctx.stroke();
+
+      erase(
+        point.x,
+        point.y
+      );
+
+      lastX = point.x;
+      lastY = point.y;
+
+      counter += 1;
+
+      if (counter >= 10) {
+        counter = 0;
+        check();
+      }
+    }
+
+    function stop() {
+      if (!scratching) {
+        return;
+      }
+
+      scratching = false;
+      check();
+    }
+
+    function check() {
+      if (complete) {
+        return;
+      }
+
+      const data =
+        ctx.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        ).data;
+
+      let clear = 0;
+      let checked = 0;
+
+      for (
+        let index = 3;
+        index < data.length;
+        index += 64
+      ) {
+        checked += 1;
+
+        if (data[index] < 40) {
+          clear += 1;
+        }
+      }
+
+      const percentage =
+        Math.round(
+          clear /
+          checked *
+          100
+        );
+
+      if (percentage >= 55) {
+        finish();
+      } else {
+        status.textContent =
+          percentage +
+          "% revealed - keep scratching";
+      }
+    }
+
+    function finish() {
+      if (complete) {
+        return;
+      }
+
+      complete = true;
+      scratching = false;
+
+      canvas.classList.add(
+        "cleared"
+      );
+
+      status.textContent =
+        "The special date has been revealed ✨";
+
+      panel.classList.add(
+        "date-revealed"
+      );
+
+      flowers();
+    }
+
+    function flowers() {
+      shower.innerHTML = "";
+
+      const colors = [
+        "#fffaf0",
+        "#f3e5c4",
+        "#e8c978",
+        "#d6ac52",
+        "#f8efd9"
+      ];
+
+      for (
+        let index = 0;
+        index < 34;
+        index++
+      ) {
+        const piece =
+          document.createElement(
+            "span"
+          );
+
+        const typeValue =
+          Math.random();
+
+        piece.className =
+          "falling-piece " +
+          (
+            typeValue > 0.72
+              ? "flower"
+              : typeValue > 0.56
+                ? "leaf"
+                : "petal"
+          );
+
+        piece.style.setProperty(
+          "--left",
+          Math.random() * 100 + "%"
+        );
+
+        piece.style.setProperty(
+          "--size",
+          (
+            9 +
+            Math.random() * 16
+          ) +
+          "px"
+        );
+
+        piece.style.setProperty(
+          "--duration",
+          (
+            2.8 +
+            Math.random() * 2.5
+          ) +
+          "s"
+        );
+
+        piece.style.setProperty(
+          "--delay",
+          (
+            Math.random() * 1.25
+          ) +
+          "s"
+        );
+
+        piece.style.setProperty(
+          "--drift",
+          (
+            -55 +
+            Math.random() * 110
+          ) +
+          "px"
+        );
+
+        piece.style.setProperty(
+          "--piece-color",
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ]
+        );
+
+        shower.appendChild(
+          piece
+        );
+      }
+
+      setTimeout(
+        function () {
+          shower.innerHTML = "";
+        },
+        6500
+      );
+    }
+
+    canvas.addEventListener(
+      "mousedown",
+      start
+    );
+
+    canvas.addEventListener(
+      "mousemove",
+      move
+    );
+
+    window.addEventListener(
+      "mouseup",
+      stop
+    );
+
+    canvas.addEventListener(
+      "touchstart",
+      start,
+      {
+        passive: false
+      }
+    );
+
+    canvas.addEventListener(
+      "touchmove",
+      move,
+      {
+        passive: false
+      }
+    );
+
+    canvas.addEventListener(
+      "touchend",
+      stop
+    );
+
+    canvas.addEventListener(
+      "touchcancel",
+      stop
+    );
+
+    /* Countdown */
+
+    const weddingDate =
+      new Date(
+        "2026-12-24T21:00:00+05:30"
+      ).getTime();
+
+    function countdown() {
+      const distance =
+        weddingDate - Date.now();
+
+      const values = {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+
+      if (distance > 0) {
+        values.days =
+          Math.floor(
+            distance / 86400000
+          );
+
+        values.hours =
+          Math.floor(
+            distance %
+            86400000 /
+            3600000
+          );
+
+        values.minutes =
+          Math.floor(
+            distance %
+            3600000 /
+            60000
+          );
+
+        values.seconds =
+          Math.floor(
+            distance %
+            60000 /
+            1000
+          );
+      }
+
+      Object.keys(values).forEach(
+        function (key) {
+          document
+            .getElementById(key)
+            .textContent =
+              String(
+                values[key]
+              ).padStart(
+                2,
+                "0"
+              );
+        }
+      );
+    }
+
+    countdown();
+
+    setInterval(
+      countdown,
+      1000
+    );
+
+    /* Restart */
+
+    restartButton.addEventListener(
+      "click",
+      function () {
+        backgroundAudio.pause();
+        backgroundAudio.currentTime = 0;
+        backgroundAudio.muted = false;
+
+        audioMuted = false;
+        audioWasPlayingBeforeHidden = false;
+
+        audioControl.classList.remove(
+          "visible"
+        );
+
+        audioControl.textContent =
+          "🔊";
+
+        invitationOpened = false;
+
+        openingScreen.style.display =
+          "block";
+
+        openingScreen.classList.remove(
           "finished",
           "opening-active"
         );
 
-
-      envelopeBox
-        .classList
-        .remove(
+        envelopeBox.classList.remove(
           "opening-active"
         );
 
-
-      document.body
-        .classList
-        .remove(
+        document.body.classList.remove(
           "reveal-couple"
         );
 
-
-      document.body
-        .classList
-        .add(
+        document.body.classList.add(
           "locked"
         );
 
+        window.scrollTo({
+          top: 0,
+          behavior: "auto"
+        });
 
-      window.scrollTo({
-        top:0,
-        behavior:"auto"
-      });
+        complete = false;
+        scratching = false;
+        counter = 0;
 
-
-      complete = false;
-      scratching = false;
-      counter = 0;
-
-
-      canvas
-        .classList
-        .remove(
+        canvas.classList.remove(
           "cleared"
         );
 
-
-      panel
-        .classList
-        .remove(
+        panel.classList.remove(
           "date-revealed"
         );
 
+        status.textContent =
+          "Start scratching the gold card";
 
-      status.textContent =
-        "Start scratching the gold card";
+        shower.innerHTML =
+          "";
 
+        setup();
+      }
+    );
 
-      shower.innerHTML =
-        "";
+    window.addEventListener(
+      "load",
+      setup
+    );
 
-
-      setup();
-
-    }
-  );
-
-
-window.addEventListener(
-  "load",
-  setup
-);
-
-
-window.addEventListener(
-  "resize",
-  function(){
-
-    if(!complete){
-      setup();
-    }
-
-  }
-);
-
-</script>
+    window.addEventListener(
+      "resize",
+      function () {
+        if (!complete) {
+          setup();
+        }
+      }
+    );
+  </script>
 
 </body>
 </html>
