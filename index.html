@@ -2,29 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
-
   <meta name="theme-color" content="#405743">
 
-  <title>
-    Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation
-  </title>
+  <title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
 
   <style>
     :root {
       --forest: #293d2d;
-      --forest-dark: #192b20;
       --sage: #73816a;
       --ivory: #f8f1df;
-      --ivory-light: #fffaf0;
       --gold: #c79e4d;
-      --gold-dark: #79551d;
       --gold-light: #ecd38d;
-      --charcoal: #37342e;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
@@ -37,7 +29,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-snap-type: y proximity;
+      scroll-snap-type: y mandatory;
       background: #d7d0bc;
     }
 
@@ -48,15 +40,13 @@
       min-height: 100svh;
       margin: 0 auto;
       overflow-x: hidden;
-
       background: var(--ivory);
       color: var(--forest);
 
       font-family:
-        "Baskerville",
+        Baskerville,
         "Baskerville Old Face",
         "Iowan Old Style",
-        "Palatino Linotype",
         Georgia,
         serif;
 
@@ -87,19 +77,14 @@
       min-height: 100svh;
       overflow: hidden;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
-    .small-label {
-      color: var(--gold);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(7px, 2.2vw, 9px);
-      font-weight: 500;
+    .sans-label {
+      color: var(--gold-light);
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 8px;
+      font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
@@ -116,9 +101,7 @@
       width: min(100%, 430px);
       height: 100vh;
       height: 100svh;
-
       margin: 0 auto;
-      overflow: hidden;
 
       background:
         radial-gradient(
@@ -128,9 +111,9 @@
         ),
         linear-gradient(
           160deg,
-          #7b8d72 0%,
+          #7b8d72,
           #53684f 48%,
-          #304733 100%
+          #304733
         );
 
       transition:
@@ -146,12 +129,10 @@
 
     .opening-frame {
       position: absolute;
-
       inset:
         max(12px, var(--safe-top))
         13px
         max(12px, var(--safe-bottom));
-
       z-index: 50;
 
       border: 1px solid rgba(232, 207, 142, 0.58);
@@ -163,9 +144,8 @@
     .embossed-pattern {
       position: absolute;
       inset: 0;
-      z-index: 1;
-
-      opacity: 0.25;
+      opacity: 0.24;
+      pointer-events: none;
 
       background:
         radial-gradient(
@@ -186,19 +166,14 @@
           rgba(224, 220, 187, 0.13) 38px,
           transparent 40px
         );
-
-      pointer-events: none;
     }
 
     .opening-title {
       position: absolute;
-
       top: max(7%, calc(var(--safe-top) + 22px));
       left: 20px;
       right: 20px;
-
       z-index: 40;
-
       text-align: center;
 
       transition:
@@ -208,23 +183,15 @@
 
     .opening-arabic {
       color: var(--gold-light);
-
       font-size: clamp(21px, 6.4vw, 26px);
       line-height: 1.65;
     }
 
     .opening-subtitle {
-      margin-top: 4px;
-
+      margin-top: 5px;
       color: #e0d8c2;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(6px, 2vw, 8px);
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
@@ -253,15 +220,11 @@
 
     .envelope-box {
       position: relative;
-
       width: min(350px, 86vw);
       aspect-ratio: 350 / 270;
 
       filter:
-        drop-shadow(
-          0 22px 28px
-          rgba(17, 27, 18, 0.38)
-        );
+        drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
 
       transition: transform 0.8s ease 1.15s;
     }
@@ -273,82 +236,49 @@
     .envelope-back {
       position: absolute;
       inset: 0;
-      z-index: 1;
-
       overflow: hidden;
+      z-index: 1;
 
       border: 1px solid rgba(229, 204, 136, 0.62);
       border-radius: 9px;
 
       background:
         radial-gradient(
-          circle at 50% 40%,
+          circle,
           rgba(255, 255, 255, 0.08),
           transparent 52%
         ),
-        linear-gradient(
-          150deg,
-          #7c9074,
-          #536a54
-        );
-    }
-
-    .envelope-back::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      opacity: 0.24;
-
-      background:
-        repeating-linear-gradient(
-          42deg,
-          transparent 0 30px,
-          rgba(235, 227, 197, 0.18) 31px,
-          transparent 33px
-        );
+        linear-gradient(150deg, #7c9074, #536a54);
     }
 
     .envelope-interior {
       position: absolute;
-
       left: 3%;
       right: 3%;
       top: 3%;
-
-      height: 69%;
       z-index: 2;
+      height: 69%;
 
       border-radius: 8px 8px 45% 45%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #253c2b,
-          #4c654d
-        );
+      background: linear-gradient(#253c2b, #4c654d);
     }
 
     .envelope-glow {
       position: absolute;
-
       left: 8%;
       right: 8%;
       top: 15%;
-
-      height: 70%;
       z-index: 3;
+      height: 70%;
 
       opacity: 0;
       border-radius: 50%;
 
       background:
         radial-gradient(
-          ellipse at center,
-          rgba(255, 248, 208, 0.98) 0%,
+          ellipse,
+          rgba(255, 248, 208, 0.98),
           rgba(242, 207, 117, 0.62) 35%,
-          rgba(213, 168, 70, 0.18) 62%,
           transparent 75%
         );
 
@@ -356,7 +286,7 @@
 
       transition:
         opacity 0.8s ease 0.42s,
-        transform 1.05s ease 0.4s;
+        transform 1s ease 0.4s;
     }
 
     .opening-active .envelope-glow {
@@ -366,7 +296,6 @@
 
     .envelope-flap {
       position: absolute;
-
       left: 0;
       top: 0;
       z-index: 8;
@@ -387,51 +316,16 @@
       position: absolute;
       inset: 0;
 
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
-
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
       backface-visibility: hidden;
     }
 
     .flap-front {
-      border-top: 1px solid rgba(237, 214, 154, 0.62);
-
-      background:
-        linear-gradient(
-          145deg,
-          #84967b,
-          #536a55
-        );
-    }
-
-    .flap-front::after {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      opacity: 0.24;
-
-      background:
-        repeating-linear-gradient(
-          45deg,
-          transparent 0 30px,
-          rgba(237, 226, 194, 0.18) 31px,
-          transparent 33px
-        );
+      background: linear-gradient(145deg, #84967b, #536a55);
     }
 
     .flap-back {
-      background:
-        linear-gradient(
-          160deg,
-          #d5bd85,
-          #81632e
-        );
-
+      background: linear-gradient(#d5bd85, #81632e);
       transform: rotateX(180deg);
     }
 
@@ -444,11 +338,7 @@
       position: absolute;
       inset: 0;
       z-index: 6;
-
       overflow: hidden;
-
-      border-radius: 9px;
-
       pointer-events: none;
     }
 
@@ -460,13 +350,7 @@
       width: 50%;
       height: 100%;
 
-      clip-path:
-        polygon(
-          0 0,
-          100% 50%,
-          0 100%
-        );
-
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
       background: #617861;
     }
 
@@ -478,38 +362,24 @@
       width: 50%;
       height: 100%;
 
-      clip-path:
-        polygon(
-          100% 0,
-          0 50%,
-          100% 100%
-        );
-
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
       background: #576f59;
     }
 
     .front-bottom {
       position: absolute;
-
       left: 0;
       right: 0;
       bottom: 0;
 
       height: 54%;
 
-      clip-path:
-        polygon(
-          0 100%,
-          50% 0,
-          100% 100%
-        );
-
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
       background: #73866e;
     }
 
     .wax-seal {
       position: absolute;
-
       left: 50%;
       top: 52%;
       z-index: 15;
@@ -518,7 +388,6 @@
       height: clamp(72px, 21vw, 88px);
 
       transform: translate(-50%, -50%);
-
       cursor: pointer;
 
       border: 4px double #f4dda1;
@@ -527,9 +396,9 @@
       background:
         radial-gradient(
           circle at 32% 27%,
-          #edd178 0%,
+          #edd178,
           #bb8732 48%,
-          #6f4a16 100%
+          #6f4a16
         );
 
       color: #fff1c4;
@@ -547,14 +416,13 @@
       display: block;
 
       font-family:
-        "Baskerville",
-        Georgia,
-        serif;
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        cursive;
 
-      font-size: clamp(13px, 3.8vw, 16px);
-      font-style: italic;
+      font-size: clamp(14px, 4vw, 17px);
       line-height: 1.05;
-      text-align: center;
     }
 
     .opening-active .wax-seal {
@@ -562,7 +430,7 @@
 
       transform:
         translate(-50%, -50%)
-        scale(0.45);
+        scale(0.4);
 
       pointer-events: none;
     }
@@ -576,7 +444,7 @@
 
       background:
         radial-gradient(
-          circle at center,
+          circle,
           rgba(255, 252, 226, 0.98),
           rgba(255, 224, 145, 0.65) 26%,
           transparent 70%
@@ -585,7 +453,7 @@
       transform: scale(0.5);
 
       transition:
-        opacity 0.65s ease 0.85s,
+        opacity 0.7s ease 0.8s,
         transform 0.9s ease 0.8s;
 
       pointer-events: none;
@@ -596,121 +464,32 @@
       transform: scale(1.7);
     }
 
-    .opening-sparkles {
-      position: absolute;
-      inset: 0;
-      z-index: 36;
-
-      opacity: 0;
-
-      transition: opacity 0.5s ease 0.55s;
-
-      pointer-events: none;
-    }
-
-    .opening-active .opening-sparkles {
-      opacity: 1;
-    }
-
-    .spark {
-      position: absolute;
-
-      width: 6px;
-      height: 6px;
-
-      border-radius: 50%;
-
-      background: #fff2aa;
-      box-shadow: 0 0 13px #fff0a0;
-
-      animation:
-        sparkle 1.4s infinite ease-in-out;
-    }
-
-    .spark:nth-child(1) {
-      left: 18%;
-      top: 37%;
-    }
-
-    .spark:nth-child(2) {
-      right: 19%;
-      top: 42%;
-      animation-delay: 0.25s;
-    }
-
-    .spark:nth-child(3) {
-      left: 32%;
-      top: 60%;
-      animation-delay: 0.5s;
-    }
-
-    .spark:nth-child(4) {
-      right: 31%;
-      top: 57%;
-      animation-delay: 0.75s;
-    }
-
-    .spark:nth-child(5) {
-      left: 50%;
-      top: 34%;
-      animation-delay: 1s;
-    }
-
-    @keyframes sparkle {
-      0%,
-      100% {
-        opacity: 0;
-        transform: scale(0.25);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.65);
-      }
-    }
-
     .you-are-invited {
       position: absolute;
-
       left: 0;
       right: 0;
       bottom: max(7%, calc(var(--safe-bottom) + 20px));
-
       z-index: 42;
 
       color: #e5ca82;
       text-align: center;
-
-      transition:
-        opacity 0.4s ease,
-        transform 0.4s ease;
-    }
-
-    .opening-active .you-are-invited {
-      opacity: 0;
-      transform: translateY(12px);
     }
 
     .invited-ornament {
-      font-size: 19px;
+      font-size: 20px;
     }
 
     .invited-text {
-      margin-top: 4px;
+      margin-top: 5px;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     /* =====================================
-       SCREEN 2: TARGETED TYPOGRAPHY UPDATE
+       SCREEN 2: COUPLE
     ====================================== */
 
     #coupleScreen {
@@ -719,9 +498,9 @@
       justify-content: center;
 
       padding:
-        max(30px, var(--safe-top))
-        clamp(20px, 6vw, 35px)
-        max(28px, var(--safe-bottom));
+        max(24px, var(--safe-top))
+        20px
+        max(24px, var(--safe-bottom));
 
       text-align: center;
 
@@ -732,41 +511,19 @@
         no-repeat;
     }
 
-    .screen2-reading-layer {
-      position: absolute;
-
-      left: 12%;
-      right: 12%;
-      top: 9%;
-      bottom: 8%;
-
-      z-index: 2;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255, 253, 247, 0.64),
-          rgba(255, 253, 247, 0.24) 58%,
-          transparent 82%
-        );
-
-      pointer-events: none;
-    }
-
     .couple-content {
       position: relative;
-      z-index: 8;
+      z-index: 5;
 
       width: 100%;
-      max-width: 370px;
+      max-width: 380px;
 
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(20px);
     }
 
     body.reveal-couple .couple-content {
-      animation:
-        coupleReveal 1.3s ease forwards;
+      animation: coupleReveal 1.2s ease forwards;
     }
 
     @keyframes coupleReveal {
@@ -777,53 +534,38 @@
     }
 
     .screen2-bismillah {
-      color: #8a692f;
+      color: #926d28;
 
       font-family:
         "Geeza Pro",
-        "Noto Naskh Arabic",
         "Traditional Arabic",
         serif;
 
-      font-size: clamp(23px, 6.7vw, 30px);
-      font-weight: 400;
-      line-height: 1.55;
+      font-size: clamp(23px, 7vw, 31px);
+      line-height: 1.6;
     }
 
     .screen2-ornament {
-      margin: 3px 0 6px;
-
-      color: #a4813d;
-      font-size: 17px;
+      margin: 3px 0 5px;
+      color: #ad8435;
+      font-size: 18px;
     }
 
     .family-intro {
-      color: #665a44;
+      color: #6f6049;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
       font-size: clamp(7px, 2vw, 9px);
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .invitation-line {
       max-width: 285px;
-      margin: 6px auto 8px;
+      margin: 5px auto 7px;
 
       color: #5d5548;
-
-      font-family:
-        "Baskerville",
-        "Iowan Old Style",
-        Georgia,
-        serif;
-
       font-size: clamp(11px, 3vw, 13px);
       font-style: italic;
       line-height: 1.4;
@@ -835,53 +577,42 @@
       font-family:
         "Snell Roundhand",
         "Apple Chancery",
-        "URW Chancery L",
-        "Brush Script MT",
         "Segoe Script",
+        "Brush Script MT",
         cursive;
 
-      font-size: clamp(37px, 10vw, 48px);
+      font-size: clamp(38px, 10vw, 49px);
       font-weight: 400;
-      font-style: normal;
       line-height: 1;
     }
 
     .of-text {
-      margin-top: 1px;
+      margin-top: 2px;
 
       color: #9b7c40;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
       font-size: 6px;
-      letter-spacing: 2.6px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
     }
 
     .couple-name {
-      max-width: 365px;
-
-      margin: 9px auto 0;
+      max-width: 370px;
+      margin: 8px auto 0;
 
       color: #393128;
 
       font-family:
         "Snell Roundhand",
         "Apple Chancery",
-        "URW Chancery L",
-        "Brush Script MT",
         "Segoe Script",
+        "Brush Script MT",
         cursive;
 
       font-size: clamp(41px, 11vw, 52px);
       font-weight: 400;
-      font-style: normal;
       line-height: 0.98;
-      letter-spacing: 0;
 
       text-wrap: balance;
 
@@ -890,296 +621,241 @@
     }
 
     .couple-name.long-name {
-      max-width: 370px;
-
-      font-size: clamp(35px, 9.4vw, 44px);
-      line-height: 1.02;
+      max-width: 385px;
+      font-size: clamp(35px, 9.5vw, 45px);
+      line-height: 1.01;
     }
 
     .parent-role {
-      margin-top: 6px;
+      margin-top: 5px;
 
       color: #927842;
 
       font-family:
         "Snell Roundhand",
         "Apple Chancery",
-        "URW Chancery L",
-        "Brush Script MT",
         "Segoe Script",
         cursive;
 
       font-size: clamp(11px, 3vw, 13px);
-      line-height: 1.1;
     }
 
     .parent-name {
-      margin-top: 2px;
+      margin-top: 1px;
 
       color: #625746;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
       font-size: clamp(8px, 2.3vw, 10px);
-      letter-spacing: 0.65px;
+      letter-spacing: 0.6px;
     }
 
-    .classic-ampersand {
-      position: relative;
-
-      width: 110px;
-
-      margin: 7px auto 5px;
-
-      color: #a47c2e;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "URW Chancery L",
-        "Brush Script MT",
-        cursive;
-
-      font-size: 28px;
-      font-style: normal;
-    }
-
-    .classic-ampersand::before,
-    .classic-ampersand::after {
-      content: "";
-
-      position: absolute;
-      top: 50%;
-
-      width: 36px;
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #ad8d48
-        );
-    }
-
-    .classic-ampersand::before {
-      left: 0;
-    }
-
-    .classic-ampersand::after {
-      right: 0;
-      transform: rotate(180deg);
-    }
-
-    .classic-divider {
+    .ampersand-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 98px;
+      width: 115px;
+      margin: 6px auto 3px;
 
-      margin: 8px auto 5px;
+      color: #ae8436;
+
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        cursive;
+
+      font-size: 28px;
     }
 
-    .classic-divider::before,
-    .classic-divider::after {
+    .ampersand-wrap::before,
+    .ampersand-wrap::after {
       content: "";
+      flex: 1;
+      height: 1px;
+      margin: 0 8px;
 
-      width: 36px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #b99145
+        );
+    }
+
+    .ampersand-wrap::after {
+      transform: rotate(180deg);
+    }
+
+    .bottom-divider {
+      display: flex;
+      align-items: center;
+
+      width: 105px;
+      margin: 7px auto 4px;
+    }
+
+    .bottom-divider::before,
+    .bottom-divider::after {
+      content: "";
+      flex: 1;
       height: 1px;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          #a18442
+          #a7813b
         );
     }
 
-    .classic-divider::after {
+    .bottom-divider::after {
       transform: rotate(180deg);
     }
 
-    .classic-divider span {
+    .bottom-divider span {
       width: 6px;
       height: 6px;
+      margin: 0 7px;
 
-      margin: 0 6px;
-
-      border: 1px solid #a18442;
-
+      border: 1px solid #a7813b;
       transform: rotate(45deg);
     }
 
     .scroll-hint {
-      margin-top: 6px;
+      margin-top: 5px;
 
-      color: #806936;
+      color: #8c7139;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
       font-size: 7px;
-      font-weight: 500;
-      letter-spacing: 1.7px;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .scroll-arrow {
       margin-top: 4px;
-
-      color: #a37d35;
-      font-size: 17px;
+      color: #aa8135;
+      font-size: 18px;
 
       animation:
-        bounce 1.4s infinite ease-in-out;
+        arrowBounce 1.4s infinite ease-in-out;
     }
 
-    @keyframes bounce {
+    @keyframes arrowBounce {
       50% {
         transform: translateY(6px);
       }
     }
 
     /* =====================================
-       SCREEN 3: UNCHANGED
+       SHARED BACKGROUND
     ====================================== */
 
-    #scratchScreen {
+    #revealScreen,
+    #finalScreen {
       display: flex;
       align-items: center;
       justify-content: center;
 
       padding:
-        max(28px, var(--safe-top))
-        18px
-        max(26px, var(--safe-bottom));
+        max(24px, var(--safe-top))
+        16px
+        max(24px, var(--safe-bottom));
 
       text-align: center;
-      isolation: isolate;
 
       background:
         linear-gradient(
-          180deg,
-          rgba(27, 29, 23, 0.14),
-          rgba(24, 25, 20, 0.35)
+          rgba(27, 29, 23, 0.12),
+          rgba(26, 28, 22, 0.3)
         ),
         url("Screens.jpg")
         center / cover
         no-repeat;
     }
 
-    #scratchScreen::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255, 239, 191, 0.13),
-          rgba(18, 20, 16, 0.22) 84%
-        );
-
-      pointer-events: none;
-    }
-
-    .scratch-content {
+    .dark-panel {
       position: relative;
       z-index: 5;
 
-      width: min(365px, 92vw);
+      width: min(370px, 92vw);
 
-      padding:
-        clamp(24px, 5vh, 34px)
-        18px
-        clamp(22px, 5vh, 32px);
-
-      border: 1px solid rgba(224, 193, 113, 0.55);
-      border-radius: 25px;
+      border: 1px solid rgba(226, 196, 120, 0.58);
+      border-radius: 24px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(36, 39, 31, 0.67),
-          rgba(57, 55, 45, 0.5)
+          rgba(35, 38, 31, 0.64),
+          rgba(54, 53, 44, 0.5)
         );
 
       box-shadow:
-        0 20px 45px rgba(10, 12, 9, 0.3),
-        inset 0 0 0 1px rgba(255, 245, 213, 0.07);
+        0 18px 40px rgba(10, 12, 9, 0.3),
+        inset 0 0 0 1px rgba(255, 246, 213, 0.08);
 
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
 
-    .scratch-content::before {
+    .dark-panel::before {
       content: "";
-
       position: absolute;
       inset: 8px;
 
-      border: 1px solid rgba(229, 202, 132, 0.18);
-      border-radius: 18px;
+      border: 1px solid rgba(229, 202, 132, 0.2);
+      border-radius: 17px;
 
       pointer-events: none;
     }
 
-    .scratch-intro-ornament {
-      margin-bottom: 5px;
-
+    .ornament {
       color: #e4c675;
-      font-size: 15px;
+      font-size: 17px;
       letter-spacing: 7px;
     }
 
-    .scratch-title {
+    .panel-title {
       margin-top: 7px;
 
       color: #fff5dc;
 
-      font-family:
-        "Baskerville",
-        "Iowan Old Style",
-        Georgia,
-        serif;
-
-      font-size: clamp(28px, 8vw, 35px);
+      font-size: clamp(29px, 8vw, 37px);
       font-weight: 400;
       font-style: italic;
-      line-height: 1.1;
+      line-height: 1.08;
     }
 
-    .scratch-info {
+    /* =====================================
+       SCREEN 3: SCRATCH + COUNTDOWN
+    ====================================== */
+
+    .reveal-panel {
+      padding:
+        clamp(23px, 4.5vh, 32px)
+        17px
+        clamp(22px, 4vh, 30px);
+    }
+
+    .scratch-description {
       max-width: 285px;
-      margin: 8px auto 15px;
+      margin: 7px auto 13px;
 
-      color: rgba(240, 230, 207, 0.84);
+      color: rgba(240, 230, 207, 0.86);
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(9px, 2.7vw, 11px);
-      line-height: 1.55;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      line-height: 1.5;
     }
 
     .scratch-card-shell {
       position: relative;
 
-      width: min(268px, 72vw);
-      aspect-ratio: 1 / 1;
+      width: min(250px, 67vw);
+      aspect-ratio: 1;
 
       margin: 0 auto;
       padding: 9px;
@@ -1202,29 +878,26 @@
 
     .scratch-square-area {
       position: relative;
-
       width: 100%;
       height: 100%;
-
       overflow: hidden;
 
       border: 1px solid rgba(158, 109, 32, 0.62);
       border-radius: 13px;
 
-      background: var(--ivory-light);
+      background: #fffaf0;
     }
 
     .square-result {
       position: absolute;
       inset: 0;
-      z-index: 1;
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
-      padding: 17px;
+      padding: 15px;
 
       background:
         radial-gradient(
@@ -1239,127 +912,60 @@
         );
     }
 
-    .result-ornament {
-      display: flex;
-      align-items: center;
-
-      width: 120px;
-
-      margin-bottom: 7px;
-
-      color: #b08740;
-      font-size: 12px;
-    }
-
-    .result-ornament::before,
-    .result-ornament::after {
-      content: "";
-
-      flex: 1;
-      height: 1px;
-
-      margin: 0 8px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #b08740
-        );
-    }
-
-    .result-ornament::after {
-      transform: rotate(180deg);
-    }
-
     .reveal-label {
       color: #9e7937;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     .square-date-day {
-      margin-top: 7px;
-
+      margin-top: 5px;
       color: #3a473b;
-
-      font-size: clamp(57px, 17vw, 73px);
-      font-weight: 400;
+      font-size: clamp(54px, 16vw, 69px);
       line-height: 0.88;
     }
 
     .square-date-month {
-      margin-top: 8px;
-
+      margin-top: 7px;
       color: #987238;
 
-      font-size: clamp(19px, 5.7vw, 23px);
-      font-style: italic;
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        cursive;
+
+      font-size: clamp(24px, 7vw, 30px);
     }
 
     .square-date-year {
-      margin-top: 4px;
-
+      margin-top: 2px;
       color: #3d483d;
-
-      font-size: clamp(21px, 6vw, 25px);
+      font-size: 22px;
       letter-spacing: 4px;
     }
 
-    .result-divider {
-      display: flex;
-      align-items: center;
-
-      width: 125px;
-
-      margin: 11px auto 0;
-    }
-
-    .result-divider::before,
-    .result-divider::after {
-      content: "";
-
-      flex: 1;
+    .date-divider {
+      width: 90px;
       height: 1px;
+      margin: 9px auto;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          #b38a40
+          #b38a40,
+          transparent
         );
     }
 
-    .result-divider::after {
-      transform: rotate(180deg);
-    }
-
-    .result-divider span {
-      width: 7px;
-      height: 7px;
-
-      margin: 0 8px;
-
-      border: 1px solid #af8338;
-
-      transform: rotate(45deg);
-    }
-
     .square-date-time {
-      margin-top: 9px;
-
       color: #88652f;
-
-      font-size: 17px;
+      font-size: 16px;
     }
 
     #scratchCanvas {
@@ -1384,37 +990,124 @@
       pointer-events: none;
     }
 
-    .scratch-status {
-      min-height: 14px;
-
-      margin-top: 13px;
+    #scratchStatus {
+      min-height: 13px;
+      margin-top: 11px;
 
       color: #efd384;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       letter-spacing: 1.3px;
       text-transform: uppercase;
     }
+
+    .merged-divider {
+      width: 125px;
+      height: 1px;
+      margin: 18px auto;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #d8b869,
+          transparent
+        );
+    }
+
+    .countdown-area {
+      max-height: 0;
+      overflow: hidden;
+
+      opacity: 0;
+      transform: translateY(18px);
+
+      transition:
+        max-height 1.2s ease,
+        opacity 0.8s ease 0.25s,
+        transform 0.8s ease 0.25s;
+    }
+
+    .reveal-panel.date-revealed .countdown-area {
+      max-height: 340px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .countdown-heading {
+      color: #fff5dc;
+
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        cursive;
+
+      font-size: clamp(27px, 7.5vw, 34px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .countdown-subtitle {
+      margin-top: 6px;
+
+      color: #e7ddc5;
+
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 5px;
+      margin-top: 16px;
+    }
+
+    .count-box {
+      padding: 11px 1px;
+
+      border: 1px solid rgba(231, 204, 132, 0.45);
+      border-radius: 9px;
+
+      background: rgba(255, 250, 229, 0.05);
+    }
+
+    .count-number {
+      display: block;
+      color: #f1d68b;
+      font-size: clamp(19px, 5.7vw, 24px);
+      line-height: 1;
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 6px;
+
+      color: #e6dcc3;
+
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 5px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    /* Flower shower */
 
     .flower-shower {
       position: absolute;
       inset: 0;
       z-index: 50;
-
       overflow: hidden;
-
       pointer-events: none;
     }
 
     .falling-piece {
       position: absolute;
-
       left: var(--left);
       top: -50px;
 
@@ -1426,33 +1119,28 @@
       animation:
         flowerFall var(--duration)
         var(--delay)
-        cubic-bezier(0.18, 0.62, 0.32, 1)
+        linear
         forwards;
     }
 
     .falling-piece.petal::before {
       content: "";
-
       position: absolute;
       inset: 0;
 
       border-radius: 80% 20% 65% 35%;
-
       background: var(--piece-color);
     }
 
     .falling-piece.flower::before {
       content: "✿";
-
       color: var(--piece-color);
-
       font-size: var(--size);
       line-height: 1;
     }
 
     .falling-piece.leaf::before {
       content: "";
-
       position: absolute;
       inset: 0;
 
@@ -1467,15 +1155,7 @@
     }
 
     @keyframes flowerFall {
-      0% {
-        opacity: 0;
-
-        transform:
-          translateY(-30px)
-          rotate(0deg);
-      }
-
-      9% {
+      8% {
         opacity: 1;
       }
 
@@ -1493,267 +1173,49 @@
     }
 
     /* =====================================
-       SCREENS 4 TO 6: UNCHANGED
+       SCREEN 4: VENUE + DUA
     ====================================== */
 
-    #countdownScreen,
-    #locationScreen,
-    #duaScreen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+    .final-panel {
       padding:
-        max(30px, var(--safe-top))
-        clamp(16px, 5vw, 24px)
-        max(30px, var(--safe-bottom));
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          rgba(27, 29, 23, 0.08),
-          rgba(26, 28, 22, 0.25)
-        ),
-        url("Screens.jpg")
-        center / cover
-        no-repeat;
+        clamp(26px, 5vh, 36px)
+        22px
+        clamp(24px, 5vh, 34px);
     }
 
-    .final-screen-panel {
+    .venue-block {
       position: relative;
-      z-index: 5;
-
-      width: min(350px, 90vw);
-
-      padding:
-        clamp(26px, 6vh, 38px)
-        clamp(18px, 5vw, 24px);
-
-      border: 1px solid rgba(226, 196, 120, 0.55);
-      border-radius: 23px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(35, 38, 31, 0.61),
-          rgba(54, 53, 44, 0.48)
-        );
-
-      box-shadow:
-        0 18px 40px rgba(10, 12, 9, 0.28),
-        inset 0 0 0 1px rgba(255, 246, 213, 0.08);
-
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    .final-screen-panel::before {
-      content: "";
-
-      position: absolute;
-      inset: 8px;
-
-      border: 1px solid rgba(229, 202, 132, 0.18);
-      border-radius: 17px;
-
-      pointer-events: none;
-    }
-
-    .final-ornament {
-      margin-bottom: 8px;
-
-      color: #e4c675;
-
-      font-size: 17px;
-      letter-spacing: 7px;
-    }
-
-    .final-label {
-      color: #e4c675;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .final-title {
-      margin-top: 8px;
-
-      color: #fff5dc;
-
-      font-family:
-        "Baskerville",
-        "Iowan Old Style",
-        Georgia,
-        serif;
-
-      font-size: clamp(29px, 8.5vw, 35px);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.12;
-    }
-
-    .final-subtitle {
-      margin-top: 8px;
-
-      color: rgba(242, 230, 199, 0.82);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .countdown-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 6px;
-
-      margin-top:
-        clamp(21px, 5vh, 30px);
-    }
-
-    .count-box {
-      min-width: 0;
-
-      padding: 14px 1px;
-
-      border:
-        1px solid
-        rgba(231, 204, 132, 0.45);
-
-      border-radius: 10px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 250, 229, 0.08),
-          rgba(26, 29, 23, 0.12)
-        );
-    }
-
-    .count-number {
-      display: block;
-
-      color: #f1d68b;
-
-      font-size:
-        clamp(21px, 6.5vw, 27px);
-
-      line-height: 1;
-    }
-
-    .count-label {
-      display: block;
-
-      margin-top: 7px;
-
-      color: #e6dcc3;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 6px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-
-    .countdown-divider {
-      display: flex;
-      align-items: center;
-
-      width: 125px;
-
-      margin: 19px auto 0;
-    }
-
-    .countdown-divider::before,
-    .countdown-divider::after {
-      content: "";
-
-      flex: 1;
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #dbbd71
-        );
-    }
-
-    .countdown-divider::after {
-      transform: rotate(180deg);
-    }
-
-    .countdown-divider span {
-      width: 7px;
-      height: 7px;
-
-      margin: 0 8px;
-
-      border:
-        1px solid #dbbd71;
-
-      transform: rotate(45deg);
-    }
-
-    .countdown-date {
-      margin-top: 17px;
-
-      color: #f0d99c;
-
-      font-size: 15px;
-      line-height: 1.65;
-      letter-spacing: 1px;
+      z-index: 2;
     }
 
     .venue-icon {
-      width: 52px;
-      height: 52px;
-
-      margin: 17px auto 13px;
+      width: 48px;
+      height: 48px;
+      margin: 14px auto 11px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border:
-        1px solid
-        rgba(230, 199, 117, 0.65);
-
+      border: 1px solid rgba(230, 199, 117, 0.65);
       border-radius: 50%;
 
       color: #e3c36f;
-      font-size: 22px;
+      font-size: 20px;
     }
 
     .venue-name {
       color: #fff5dd;
 
-      font-size:
-        clamp(22px, 7vw, 27px);
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "Segoe Script",
+        cursive;
 
+      font-size: clamp(27px, 7.5vw, 34px);
       font-weight: 400;
-      line-height: 1.2;
+      line-height: 1.08;
     }
 
     .venue-city {
@@ -1761,88 +1223,79 @@
 
       color: #e7cd89;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .venue-address {
-      max-width: 245px;
+      margin-top: 8px;
 
-      margin: 11px auto 0;
+      color: #e3dac5;
 
-      color:
-        rgba(240, 230, 208, 0.84);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    .venue-divider {
-      width: 70px;
-      height: 1px;
-
-      margin: 18px auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #d6b668,
-          transparent
-        );
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 9px;
     }
 
     .map-button {
       display: inline-block;
+      margin-top: 15px;
+      padding: 12px 21px;
 
-      padding: 13px 22px;
-
-      border:
-        1px solid
-        rgba(230, 198, 115, 0.7);
-
+      border: 1px solid rgba(230, 198, 115, 0.7);
       border-radius: 28px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(197, 153, 66, 0.92),
-          rgba(113, 77, 29, 0.92)
+          #c59942,
+          #714d1d
         );
 
       color: #fff7e2;
       text-decoration: none;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    .dua-panel {
-      padding-top:
-        clamp(24px, 5vh, 33px);
+    .final-divider {
+      display: flex;
+      align-items: center;
+      width: 145px;
+      margin: 21px auto;
+    }
 
-      padding-bottom:
-        clamp(24px, 5vh, 33px);
+    .final-divider::before,
+    .final-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #d8b869
+        );
+    }
+
+    .final-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .final-divider span {
+      margin: 0 9px;
+      color: #e4c675;
+      font-size: 14px;
+    }
+
+    .dua-block {
+      position: relative;
+      z-index: 2;
     }
 
     .dua-arabic {
@@ -1850,51 +1303,38 @@
 
       font-family:
         "Geeza Pro",
-        "Noto Naskh Arabic",
         "Traditional Arabic",
         serif;
 
-      font-size:
-        clamp(21px, 6.5vw, 27px);
-
-      line-height: 1.75;
-    }
-
-    .dua-transliteration {
-      margin-top: 14px;
-
-      color: #f4ead1;
-
-      font-size:
-        clamp(12px, 3.4vw, 14px);
-
-      font-style: italic;
-      line-height: 1.55;
-    }
-
-    .dua-meaning {
-      max-width: 285px;
-
-      margin: 12px auto 0;
-
-      color:
-        rgba(231, 223, 204, 0.84);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
+      font-size: clamp(20px, 5.8vw, 25px);
       line-height: 1.65;
     }
 
-    .closing-line {
-      width: 70px;
-      height: 1px;
+    .dua-transliteration {
+      margin-top: 11px;
 
-      margin: 19px auto;
+      color: #f4ead1;
+
+      font-size: clamp(12px, 3.2vw, 14px);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .dua-meaning {
+      max-width: 290px;
+      margin: 9px auto 0;
+
+      color: #ddd4c0;
+
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    .closing-line {
+      width: 65px;
+      height: 1px;
+      margin: 15px auto;
 
       background:
         linear-gradient(
@@ -1908,81 +1348,55 @@
     .closing-title {
       color: #fff5dd;
 
-      font-size:
-        clamp(23px, 7vw, 27px);
-
+      font-size: clamp(21px, 6vw, 26px);
       font-weight: 400;
       font-style: italic;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .closing-message {
-      max-width: 295px;
+      max-width: 300px;
+      margin: 9px auto 0;
 
-      margin: 12px auto 0;
+      color: #ddd4c1;
 
-      color:
-        rgba(235, 226, 205, 0.84);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
-      line-height: 1.65;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 9px;
+      line-height: 1.55;
     }
 
     .closing-couple {
-      max-width: 290px;
-
-      margin: 18px auto 0;
+      margin-top: 14px;
 
       color: #efd384;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       line-height: 1.5;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
     }
 
     .restart-button {
-      margin-top: 19px;
-      padding: 11px 20px;
+      margin-top: 14px;
+      padding: 10px 19px;
 
       cursor: pointer;
 
-      border:
-        1px solid
-        rgba(225, 194, 111, 0.62);
-
+      border: 1px solid rgba(225, 194, 111, 0.62);
       border-radius: 25px;
 
-      background:
-        rgba(31, 34, 27, 0.25);
-
+      background: transparent;
       color: #eee1bf;
 
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 7px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     /* =====================================
-       MOBILE
+       SMALL PHONES
     ====================================== */
 
     @media (max-width: 375px) {
@@ -1994,19 +1408,24 @@
         font-size: 33px;
       }
 
-      .countdown-grid {
-        gap: 4px;
+      .dark-panel {
+        width: 93vw;
       }
 
-      .final-screen-panel {
-        width: 92vw;
+      .scratch-card-shell {
+        width: min(230px, 65vw);
+      }
+
+      .final-panel {
+        padding-left: 18px;
+        padding-right: 18px;
       }
     }
 
-    @media (max-height: 700px) {
+    @media (max-height: 760px) {
       #coupleScreen {
-        padding-top: 18px;
-        padding-bottom: 16px;
+        padding-top: 16px;
+        padding-bottom: 14px;
       }
 
       .screen2-bismillah {
@@ -2019,11 +1438,11 @@
       }
 
       .nikah-title {
-        font-size: 32px;
+        font-size: 33px;
       }
 
       .couple-name {
-        margin-top: 5px;
+        margin-top: 4px;
         font-size: 34px;
       }
 
@@ -2032,25 +1451,57 @@
       }
 
       .parent-role {
-        margin-top: 3px;
+        margin-top: 2px;
         font-size: 10px;
       }
 
-      .scratch-content {
-        padding-top: 20px;
-        padding-bottom: 19px;
+      .reveal-panel {
+        padding-top: 17px;
+        padding-bottom: 16px;
+      }
+
+      .scratch-description {
+        margin-bottom: 9px;
       }
 
       .scratch-card-shell {
-        width: min(230px, 65vw);
+        width: min(205px, 57vw);
       }
 
-      .final-screen-panel {
-        padding-top: 22px;
-        padding-bottom: 22px;
+      .merged-divider {
+        margin: 12px auto;
+      }
+
+      .countdown-grid {
+        margin-top: 10px;
+      }
+
+      .final-panel {
+        padding-top: 18px;
+        padding-bottom: 17px;
+      }
+
+      .venue-icon {
+        margin-top: 9px;
+      }
+
+      .final-divider {
+        margin: 14px auto;
       }
 
       .dua-arabic {
+        font-size: 18px;
+      }
+
+      .dua-transliteration {
+        margin-top: 7px;
+      }
+
+      .closing-line {
+        margin: 10px auto;
+      }
+
+      .closing-title {
         font-size: 20px;
       }
     }
@@ -2079,7 +1530,7 @@
 
 <body class="locked">
 
-  <!-- SCREEN 1 -->
+  <!-- SCREEN 1: ENVELOPE -->
 
   <section id="openingScreen" class="screen">
 
@@ -2136,14 +1587,6 @@
 
     <div class="opening-flash"></div>
 
-    <div class="opening-sparkles">
-      <span class="spark"></span>
-      <span class="spark"></span>
-      <span class="spark"></span>
-      <span class="spark"></span>
-      <span class="spark"></span>
-    </div>
-
     <div class="you-are-invited">
       <div class="invited-ornament">❧</div>
       <div class="invited-text">You Are Invited</div>
@@ -2151,11 +1594,9 @@
 
   </section>
 
-  <!-- SCREEN 2: TARGETED CONTENT UPDATE -->
+  <!-- SCREEN 2: COUPLE -->
 
   <section id="coupleScreen" class="screen">
-
-    <div class="screen2-reading-layer"></div>
 
     <div class="couple-content">
 
@@ -2176,17 +1617,17 @@
         at the Nikah ceremony of
       </div>
 
-      <h2 class="nikah-title">
+      <div class="nikah-title">
         Nikah
-      </h2>
+      </div>
 
       <div class="of-text">
         of their beloved
       </div>
 
-      <h1 class="couple-name">
+      <div class="couple-name">
         Sameena Sultana
-      </h1>
+      </div>
 
       <div class="parent-role">
         Beloved daughter of
@@ -2196,13 +1637,13 @@
         Amjad &amp; Begum
       </div>
 
-      <div class="classic-ampersand">
+      <div class="ampersand-wrap">
         &amp;
       </div>
 
-      <h1 class="couple-name long-name">
+      <div class="couple-name long-name">
         Mohammed Faisal Hussain
-      </h1>
+      </div>
 
       <div class="parent-role">
         Beloved son of
@@ -2212,7 +1653,7 @@
         Taher &amp; Begum
       </div>
 
-      <div class="classic-divider">
+      <div class="bottom-divider">
         <span></span>
       </div>
 
@@ -2228,9 +1669,9 @@
 
   </section>
 
-  <!-- SCREEN 3 -->
+  <!-- SCREEN 3: SCRATCH + COUNTDOWN -->
 
-  <section id="scratchScreen" class="screen">
+  <section id="revealScreen" class="screen">
 
     <div
       class="flower-shower"
@@ -2238,21 +1679,24 @@
       aria-hidden="true"
     ></div>
 
-    <div class="scratch-content">
+    <div
+      class="dark-panel reveal-panel"
+      id="revealPanel"
+    >
 
-      <div class="scratch-intro-ornament">
+      <div class="ornament">
         ◇ ❦ ◇
       </div>
 
-      <div class="small-label">
+      <div class="sans-label">
         Save the Date
       </div>
 
-      <h2 class="scratch-title">
+      <h2 class="panel-title">
         Scratch to Reveal
       </h2>
 
-      <div class="scratch-info">
+      <div class="scratch-description">
         Gently scratch the gold card to reveal
         the Nikah date and time.
       </div>
@@ -2262,10 +1706,6 @@
         <div class="scratch-square-area">
 
           <div class="square-result">
-
-            <div class="result-ornament">
-              ◆
-            </div>
 
             <div class="reveal-label">
               Nikah Ceremony
@@ -2283,9 +1723,7 @@
               2026
             </div>
 
-            <div class="result-divider">
-              <span></span>
-            </div>
+            <div class="date-divider"></div>
 
             <div class="square-date-time">
               9:00 PM
@@ -2302,177 +1740,151 @@
 
       </div>
 
-      <div
-        class="scratch-status"
-        id="scratchStatus"
-        aria-live="polite"
-      >
+      <div id="scratchStatus" aria-live="polite">
         Start scratching the gold card
       </div>
 
-    </div>
-
-  </section>
-
-  <!-- SCREEN 4 -->
-
-  <section id="countdownScreen" class="screen">
-
-    <div class="final-screen-panel">
-
-      <div class="final-ornament">
-        ◇ ❦ ◇
-      </div>
-
-      <div class="final-label">
-        Save the Date
-      </div>
-
-      <h2 class="final-title">
-        Counting Down to Forever
-      </h2>
-
-      <div class="final-subtitle">
-        Until our special day
-      </div>
-
-      <div class="countdown-grid">
-
-        <div class="count-box">
-          <span class="count-number" id="days">00</span>
-          <span class="count-label">Days</span>
-        </div>
-
-        <div class="count-box">
-          <span class="count-number" id="hours">00</span>
-          <span class="count-label">Hours</span>
-        </div>
-
-        <div class="count-box">
-          <span class="count-number" id="minutes">00</span>
-          <span class="count-label">Minutes</span>
-        </div>
-
-        <div class="count-box">
-          <span class="count-number" id="seconds">00</span>
-          <span class="count-label">Seconds</span>
-        </div>
-
-      </div>
-
-      <div class="countdown-divider">
-        <span></span>
-      </div>
-
-      <div class="countdown-date">
-        24 December 2026<br>
-        9:00 PM
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- SCREEN 5 -->
-
-  <section id="locationScreen" class="screen">
-
-    <div class="final-screen-panel">
-
-      <div class="final-ornament">
-        ◇ ❦ ◇
-      </div>
-
-      <div class="final-label">
-        Nikah Ceremony
-      </div>
-
-      <h2 class="final-title">
-        Venue
-      </h2>
-
-      <div class="venue-icon">
-        ◉
-      </div>
-
-      <h3 class="venue-name">
-        H-Convention Center
-      </h3>
-
-      <div class="venue-city">
-        Medak
-      </div>
-
-      <div class="venue-address">
-        H-Convention Center, Medak
-      </div>
-
-      <div class="venue-divider"></div>
-
-      <a
-        class="map-button"
-        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
-        target="_blank"
-        rel="noopener noreferrer"
+      <div
+        class="countdown-area"
+        id="countdownArea"
       >
-        📍 View on Google Maps
-      </a>
+
+        <div class="merged-divider"></div>
+
+        <div class="countdown-heading">
+          Counting Down to Forever
+        </div>
+
+        <div class="countdown-subtitle">
+          Until our special day
+        </div>
+
+        <div class="countdown-grid">
+
+          <div class="count-box">
+            <span class="count-number" id="days">00</span>
+            <span class="count-label">Days</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="hours">00</span>
+            <span class="count-label">Hours</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="minutes">00</span>
+            <span class="count-label">Minutes</span>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="seconds">00</span>
+            <span class="count-label">Seconds</span>
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
   </section>
 
-  <!-- SCREEN 6 -->
+  <!-- SCREEN 4: VENUE + DUA + CLOSING -->
 
-  <section id="duaScreen" class="screen">
+  <section id="finalScreen" class="screen">
 
-    <div class="final-screen-panel dua-panel">
+    <div class="dark-panel final-panel">
 
-      <div class="final-ornament">
-        ◇ ❦ ◇
+      <div class="venue-block">
+
+        <div class="ornament">
+          ◇ ❦ ◇
+        </div>
+
+        <div class="sans-label">
+          Nikah Ceremony
+        </div>
+
+        <h2 class="panel-title">
+          Venue
+        </h2>
+
+        <div class="venue-icon">
+          ◎
+        </div>
+
+        <div class="venue-name">
+          H-Convention Center
+        </div>
+
+        <div class="venue-city">
+          Medak
+        </div>
+
+        <div class="venue-address">
+          H-Convention Center, Medak
+        </div>
+
+        <a
+          class="map-button"
+          href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          📍 View on Google Maps
+        </a>
+
       </div>
 
-      <div class="dua-arabic">
-        بَارَكَ اللَّهُ لَكُمَا<br>
-        وَبَارَكَ عَلَيْكُمَا<br>
-        وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+      <div class="final-divider">
+        <span>❦</span>
       </div>
 
-      <div class="dua-transliteration">
-        Barakallahu lakuma wa baraka
-        'alaykuma wa jama'a baynakuma fi khayr
+      <div class="dua-block">
+
+        <div class="dua-arabic">
+          بَارَكَ اللَّهُ لَكُمَا<br>
+          وَبَارَكَ عَلَيْكُمَا<br>
+          وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+        </div>
+
+        <div class="dua-transliteration">
+          Barakallahu lakuma wa baraka
+          'alaykuma wa jama'a baynakuma fi khayr
+        </div>
+
+        <div class="dua-meaning">
+          May Allah bless both of you, shower His
+          blessings upon you, and unite you both
+          in goodness.
+        </div>
+
+        <div class="closing-line"></div>
+
+        <div class="closing-title">
+          Your presence will make<br>
+          our celebration complete
+        </div>
+
+        <div class="closing-message">
+          We would be honoured to celebrate this
+          beautiful beginning with you and your family.
+          Your presence and duas are sincerely requested.
+        </div>
+
+        <div class="closing-couple">
+          Sameena Sultana ♥ Mohammed Faisal Hussain
+        </div>
+
+        <button
+          type="button"
+          class="restart-button"
+          id="restartButton"
+        >
+          View Again
+        </button>
+
       </div>
-
-      <div class="dua-meaning">
-        May Allah bless both of you, shower His
-        blessings upon you, and unite you both
-        in goodness.
-      </div>
-
-      <div class="closing-line"></div>
-
-      <h2 class="closing-title">
-        Your presence will make
-        our celebration complete
-      </h2>
-
-      <div class="closing-message">
-        We would be honoured to celebrate this
-        beautiful beginning with you and your family.
-        Your presence and duas are sincerely requested.
-      </div>
-
-      <div class="closing-couple">
-        Sameena Sultana ♥ Mohammed Faisal Hussain
-      </div>
-
-      <button
-        type="button"
-        class="restart-button"
-        onclick="restartInvitation()"
-      >
-        View Again
-      </button>
 
     </div>
 
@@ -2480,7 +1892,7 @@
 
   <script>
     /* =====================================
-       ENVELOPE
+       ENVELOPE OPENING
     ====================================== */
 
     const openingScreen =
@@ -2573,6 +1985,11 @@
         "flowerShower"
       );
 
+    const revealPanel =
+      document.getElementById(
+        "revealPanel"
+      );
+
     let scratching = false;
     let scratchComplete = false;
     let lastX = 0;
@@ -2642,30 +2059,11 @@
           height
         );
 
-      coating.addColorStop(
-        0,
-        "#7f591f"
-      );
-
-      coating.addColorStop(
-        0.2,
-        "#d7b25c"
-      );
-
-      coating.addColorStop(
-        0.47,
-        "#9d712d"
-      );
-
-      coating.addColorStop(
-        0.7,
-        "#edcf82"
-      );
-
-      coating.addColorStop(
-        1,
-        "#7a541c"
-      );
+      coating.addColorStop(0, "#79531d");
+      coating.addColorStop(0.22, "#d6ae52");
+      coating.addColorStop(0.48, "#a2752e");
+      coating.addColorStop(0.72, "#efd082");
+      coating.addColorStop(1, "#76501a");
 
       scratchContext.fillStyle =
         coating;
@@ -2677,33 +2075,33 @@
         height
       );
 
-      const glow =
+      const shine =
         scratchContext.createRadialGradient(
-          width * 0.4,
-          height * 0.3,
-          10,
+          width * 0.38,
+          height * 0.27,
+          5,
           width * 0.5,
           height * 0.5,
-          width * 0.65
+          width * 0.68
         );
 
-      glow.addColorStop(
+      shine.addColorStop(
         0,
-        "rgba(255,243,191,0.42)"
+        "rgba(255,245,199,0.5)"
       );
 
-      glow.addColorStop(
-        0.48,
-        "rgba(255,225,147,0.13)"
+      shine.addColorStop(
+        0.52,
+        "rgba(255,220,130,0.1)"
       );
 
-      glow.addColorStop(
+      shine.addColorStop(
         1,
-        "rgba(75,42,6,0.28)"
+        "rgba(81,48,8,0.28)"
       );
 
       scratchContext.fillStyle =
-        glow;
+        shine;
 
       scratchContext.fillRect(
         0,
@@ -2714,31 +2112,22 @@
 
       for (
         let index = 0;
-        index < 280;
+        index < 260;
         index++
       ) {
-        const x =
-          Math.random() * width;
-
-        const y =
-          Math.random() * height;
-
-        const size =
-          Math.random() * 2.2 + 0.4;
-
         scratchContext.beginPath();
 
         scratchContext.arc(
-          x,
-          y,
-          size,
+          Math.random() * width,
+          Math.random() * height,
+          Math.random() * 2 + 0.4,
           0,
           Math.PI * 2
         );
 
         scratchContext.fillStyle =
           "rgba(255,239,181," +
-          (Math.random() * 0.54 + 0.12) +
+          (Math.random() * 0.5 + 0.13) +
           ")";
 
         scratchContext.fill();
@@ -2747,7 +2136,7 @@
       scratchContext.strokeStyle =
         "rgba(255,239,187,0.72)";
 
-      scratchContext.lineWidth = 1.5;
+      scratchContext.lineWidth = 1.4;
 
       scratchContext.strokeRect(
         9,
@@ -2776,7 +2165,7 @@
         "middle";
 
       scratchContext.font =
-        "16px Georgia, serif";
+        "17px Georgia, serif";
 
       scratchContext.fillText(
         "◇  ❦  ◇",
@@ -2785,12 +2174,12 @@
       );
 
       scratchContext.font =
-        "italic 25px Baskerville, Georgia, serif";
+        "italic 25px Georgia, serif";
 
       scratchContext.fillText(
         "Scratch Here",
         width / 2,
-        height / 2 - 7
+        height / 2 - 6
       );
 
       scratchContext.font =
@@ -2799,7 +2188,7 @@
       scratchContext.fillText(
         "GENTLY RUB WITH YOUR FINGER",
         width / 2,
-        height / 2 + 28
+        height / 2 + 29
       );
     }
 
@@ -2906,9 +2295,7 @@
 
       scratchCounter += 1;
 
-      if (
-        scratchCounter >= 10
-      ) {
+      if (scratchCounter >= 10) {
         scratchCounter = 0;
         checkScratchAmount();
       }
@@ -2946,9 +2333,7 @@
       ) {
         checked += 1;
 
-        if (
-          imageData[index] < 40
-        ) {
+        if (imageData[index] < 40) {
           transparent += 1;
         }
       }
@@ -2960,9 +2345,7 @@
           100
         );
 
-      if (
-        percentage < 55
-      ) {
+      if (percentage < 55) {
         scratchStatus.textContent =
           percentage +
           "% revealed - keep scratching";
@@ -2986,7 +2369,21 @@
       scratchStatus.textContent =
         "The special date has been revealed ✨";
 
+      revealPanel.classList.add(
+        "date-revealed"
+      );
+
       startFlowerShower();
+
+      setTimeout(
+        function () {
+          revealPanel.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        },
+        850
+      );
     }
 
     function startFlowerShower() {
@@ -3002,7 +2399,7 @@
 
       for (
         let index = 0;
-        index < 32;
+        index < 34;
         index++
       ) {
         const piece =
@@ -3016,15 +2413,11 @@
         piece.className =
           "falling-piece";
 
-        if (
-          typeValue > 0.72
-        ) {
+        if (typeValue > 0.72) {
           piece.classList.add(
             "flower"
           );
-        } else if (
-          typeValue > 0.56
-        ) {
+        } else if (typeValue > 0.56) {
           piece.classList.add(
             "leaf"
           );
@@ -3049,13 +2442,13 @@
         piece.style.setProperty(
           "--duration",
           2.8 +
-          Math.random() * 2.4 +
+          Math.random() * 2.5 +
           "s"
         );
 
         piece.style.setProperty(
           "--delay",
-          Math.random() * 1.2 +
+          Math.random() * 1.25 +
           "s"
         );
 
@@ -3083,10 +2476,9 @@
 
       setTimeout(
         function () {
-          flowerShower.innerHTML =
-            "";
+          flowerShower.innerHTML = "";
         },
-        6200
+        6500
       );
     }
 
@@ -3151,46 +2543,42 @@
         seconds: 0
       };
 
-      if (
-        distance > 0
-      ) {
+      if (distance > 0) {
         values.days =
           Math.floor(
             distance /
-            (1000 * 60 * 60 * 24)
+            86400000
           );
 
         values.hours =
           Math.floor(
             (
               distance %
-              (1000 * 60 * 60 * 24)
+              86400000
             ) /
-            (1000 * 60 * 60)
+            3600000
           );
 
         values.minutes =
           Math.floor(
             (
               distance %
-              (1000 * 60 * 60)
+              3600000
             ) /
-            (1000 * 60)
+            60000
           );
 
         values.seconds =
           Math.floor(
             (
               distance %
-              (1000 * 60)
+              60000
             ) /
             1000
           );
       }
 
-      Object.keys(
-        values
-      ).forEach(
+      Object.keys(values).forEach(
         function (key) {
           document
             .getElementById(key)
@@ -3215,6 +2603,16 @@
     /* =====================================
        RESTART
     ====================================== */
+
+    const restartButton =
+      document.getElementById(
+        "restartButton"
+      );
+
+    restartButton.addEventListener(
+      "click",
+      restartInvitation
+    );
 
     function restartInvitation() {
       invitationOpened = false;
@@ -3252,6 +2650,10 @@
         "cleared"
       );
 
+      revealPanel.classList.remove(
+        "date-revealed"
+      );
+
       scratchStatus.textContent =
         "Start scratching the gold card";
 
@@ -3268,9 +2670,7 @@
     window.addEventListener(
       "resize",
       function () {
-        if (
-          !scratchComplete
-        ) {
+        if (!scratchComplete) {
           setupScratchCanvas();
         }
       }
