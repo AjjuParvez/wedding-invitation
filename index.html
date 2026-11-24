@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
   >
 
   <title>Tabu & Faizal | Wedding Invitation</title>
 
   <style>
     :root {
-      --forest: #233a2b;
-      --sage-dark: #3f5744;
-      --sage: #718268;
-      --sage-light: #a7b49b;
+      --forest: #293d2d;
+      --forest-dark: #192b20;
+      --sage: #73816a;
+      --sage-light: #a9b49e;
       --ivory: #f7f0df;
-      --cream: #eadfc5;
-      --gold: #caa45a;
-      --gold-light: #ead08d;
-      --brown: #806334;
-      --text-dark: #304337;
+      --cream: #ede2ca;
+      --gold: #c79e4d;
+      --gold-light: #ecd38d;
+      --text: #304337;
+      --rose: #a65c68;
     }
 
     * {
@@ -41,9 +41,9 @@
       margin: 0 auto;
       overflow-x: hidden;
       background: var(--ivory);
-      color: var(--text-dark);
+      color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
-      box-shadow: 0 0 44px rgba(0, 0, 0, 0.26);
+      box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
     }
 
     button,
@@ -57,10 +57,6 @@
       outline-offset: 4px;
     }
 
-    /* =====================================
-       SHARED SCREEN STYLES
-    ===================================== */
-
     .screen {
       position: relative;
       width: 100%;
@@ -73,312 +69,15 @@
       position: absolute;
       inset: 14px;
       z-index: 20;
-      border: 1px solid rgba(226, 198, 126, 0.58);
+      border: 1px solid rgba(226, 198, 126, 0.55);
       border-radius: 28px;
       pointer-events: none;
     }
 
-    .floral-corner {
-      position: absolute;
-      z-index: 3;
-      width: 150px;
-      height: 150px;
-      opacity: 0.65;
-      pointer-events: none;
-    }
-
-    .floral-corner::before,
-    .floral-corner::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(229, 205, 143, 0.52);
-    }
-
-    .floral-corner::before {
-      width: 105px;
-      height: 48px;
-      transform: rotate(38deg);
-    }
-
-    .floral-corner::after {
-      width: 58px;
-      height: 110px;
-      transform: rotate(-32deg);
-    }
-
-    .floral-top-left {
-      top: -20px;
-      left: -20px;
-    }
-
-    .floral-bottom-right {
-      right: -25px;
-      bottom: -30px;
-      transform: rotate(180deg);
-    }
-
-    .section-label {
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .section-title {
-      margin-top: 9px;
-      font-size: 34px;
-      font-weight: normal;
-      font-style: italic;
-      color: var(--text-dark);
-    }
-
-    /* =====================================
-       SCREEN 1: TAP TO OPEN + CURTAINS
-    ===================================== */
-
-    #openingScreen {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      width: min(100%, 430px);
-      margin: 0 auto;
-      background:
-        radial-gradient(
-          circle at 50% 12%,
-          rgba(164, 182, 146, 0.34),
-          transparent 38%
-        ),
-        linear-gradient(
-          160deg,
-          #64775d 0%,
-          #405641 48%,
-          #233a2b 100%
-        );
-      transition: opacity 0.75s ease;
-    }
-
-    #openingScreen.finished {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .opening-underlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 30px;
-      text-align: center;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 255, 255, 0.09),
-          transparent 48%
-        ),
-        linear-gradient(
-          180deg,
-          #465e49 0%,
-          #263d2d 100%
-        );
-    }
-
-    .underlay-arabic {
-      margin-bottom: 24px;
-      color: var(--gold-light);
-      font-size: 26px;
-      line-height: 1.7;
-    }
-
-    .underlay-small {
-      color: #d7d1bd;
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .underlay-names {
-      margin-top: 18px;
-      color: var(--ivory);
-      font-size: 51px;
-      font-weight: normal;
-      font-style: italic;
-      line-height: 1.06;
-    }
-
-    .underlay-amp {
-      margin: 8px 0;
-      color: var(--gold);
-      font-size: 25px;
-    }
-
-    .underlay-date {
-      margin-top: 25px;
-      color: var(--gold-light);
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
-
-    .curtain {
-      position: absolute;
-      top: 0;
-      z-index: 8;
-      width: 50.5%;
-      height: 100%;
-      overflow: hidden;
-      transition:
-        transform 1.9s cubic-bezier(0.7, 0, 0.2, 1),
-        filter 1.9s ease;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #b99451 0,
-          #e4c884 9%,
-          #f5dfaa 18%,
-          #bd9650 28%,
-          #ecd290 39%,
-          #aa8241 50%
-        );
-      box-shadow: inset 0 0 45px rgba(72, 48, 14, 0.28);
-    }
-
-    .curtain::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.08),
-          transparent 25%,
-          rgba(93, 59, 12, 0.15) 48%,
-          transparent 72%,
-          rgba(255, 255, 255, 0.12)
-        );
-    }
-
-    .curtain-left {
-      left: 0;
-      border-right: 2px solid rgba(98, 65, 20, 0.45);
-      transform-origin: left center;
-    }
-
-    .curtain-right {
-      right: 0;
-      border-left: 2px solid rgba(98, 65, 20, 0.45);
-      transform-origin: right center;
-    }
-
-    .opening-active .curtain-left {
-      transform: translateX(-99%);
-      filter: brightness(0.86);
-    }
-
-    .opening-active .curtain-right {
-      transform: translateX(99%);
-      filter: brightness(0.86);
-    }
-
-    .curtain-rail {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      z-index: 9;
-      left: 50%;
-      width: 12px;
-      transform: translateX(-50%);
-      background:
-        linear-gradient(
-          90deg,
-          #71501c 0%,
-          #e5c675 30%,
-          #fff0b5 50%,
-          #ba8736 75%,
-          #6a4716 100%
-        );
-      box-shadow: 0 0 12px rgba(37, 24, 5, 0.45);
-      transition: opacity 0.5s ease 0.25s;
-    }
-
-    .opening-active .curtain-rail {
-      opacity: 0;
-    }
-
-    .opening-plaque {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 15;
-      width: 235px;
-      padding: 27px 20px;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      border: 2px solid var(--gold);
-      border-radius: 48% 48% 42% 42% / 28% 28% 42% 42%;
-      background: rgba(248, 240, 218, 0.97);
-      box-shadow:
-        0 15px 34px rgba(60, 39, 8, 0.34),
-        inset 0 0 0 6px rgba(198, 157, 76, 0.15);
-      transition:
-        opacity 0.52s ease,
-        transform 0.52s ease;
-    }
-
-    .opening-plaque::before,
-    .opening-plaque::after {
-      content: "❧";
-      position: absolute;
-      top: 50%;
-      color: var(--gold);
-      font-size: 29px;
-    }
-
-    .opening-plaque::before {
-      left: -19px;
-      transform: translateY(-50%) rotate(-90deg);
-    }
-
-    .opening-plaque::after {
-      right: -19px;
-      transform: translateY(-50%) rotate(90deg);
-    }
-
-    .opening-active .opening-plaque {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.74);
-      pointer-events: none;
-    }
-
-    .plaque-small {
-      color: var(--brown);
-      font-family: Arial, sans-serif;
-      font-size: 8px;
-      letter-spacing: 2.4px;
-      text-transform: uppercase;
-    }
-
-    .plaque-title {
-      margin-top: 10px;
-      color: var(--forest);
-      font-size: 28px;
-      font-style: italic;
-    }
-
-    .plaque-line {
-      width: 58px;
-      height: 1px;
-      margin: 13px auto;
-      background: var(--gold);
-    }
-
-    .open-button {
-      width: 100%;
-      padding: 12px 18px;
+    .continue-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 13px 25px;
       cursor: pointer;
       border: 1px solid var(--gold);
       border-radius: 30px;
@@ -390,38 +89,459 @@
       text-transform: uppercase;
     }
 
-    .open-button:hover {
-      background: #172a1e;
+    .section-label {
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
 
-    .opening-hint {
+    .section-title {
       margin-top: 10px;
-      color: #8e7541;
+      color: var(--text);
+      font-size: 34px;
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    /* =====================================
+       SCREEN 1: EMBOSSED ENVELOPE
+    ====================================== */
+
+    #openingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      width: min(100%, 430px);
+      margin: 0 auto;
+      background:
+        radial-gradient(
+          circle at 50% 12%,
+          rgba(204, 220, 187, 0.25),
+          transparent 40%
+        ),
+        linear-gradient(
+          160deg,
+          #7b8d72 0%,
+          #53684f 48%,
+          #304733 100%
+        );
+      transition: opacity 0.8s ease;
+    }
+
+    #openingScreen.finished {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .embossed-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        radial-gradient(
+          ellipse at 20% 20%,
+          transparent 0 25px,
+          rgba(235, 230, 207, 0.55) 26px 27px,
+          transparent 28px
+        ),
+        radial-gradient(
+          ellipse at 80% 75%,
+          transparent 0 32px,
+          rgba(235, 230, 207, 0.45) 33px 34px,
+          transparent 35px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 38px,
+          rgba(230, 220, 190, 0.19) 39px,
+          transparent 41px
+        );
+      pointer-events: none;
+    }
+
+    .opening-title {
+      position: absolute;
+      top: 8%;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      text-align: center;
+    }
+
+    .opening-arabic {
+      color: var(--gold-light);
+      font-size: 26px;
+      line-height: 1.7;
+    }
+
+    .opening-subtitle {
+      margin-top: 7px;
+      color: #e5ddc8;
       font-family: Arial, sans-serif;
       font-size: 8px;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .envelope-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1300px;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: calc(100% - 44px);
+      max-width: 370px;
+      height: 330px;
+      margin-top: 35px;
+      filter: drop-shadow(0 22px 30px rgba(15, 25, 16, 0.35));
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border: 1px solid rgba(226, 203, 140, 0.55);
+      border-radius: 8px;
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 255, 255, 0.08),
+          transparent 50%
+        ),
+        linear-gradient(
+          150deg,
+          #78896f,
+          #52684f
+        );
+    }
+
+    .envelope-back::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      background:
+        repeating-linear-gradient(
+          38deg,
+          transparent 0 25px,
+          rgba(239, 228, 194, 0.28) 26px,
+          transparent 28px
+        );
+    }
+
+    .inside-glow {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 22%;
+      height: 55%;
+      z-index: 1;
+      opacity: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255, 244, 190, 0.95) 0%,
+          rgba(239, 200, 104, 0.5) 40%,
+          transparent 72%
+        );
+      transform: scale(0.5);
+      transition:
+        opacity 0.9s ease 0.55s,
+        transform 1.2s ease 0.45s;
+    }
+
+    .envelope-open .inside-glow {
+      opacity: 1;
+      transform: scale(1.45);
+    }
+
+    .invitation-peek {
+      position: absolute;
+      z-index: 2;
+      left: 11%;
+      bottom: 15px;
+      width: 78%;
+      height: 245px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      background: var(--ivory);
+      color: var(--forest);
+      text-align: center;
+      transform: translateY(105px);
+      transition: transform 1.15s ease 0.75s;
+    }
+
+    .envelope-open .invitation-peek {
+      transform: translateY(-42px);
+    }
+
+    .peek-small {
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .peek-name {
+      margin-top: 13px;
+      font-size: 33px;
+      font-style: italic;
+    }
+
+    .peek-date {
+      margin-top: 15px;
+      color: #7d693c;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      overflow: hidden;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .front-left {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-top: 165px solid transparent;
+      border-bottom: 165px solid #667b60;
+      border-right: 185px solid transparent;
+    }
+
+    .front-right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-top: 165px solid transparent;
+      border-bottom: 165px solid #5a7056;
+      border-left: 185px solid transparent;
+    }
+
+    .front-bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 185px solid transparent;
+      border-right: 185px solid transparent;
+      border-bottom: 175px solid #73846a;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 7;
+      width: 100%;
+      height: 56%;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition:
+        transform 1.3s cubic-bezier(0.6, 0, 0.25, 1),
+        z-index 0s linear 0.65s;
+    }
+
+    .flap-face {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-top: 1px solid rgba(231, 210, 149, 0.6);
+      background:
+        linear-gradient(
+          145deg,
+          #829178,
+          #566c53
+        );
+      backface-visibility: hidden;
+    }
+
+    .flap-back {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background:
+        linear-gradient(
+          145deg,
+          #d8c28c,
+          #8f733b
+        );
+      transform: rotateX(180deg);
+      backface-visibility: hidden;
+    }
+
+    .envelope-open .envelope-flap {
+      z-index: 2;
+      transform: rotateX(180deg);
+    }
+
+    .wax-seal {
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      z-index: 12;
+      width: 92px;
+      height: 92px;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      border: 4px double #f4dda0;
+      border-radius: 48% 52% 46% 54%;
+      background:
+        radial-gradient(
+          circle at 32% 26%,
+          #f0d47a 0%,
+          #c39439 47%,
+          #775019 100%
+        );
+      color: #fff3c9;
+      box-shadow:
+        0 8px 18px rgba(44, 26, 3, 0.44),
+        inset 0 0 0 4px rgba(103, 65, 14, 0.25);
+      transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+    }
+
+    .wax-seal span {
+      display: block;
+      padding-top: 21px;
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .envelope-open .wax-seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.55);
+      pointer-events: none;
+    }
+
+    .you-are-invited {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 8%;
+      z-index: 8;
+      color: var(--gold-light);
+      text-align: center;
+    }
+
+    .invited-ornament {
+      font-size: 20px;
+    }
+
+    .invited-text {
+      margin-top: 3px;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .opening-sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: 16;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease 0.8s;
+    }
+
+    .envelope-open .opening-sparkles {
+      opacity: 1;
+    }
+
+    .spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff4bc;
+      box-shadow: 0 0 12px #fff0a5;
+      animation: sparkle 1.7s infinite ease-in-out;
+    }
+
+    .spark:nth-child(1) {
+      left: 22%;
+      top: 45%;
+    }
+
+    .spark:nth-child(2) {
+      left: 71%;
+      top: 39%;
+      animation-delay: 0.3s;
+    }
+
+    .spark:nth-child(3) {
+      left: 37%;
+      top: 63%;
+      animation-delay: 0.6s;
+    }
+
+    .spark:nth-child(4) {
+      left: 62%;
+      top: 57%;
+      animation-delay: 0.9s;
+    }
+
+    @keyframes sparkle {
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.7);
+      }
     }
 
     /* =====================================
        SCREEN 2: COUPLE REVEAL
-    ===================================== */
+    ====================================== */
 
     #coupleScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 60px 28px;
+      padding: 65px 28px;
       text-align: center;
       background:
         radial-gradient(
-          circle at 50% 26%,
-          rgba(157, 179, 146, 0.23),
-          transparent 42%
+          circle at 50% 19%,
+          rgba(184, 203, 164, 0.24),
+          transparent 40%
         ),
         linear-gradient(
           180deg,
-          #53674f 0%,
-          #304634 100%
+          #536950 0%,
+          #2d4432 100%
         );
     }
 
@@ -434,12 +554,12 @@
     .bismillah {
       margin-bottom: 25px;
       color: var(--gold-light);
-      font-size: 26px;
+      font-size: 27px;
       line-height: 1.7;
     }
 
     .family-intro {
-      color: #ded8c4;
+      color: #dfd6bf;
       font-family: Arial, sans-serif;
       font-size: 9px;
       letter-spacing: 3px;
@@ -447,9 +567,9 @@
     }
 
     .invitation-line {
-      max-width: 300px;
-      margin: 18px auto 30px;
-      color: #e8dfc8;
+      max-width: 310px;
+      margin: 18px auto 31px;
+      color: #eadfc8;
       font-size: 15px;
       font-style: italic;
       line-height: 1.55;
@@ -457,48 +577,41 @@
 
     .couple-name {
       color: var(--ivory);
-      font-size: clamp(48px, 14vw, 61px);
+      font-size: clamp(50px, 14vw, 63px);
       font-weight: normal;
       font-style: italic;
       line-height: 0.95;
-      text-shadow: 0 5px 16px rgba(0, 0, 0, 0.18);
     }
 
     .parent-line {
       margin-top: 14px;
-      color: #d8d0b9;
+      color: #d6ceb7;
       font-family: Arial, sans-serif;
       font-size: 9px;
       letter-spacing: 1px;
       line-height: 1.7;
     }
 
-    .name-ampersand {
-      margin: 18px auto;
+    .ampersand {
+      margin: 18px 0;
       color: var(--gold);
-      font-size: 28px;
+      font-size: 29px;
       font-style: italic;
     }
 
-    .continue-button {
-      display: inline-block;
-      margin-top: 36px;
-      padding: 13px 25px;
-      cursor: pointer;
-      border: 1px solid var(--gold);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--ivory);
+    .scroll-hint {
+      margin-top: 34px;
+      color: var(--gold-light);
       font-family: Arial, sans-serif;
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .scroll-arrow {
-      margin-top: 15px;
+      margin-top: 11px;
       color: var(--gold);
-      font-size: 21px;
+      font-size: 22px;
       animation: bounce 1.4s infinite ease-in-out;
     }
 
@@ -514,21 +627,22 @@
     }
 
     /* =====================================
-       SCREEN 3: SCRATCH TO REVEAL
-    ===================================== */
+       SCREEN 3: HEART SCRATCH
+    ====================================== */
 
     #scratchScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 70px 23px;
+      padding: 65px 22px;
       text-align: center;
       background:
-        linear-gradient(
-          rgba(249, 243, 227, 0.95),
-          rgba(249, 243, 227, 0.95)
+        radial-gradient(
+          circle at top,
+          rgba(176, 100, 115, 0.09),
+          transparent 41%
         ),
-        #f7f0df;
+        var(--ivory);
     }
 
     .scratch-content {
@@ -537,83 +651,72 @@
       width: 100%;
     }
 
-    .scratch-instructions {
+    .scratch-info {
       max-width: 300px;
-      margin: 12px auto 28px;
-      color: #716b5c;
+      margin: 12px auto 20px;
+      color: #71695a;
       font-family: Arial, sans-serif;
       font-size: 11px;
       line-height: 1.7;
     }
 
-    .scratch-card {
+    .scratch-heart-area {
       position: relative;
-      width: min(330px, 100%);
+      width: 320px;
+      max-width: 92vw;
       height: 310px;
       margin: 0 auto;
-      overflow: hidden;
-      border: 1px solid var(--gold);
-      border-radius: 28px;
-      background:
-        radial-gradient(
-          circle at 50% 34%,
-          rgba(201, 168, 91, 0.13),
-          transparent 45%
-        ),
-        #fffaf0;
-      box-shadow: 0 16px 38px rgba(81, 69, 37, 0.12);
-      user-select: none;
-      touch-action: none;
     }
 
-    .date-reveal {
+    .heart-result {
       position: absolute;
-      inset: 0;
+      top: 24px;
+      left: 50%;
       z-index: 1;
+      width: 265px;
+      height: 240px;
+      transform: translateX(-50%);
+      clip-path: path(
+        "M132.5 225 C110 207 22 148 22 80 C22 39 49 15 83 15 C106 15 124 29 132.5 47 C141 29 159 15 182 15 C216 15 243 39 243 80 C243 148 155 207 132.5 225 Z"
+      );
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 25px;
-    }
-
-    .reveal-small {
-      color: var(--gold);
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .date-day {
-      margin-top: 10px;
+      background:
+        radial-gradient(
+          circle at 35% 22%,
+          #fffaf0,
+          #f2dfbd 62%,
+          #d6b66e
+        );
       color: var(--forest);
-      font-size: 80px;
-      line-height: 0.95;
     }
 
-    .date-month {
+    .heart-date-day {
+      font-size: 68px;
+      line-height: 0.9;
+    }
+
+    .heart-date-month {
       margin-top: 10px;
-      color: var(--brown);
-      font-size: 25px;
+      color: #87662d;
+      font-size: 22px;
       font-style: italic;
-      letter-spacing: 2px;
     }
 
-    .date-year {
+    .heart-date-year {
       margin-top: 5px;
-      color: var(--forest);
-      font-size: 27px;
-      letter-spacing: 5px;
+      font-size: 25px;
+      letter-spacing: 3px;
     }
 
-    .date-time {
-      margin-top: 20px;
-      padding-top: 15px;
+    .heart-date-time {
+      margin-top: 13px;
+      padding-top: 11px;
       border-top: 1px solid var(--gold);
-      color: var(--brown);
-      font-size: 18px;
-      letter-spacing: 1px;
+      color: #8c6f35;
+      font-size: 16px;
     }
 
     #scratchCanvas {
@@ -632,9 +735,9 @@
       pointer-events: none;
     }
 
-    .scratch-progress {
-      margin-top: 14px;
-      color: #897a56;
+    .scratch-status {
+      margin-top: 3px;
+      color: #8a7953;
       font-family: Arial, sans-serif;
       font-size: 9px;
       letter-spacing: 1px;
@@ -642,22 +745,100 @@
     }
 
     /* =====================================
-       SCREEN 4: LOCATION
-    ===================================== */
+       SCREEN 4: COUNTDOWN
+    ====================================== */
+
+    #countdownScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(144, 166, 131, 0.25),
+          transparent 57%
+        ),
+        linear-gradient(
+          180deg,
+          #415b45,
+          #243b2b
+        );
+    }
+
+    .countdown-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .countdown-title {
+      margin-top: 9px;
+      color: var(--ivory);
+      font-size: 35px;
+      font-style: italic;
+    }
+
+    .countdown-subtitle {
+      margin-top: 9px;
+      color: #d4cab4;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 37px;
+    }
+
+    .count-box {
+      min-width: 0;
+      padding: 19px 3px;
+      border: 1px solid rgba(223, 194, 119, 0.48);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .count-number {
+      display: block;
+      color: var(--gold-light);
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 9px;
+      color: #ded5c0;
+      font-family: Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .countdown-date {
+      margin-top: 30px;
+      color: #ead7a4;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    /* =====================================
+       SCREEN 5: LOCATION
+    ====================================== */
 
     #locationScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 70px 24px;
+      padding: 70px 23px;
       text-align: center;
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(119, 142, 106, 0.2),
-          transparent 40%
-        ),
-        var(--ivory);
+      background: var(--ivory);
     }
 
     .location-content {
@@ -667,24 +848,24 @@
     }
 
     .venue-card {
-      margin-top: 32px;
+      margin-top: 31px;
       padding: 38px 21px;
       border: 1px solid var(--gold);
-      background: rgba(255, 252, 243, 0.95);
-      box-shadow: 0 16px 36px rgba(71, 61, 35, 0.1);
+      background: #fffaf0;
+      box-shadow: 0 16px 38px rgba(80, 66, 31, 0.11);
     }
 
     .venue-icon {
       width: 58px;
       height: 58px;
-      margin: 0 auto 17px;
+      margin: 0 auto 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--gold);
       border-radius: 50%;
       color: var(--gold);
-      font-size: 25px;
+      font-size: 24px;
     }
 
     .venue-name {
@@ -695,22 +876,22 @@
 
     .venue-city {
       margin-top: 8px;
-      color: #746d5c;
+      color: #716b5c;
       font-family: Arial, sans-serif;
       font-size: 12px;
     }
 
     .venue-date {
       margin-top: 20px;
-      color: var(--brown);
+      color: #806334;
       font-size: 16px;
       line-height: 1.7;
     }
 
     .map-button {
       display: inline-block;
-      margin-top: 26px;
-      padding: 14px 26px;
+      margin-top: 25px;
+      padding: 14px 25px;
       border: 1px solid var(--gold);
       border-radius: 30px;
       background: var(--forest);
@@ -720,36 +901,28 @@
       font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .map-button:hover {
-      transform: translateY(-2px);
-      background: #15291d;
     }
 
     /* =====================================
-       SCREEN 5: DUA AND CLOSING
-    ===================================== */
+       SCREEN 6: DUA
+    ====================================== */
 
     #duaScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 75px 29px;
+      padding: 75px 28px;
       text-align: center;
       background:
         radial-gradient(
-          circle at 50% 16%,
-          rgba(223, 199, 133, 0.12),
-          transparent 38%
+          circle at top,
+          rgba(218, 191, 118, 0.12),
+          transparent 40%
         ),
         linear-gradient(
           180deg,
-          #405944 0%,
-          #203729 100%
+          #405943,
+          #203729
         );
     }
 
@@ -761,29 +934,29 @@
 
     .dua-arabic {
       color: var(--gold-light);
-      font-size: 29px;
-      line-height: 1.8;
+      font-size: 28px;
+      line-height: 1.9;
     }
 
     .dua-transliteration {
-      margin-top: 18px;
-      color: #eee3c9;
-      font-size: 16px;
+      margin-top: 20px;
+      color: #f0e5ca;
+      font-size: 15px;
       font-style: italic;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .dua-meaning {
       max-width: 310px;
-      margin: 15px auto 0;
-      color: #cfc7b3;
+      margin: 16px auto 0;
+      color: #cec6b1;
       font-family: Arial, sans-serif;
       font-size: 11px;
       line-height: 1.8;
     }
 
     .closing-line {
-      width: 72px;
+      width: 70px;
       height: 1px;
       margin: 32px auto;
       background: var(--gold);
@@ -797,9 +970,9 @@
     }
 
     .closing-message {
-      max-width: 315px;
+      max-width: 310px;
       margin: 20px auto 0;
-      color: #d6ceba;
+      color: #d5cdb9;
       font-family: Arial, sans-serif;
       font-size: 12px;
       line-height: 1.8;
@@ -815,13 +988,13 @@
     }
 
     .restart-button {
-      margin-top: 35px;
+      margin-top: 34px;
       padding: 11px 20px;
       cursor: pointer;
-      border: 1px solid rgba(221, 193, 119, 0.6);
+      border: 1px solid rgba(220, 191, 116, 0.6);
       border-radius: 25px;
       background: transparent;
-      color: #dfd4ba;
+      color: #ddd3ba;
       font-family: Arial, sans-serif;
       font-size: 8px;
       letter-spacing: 2px;
@@ -852,68 +1025,94 @@
 
 <body>
 
-  <!-- =====================================
-       SCREEN 1: TAP TO OPEN
-  ====================================== -->
+  <!-- SCREEN 1: EMBOSSED ENVELOPE -->
 
   <section id="openingScreen" class="screen">
 
+    <div class="embossed-pattern"></div>
     <div class="gold-frame"></div>
 
-    <div class="opening-underlay">
+    <div class="opening-title">
 
-      <div class="underlay-arabic">
+      <div class="opening-arabic">
         بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
 
-      <div class="underlay-small">
-        Together with their families
-      </div>
-
-      <div class="underlay-names">
-        Tabu
-      </div>
-
-      <div class="underlay-amp">
-        &
-      </div>
-
-      <div class="underlay-names">
-        Faizal
-      </div>
-
-      <div class="underlay-date">
-        24 • 12 • 2026
+      <div class="opening-subtitle">
+        A Celebration of Love & Family
       </div>
 
     </div>
 
-    <div class="curtain curtain-left"></div>
-    <div class="curtain curtain-right"></div>
-    <div class="curtain-rail"></div>
+    <div class="envelope-stage">
 
-    <div class="opening-plaque">
+      <div class="envelope-box" id="envelopeBox">
 
-      <div class="plaque-small">
-        A Special Invitation
+        <div class="envelope-back"></div>
+
+        <div class="inside-glow"></div>
+
+        <div class="invitation-peek">
+
+          <div class="peek-small">
+            Nikah Invitation
+          </div>
+
+          <div class="peek-name">
+            Tabu & Faizal
+          </div>
+
+          <div class="peek-date">
+            24 • 12 • 2026
+          </div>
+
+        </div>
+
+        <div class="envelope-flap">
+
+          <div class="flap-face"></div>
+          <div class="flap-back"></div>
+
+        </div>
+
+        <div class="envelope-front">
+
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="front-bottom"></div>
+
+        </div>
+
+        <button
+          type="button"
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Tap to open wedding invitation"
+        >
+          <span>
+            Tap<br>to<br>Open
+          </span>
+        </button>
+
       </div>
 
-      <div class="plaque-title">
-        Tabu & Faizal
+    </div>
+
+    <div class="opening-sparkles">
+      <span class="spark"></span>
+      <span class="spark"></span>
+      <span class="spark"></span>
+      <span class="spark"></span>
+    </div>
+
+    <div class="you-are-invited">
+
+      <div class="invited-ornament">
+        ❧
       </div>
 
-      <div class="plaque-line"></div>
-
-      <button
-        type="button"
-        class="open-button"
-        id="openInvitationButton"
-      >
-        Tap to Open
-      </button>
-
-      <div class="opening-hint">
-        A beautiful beginning awaits
+      <div class="invited-text">
+        You Are Invited
       </div>
 
     </div>
@@ -921,16 +1120,11 @@
   </section>
 
 
-  <!-- =====================================
-       SCREEN 2: COUPLE REVEAL
-  ====================================== -->
+  <!-- SCREEN 2: COUPLE -->
 
   <section id="coupleScreen" class="screen">
 
     <div class="gold-frame"></div>
-
-    <div class="floral-corner floral-top-left"></div>
-    <div class="floral-corner floral-bottom-right"></div>
 
     <div class="couple-content">
 
@@ -956,7 +1150,7 @@
         Amjad & Begum
       </div>
 
-      <div class="name-ampersand">
+      <div class="ampersand">
         &
       </div>
 
@@ -969,13 +1163,9 @@
         Taher & Begum
       </div>
 
-      <button
-        type="button"
-        class="continue-button"
-        onclick="goToScreen('scratchScreen')"
-      >
-        Reveal the Date
-      </button>
+      <div class="scroll-hint">
+        Scroll to discover our special day
+      </div>
 
       <div class="scroll-arrow">
         ↓
@@ -986,14 +1176,9 @@
   </section>
 
 
-  <!-- =====================================
-       SCREEN 3: SCRATCH TO REVEAL
-  ====================================== -->
+  <!-- SCREEN 3: SCRATCH DATE -->
 
   <section id="scratchScreen" class="screen">
-
-    <div class="floral-corner floral-top-left"></div>
-    <div class="floral-corner floral-bottom-right"></div>
 
     <div class="scratch-content">
 
@@ -1005,32 +1190,28 @@
         Scratch to Reveal
       </h2>
 
-      <div class="scratch-instructions">
-        Gently scratch the card with your finger
+      <div class="scratch-info">
+        Gently scratch the heart with your finger
         to reveal the Nikah date and time.
       </div>
 
-      <div class="scratch-card">
+      <div class="scratch-heart-area">
 
-        <div class="date-reveal">
+        <div class="heart-result">
 
-          <div class="reveal-small">
-            Nikah Ceremony
-          </div>
-
-          <div class="date-day">
+          <div class="heart-date-day">
             24
           </div>
 
-          <div class="date-month">
+          <div class="heart-date-month">
             December
           </div>
 
-          <div class="date-year">
+          <div class="heart-date-year">
             2026
           </div>
 
-          <div class="date-time">
+          <div class="heart-date-time">
             9:00 PM
           </div>
 
@@ -1038,41 +1219,80 @@
 
         <canvas
           id="scratchCanvas"
-          aria-label="Scratch to reveal wedding date"
+          aria-label="Scratch the heart to reveal wedding date"
         ></canvas>
 
       </div>
 
       <div
-        class="scratch-progress"
-        id="scratchProgress"
+        class="scratch-status"
+        id="scratchStatus"
         aria-live="polite"
       >
-        Start scratching to reveal the date
+        Start scratching the heart
       </div>
-
-      <button
-        type="button"
-        class="continue-button"
-        id="locationButton"
-        onclick="goToScreen('locationScreen')"
-      >
-        View Location
-      </button>
 
     </div>
 
   </section>
 
 
-  <!-- =====================================
-       SCREEN 4: LOCATION
-  ====================================== -->
+  <!-- SCREEN 4: COUNTDOWN -->
+
+  <section id="countdownScreen" class="screen">
+
+    <div class="gold-frame"></div>
+
+    <div class="countdown-content">
+
+      <div class="section-label">
+        Save the Date
+      </div>
+
+      <h2 class="countdown-title">
+        Counting Down to Forever
+      </h2>
+
+      <div class="countdown-subtitle">
+        Until our special day
+      </div>
+
+      <div class="countdown-grid">
+
+        <div class="count-box">
+          <span class="count-number" id="days">00</span>
+          <span class="count-label">Days</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="hours">00</span>
+          <span class="count-label">Hours</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="minutes">00</span>
+          <span class="count-label">Minutes</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="seconds">00</span>
+          <span class="count-label">Seconds</span>
+        </div>
+
+      </div>
+
+      <div class="countdown-date">
+        24 December 2026 • 9:00 PM
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 5: LOCATION -->
 
   <section id="locationScreen" class="screen">
-
-    <div class="floral-corner floral-top-left"></div>
-    <div class="floral-corner floral-bottom-right"></div>
 
     <div class="location-content">
 
@@ -1081,7 +1301,7 @@
       </div>
 
       <h2 class="section-title">
-        Join Us
+        Venue
       </h2>
 
       <div class="venue-card">
@@ -1109,35 +1329,21 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          View on Google Maps
+          📍 View on Google Maps
         </a>
 
       </div>
-
-      <button
-        type="button"
-        class="continue-button"
-        style="color:#304337; border-color:#caa45a;"
-        onclick="goToScreen('duaScreen')"
-      >
-        Continue
-      </button>
 
     </div>
 
   </section>
 
 
-  <!-- =====================================
-       SCREEN 5: DUA AND CLOSING
-  ====================================== -->
+  <!-- SCREEN 6: DUA -->
 
   <section id="duaScreen" class="screen">
 
     <div class="gold-frame"></div>
-
-    <div class="floral-corner floral-top-left"></div>
-    <div class="floral-corner floral-bottom-right"></div>
 
     <div class="dua-content">
 
@@ -1190,42 +1396,35 @@
 
   <script>
     /* =====================================
-       SCREEN NAVIGATION
-    ====================================== */
-
-    function goToScreen(screenId) {
-      const target = document.getElementById(screenId);
-
-      if (!target) {
-        return;
-      }
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-
-    /* =====================================
-       OPENING CURTAIN ANIMATION
+       ENVELOPE OPENING
     ====================================== */
 
     const openingScreen =
       document.getElementById("openingScreen");
 
-    const openInvitationButton =
-      document.getElementById("openInvitationButton");
+    const envelopeBox =
+      document.getElementById("envelopeBox");
+
+    const waxSeal =
+      document.getElementById("waxSeal");
+
+    let invitationOpened = false;
 
 
-    openInvitationButton.addEventListener(
+    waxSeal.addEventListener(
       "click",
       function () {
-        openingScreen.classList.add("opening-active");
+        if (invitationOpened) {
+          return;
+        }
+
+        invitationOpened = true;
+
+        envelopeBox.classList.add("envelope-open");
 
         setTimeout(function () {
           openingScreen.classList.add("finished");
-        }, 2100);
+        }, 2900);
 
         setTimeout(function () {
           openingScreen.style.display = "none";
@@ -1234,56 +1433,112 @@
             top: 0,
             behavior: "instant"
           });
-        }, 2900);
+        }, 3700);
       }
     );
 
 
     /* =====================================
-       SCRATCH CARD
+       HEART SCRATCH CARD
     ====================================== */
 
-    const canvas =
+    const scratchCanvas =
       document.getElementById("scratchCanvas");
 
-    const context =
-      canvas.getContext("2d", {
-        willReadFrequently: true
-      });
+    const scratchContext =
+      scratchCanvas.getContext(
+        "2d",
+        {
+          willReadFrequently: true
+        }
+      );
 
-    const scratchCard =
-      canvas.parentElement;
+    const scratchArea =
+      document.querySelector(".scratch-heart-area");
 
-    const progressText =
-      document.getElementById("scratchProgress");
+    const scratchStatus =
+      document.getElementById("scratchStatus");
 
     let scratching = false;
+    let scratchComplete = false;
     let lastX = 0;
     let lastY = 0;
-    let scratchCheckCounter = 0;
-    let scratchComplete = false;
+    let scratchCounter = 0;
+
+
+    function heartPath(context, width, height) {
+      const centerX = width / 2;
+      const topY = 39;
+      const scaleX = width / 320;
+      const scaleY = height / 310;
+
+      context.beginPath();
+
+      context.moveTo(
+        centerX,
+        255 * scaleY
+      );
+
+      context.bezierCurveTo(
+        272 * scaleX,
+        202 * scaleY,
+        286 * scaleX,
+        141 * scaleY,
+        265 * scaleX,
+        92 * scaleY
+      );
+
+      context.bezierCurveTo(
+        246 * scaleX,
+        48 * scaleY,
+        193 * scaleX,
+        37 * scaleY,
+        centerX,
+        82 * scaleY
+      );
+
+      context.bezierCurveTo(
+        127 * scaleX,
+        37 * scaleY,
+        74 * scaleX,
+        48 * scaleY,
+        55 * scaleX,
+        92 * scaleY
+      );
+
+      context.bezierCurveTo(
+        34 * scaleX,
+        141 * scaleY,
+        48 * scaleX,
+        202 * scaleY,
+        centerX,
+        255 * scaleY
+      );
+
+      context.closePath();
+    }
 
 
     function setupScratchCanvas() {
-      const rectangle =
-        scratchCard.getBoundingClientRect();
+      const rect =
+        scratchArea.getBoundingClientRect();
 
       const scale =
         Math.max(1, window.devicePixelRatio || 1);
 
-      canvas.width =
-        Math.round(rectangle.width * scale);
+      scratchCanvas.width =
+        Math.round(rect.width * scale);
 
-      canvas.height =
-        Math.round(rectangle.height * scale);
+      scratchCanvas.height =
+        Math.round(rect.height * scale);
 
-      canvas.style.width =
-        rectangle.width + "px";
+      scratchCanvas.style.width =
+        rect.width + "px";
 
-      canvas.style.height =
-        rectangle.height + "px";
+      scratchCanvas.style.height =
+        rect.height + "px";
 
-      context.setTransform(
+      scratchContext.setTransform(
         scale,
         0,
         0,
@@ -1292,97 +1547,110 @@
         0
       );
 
-      drawScratchCover(
-        rectangle.width,
-        rectangle.height
+      drawScratchHeart(
+        rect.width,
+        rect.height
       );
     }
 
 
-    function drawScratchCover(width, height) {
-      const gradient =
-        context.createLinearGradient(
-          0,
-          0,
-          width,
-          height
-        );
-
-      gradient.addColorStop(0, "#718268");
-      gradient.addColorStop(0.5, "#a8b59c");
-      gradient.addColorStop(1, "#485f4a");
-
-      context.globalCompositeOperation =
+    function drawScratchHeart(width, height) {
+      scratchContext.globalCompositeOperation =
         "source-over";
 
-      context.fillStyle = gradient;
-
-      context.fillRect(
+      scratchContext.clearRect(
         0,
         0,
         width,
         height
       );
 
-      context.strokeStyle =
-        "rgba(235, 208, 137, 0.5)";
+      heartPath(
+        scratchContext,
+        width,
+        height
+      );
 
-      context.lineWidth = 1;
+      const gradient =
+        scratchContext.createRadialGradient(
+          width * 0.37,
+          height * 0.3,
+          10,
+          width * 0.5,
+          height * 0.5,
+          width * 0.46
+        );
 
-      for (
-        let x = -height;
-        x < width + height;
-        x += 22
-      ) {
-        context.beginPath();
-        context.moveTo(x, 0);
-        context.lineTo(x + height, height);
-        context.stroke();
+      gradient.addColorStop(0, "#cc8792");
+      gradient.addColorStop(0.48, "#a95c69");
+      gradient.addColorStop(1, "#773844");
+
+      scratchContext.fillStyle = gradient;
+      scratchContext.fill();
+
+      scratchContext.save();
+
+      heartPath(
+        scratchContext,
+        width,
+        height
+      );
+
+      scratchContext.clip();
+
+      for (let i = 0; i < 260; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const size = Math.random() * 2.2 + 0.4;
+
+        scratchContext.beginPath();
+        scratchContext.arc(
+          x,
+          y,
+          size,
+          0,
+          Math.PI * 2
+        );
+
+        scratchContext.fillStyle =
+          "rgba(255,235,222," +
+          (Math.random() * 0.55 + 0.15) +
+          ")";
+
+        scratchContext.fill();
       }
 
-      context.textAlign = "center";
-      context.textBaseline = "middle";
+      scratchContext.restore();
 
-      context.fillStyle = "#f5ecd6";
-      context.font =
-        "italic 29px Georgia, serif";
+      scratchContext.fillStyle =
+        "rgba(255,245,232,0.96)";
 
-      context.fillText(
-        "Scratch to Reveal",
+      scratchContext.textAlign = "center";
+      scratchContext.textBaseline = "middle";
+
+      scratchContext.font =
+        "italic 25px Georgia, serif";
+
+      scratchContext.fillText(
+        "Scratch Here",
         width / 2,
-        height / 2 - 18
+        height / 2 - 5
       );
 
-      context.fillStyle =
-        "rgba(247, 240, 223, 0.86)";
+      scratchContext.font =
+        "9px Arial, sans-serif";
 
-      context.font =
-        "10px Arial, sans-serif";
-
-      context.fillText(
+      scratchContext.fillText(
         "GENTLY RUB WITH YOUR FINGER",
         width / 2,
-        height / 2 + 23
+        height / 2 + 30
       );
-
-      context.beginPath();
-
-      context.arc(
-        width / 2,
-        height / 2 + 62,
-        7,
-        0,
-        Math.PI * 2
-      );
-
-      context.fillStyle = "#d8b763";
-      context.fill();
     }
 
 
-    function getPointerPosition(event) {
-      const rectangle =
-        canvas.getBoundingClientRect();
+    function pointerPosition(event) {
+      const rect =
+        scratchCanvas.getBoundingClientRect();
 
       let clientX;
       let clientY;
@@ -1396,13 +1664,13 @@
       }
 
       return {
-        x: clientX - rectangle.left,
-        y: clientY - rectangle.top
+        x: clientX - rect.left,
+        y: clientY - rect.top
       };
     }
 
 
-    function beginScratch(event) {
+    function startScratch(event) {
       if (scratchComplete) {
         return;
       }
@@ -1411,16 +1679,13 @@
 
       scratching = true;
 
-      const position =
-        getPointerPosition(event);
+      const point =
+        pointerPosition(event);
 
-      lastX = position.x;
-      lastY = position.y;
+      lastX = point.x;
+      lastY = point.y;
 
-      scratchAt(
-        position.x,
-        position.y
-      );
+      eraseAt(point.x, point.y);
     }
 
 
@@ -1431,55 +1696,52 @@
 
       event.preventDefault();
 
-      const position =
-        getPointerPosition(event);
+      const point =
+        pointerPosition(event);
 
-      context.globalCompositeOperation =
+      scratchContext.globalCompositeOperation =
         "destination-out";
 
-      context.lineWidth = 38;
-      context.lineCap = "round";
-      context.lineJoin = "round";
+      scratchContext.lineWidth = 38;
+      scratchContext.lineCap = "round";
+      scratchContext.lineJoin = "round";
 
-      context.beginPath();
-      context.moveTo(lastX, lastY);
-      context.lineTo(position.x, position.y);
-      context.stroke();
+      scratchContext.beginPath();
+      scratchContext.moveTo(lastX, lastY);
+      scratchContext.lineTo(point.x, point.y);
+      scratchContext.stroke();
 
-      scratchAt(
-        position.x,
-        position.y
-      );
+      eraseAt(point.x, point.y);
 
-      lastX = position.x;
-      lastY = position.y;
+      lastX = point.x;
+      lastY = point.y;
 
-      scratchCheckCounter += 1;
+      scratchCounter += 1;
 
-      if (scratchCheckCounter >= 12) {
-        scratchCheckCounter = 0;
-        checkScratchPercentage();
+      if (scratchCounter >= 12) {
+        scratchCounter = 0;
+        checkScratchAmount();
       }
     }
 
 
-    function endScratch() {
+    function stopScratch() {
       if (!scratching) {
         return;
       }
 
       scratching = false;
-      checkScratchPercentage();
+      checkScratchAmount();
     }
 
 
-    function scratchAt(x, y) {
-      context.globalCompositeOperation =
+    function eraseAt(x, y) {
+      scratchContext.globalCompositeOperation =
         "destination-out";
 
-      context.beginPath();
+      scratchContext.beginPath();
 
-      context.arc(
+      scratchContext.arc(
         x,
         y,
         22,
@@ -1487,57 +1749,50 @@
         Math.PI * 2
       );
 
-      context.fill();
+      scratchContext.fill();
     }
 
 
-    function checkScratchPercentage() {
+    function checkScratchAmount() {
       if (scratchComplete) {
         return;
       }
 
       const imageData =
-        context.getImageData(
+        scratchContext.getImageData(
           0,
           0,
-          canvas.width,
-          canvas.height
+          scratchCanvas.width,
+          scratchCanvas.height
         ).data;
 
-      let transparentPixels = 0;
-      let checkedPixels = 0;
-
-      /*
-        Sample every 16th pixel for smoother
-        mobile performance.
-      */
+      let transparent = 0;
+      let checked = 0;
 
       for (
         let index = 3;
         index < imageData.length;
         index += 64
       ) {
-        checkedPixels += 1;
+        checked += 1;
 
         if (imageData[index] < 40) {
-          transparentPixels += 1;
+          transparent += 1;
         }
       }
 
-      const scratchedPercent =
+      const percentage =
         Math.round(
-          transparentPixels /
-          checkedPixels *
-          100
+          transparent / checked * 100
         );
 
-      if (scratchedPercent < 60) {
-        progressText.textContent =
-          scratchedPercent +
+      if (percentage < 58) {
+        scratchStatus.textContent =
+          percentage +
           "% revealed — keep scratching";
       }
 
-      if (scratchedPercent >= 60) {
+      if (percentage >= 58) {
         completeScratch();
       }
     }
@@ -1547,37 +1802,37 @@
       scratchComplete = true;
       scratching = false;
 
-      canvas.classList.add("cleared");
+      scratchCanvas.classList.add("cleared");
 
-      progressText.textContent =
+      scratchStatus.textContent =
         "The special date has been revealed ✨";
     }
 
 
-    canvas.addEventListener(
+    scratchCanvas.addEventListener(
       "mousedown",
-      beginScratch
+      startScratch
     );
 
-    canvas.addEventListener(
+    scratchCanvas.addEventListener(
       "mousemove",
       moveScratch
     );
 
     window.addEventListener(
       "mouseup",
-      endScratch
+      stopScratch
     );
 
-    canvas.addEventListener(
+    scratchCanvas.addEventListener(
       "touchstart",
-      beginScratch,
+      startScratch,
       {
         passive: false
       }
     );
 
-    canvas.addEventListener(
+    scratchCanvas.addEventListener(
       "touchmove",
       moveScratch,
       {
@@ -1585,22 +1840,118 @@
       }
     );
 
-    canvas.addEventListener(
+    scratchCanvas.addEventListener(
       "touchend",
-      endScratch
+      stopScratch
     );
 
 
     /* =====================================
-       RESTART INVITATION
+       LIVE COUNTDOWN
+       24 DEC 2026, 9 PM INDIA TIME
+    ====================================== */
+
+    const weddingDate =
+      new Date(
+        "2026-12-24T21:00:00+05:30"
+      ).getTime();
+
+
+    function updateCountdown() {
+      const now =
+        new Date().getTime();
+
+      const distance =
+        weddingDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("days")
+          .textContent = "00";
+
+        document.getElementById("hours")
+          .textContent = "00";
+
+        document.getElementById("minutes")
+          .textContent = "00";
+
+        document.getElementById("seconds")
+          .textContent = "00";
+
+        return;
+      }
+
+      const days =
+        Math.floor(
+          distance /
+          (1000 * 60 * 60 * 24)
+        );
+
+      const hours =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60 * 60 * 24)
+          ) /
+          (1000 * 60 * 60)
+        );
+
+      const minutes =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60 * 60)
+          ) /
+          (1000 * 60)
+        );
+
+      const seconds =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60)
+          ) /
+          1000
+        );
+
+      document.getElementById("days")
+        .textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+
+    updateCountdown();
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
+
+    /* =====================================
+       RESTART
     ====================================== */
 
     function restartInvitation() {
+      invitationOpened = false;
+
       openingScreen.style.display = "block";
 
-      openingScreen.classList.remove(
-        "finished",
-        "opening-active"
+      openingScreen.classList.remove("finished");
+
+      envelopeBox.classList.remove(
+        "envelope-open"
       );
 
       window.scrollTo({
@@ -1611,18 +1962,14 @@
       scratchComplete = false;
       scratching = false;
 
-      canvas.classList.remove("cleared");
+      scratchCanvas.classList.remove("cleared");
 
-      progressText.textContent =
-        "Start scratching to reveal the date";
+      scratchStatus.textContent =
+        "Start scratching the heart";
 
       setupScratchCanvas();
     }
 
-
-    /* =====================================
-       INITIALISE
-    ====================================== */
 
     window.addEventListener(
       "load",
