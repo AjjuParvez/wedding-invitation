@@ -2,17 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
-
   <meta name="theme-color" content="#405743">
 
-  <title>
-    Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation
-  </title>
+  <title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
+
+  <!-- Search and WhatsApp preview -->
+  <meta
+    name="description"
+    content="Together in Faith, Forever in Love. Nikah invitation of Sameena Sultana and Mohammed Faisal Hussain on 24 December 2026."
+  >
+
+  <link
+    rel="canonical"
+    href="https://ajjuparvez.github.io/wedding-invitation/"
+  >
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nikah Invitation">
+
+  <meta
+    property="og:title"
+    content="Sameena Sultana &amp; Mohammed Faisal Hussain"
+  >
+
+  <meta
+    property="og:description"
+    content="Together in Faith, Forever in Love • Nikah Invitation • 24 December 2026"
+  >
+
+  <meta
+    property="og:url"
+    content="https://ajjuparvez.github.io/wedding-invitation/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://ajjuparvez.github.io/wedding-invitation/Screen-2.jpg"
+  >
+
+  <meta
+    property="og:image:secure_url"
+    content="https://ajjuparvez.github.io/wedding-invitation/Screen-2.jpg"
+  >
+
+  <meta property="og:image:type" content="image/jpeg">
+
+  <meta
+    property="og:image:alt"
+    content="Nikah invitation of Sameena Sultana and Mohammed Faisal Hussain"
+  >
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta
+    name="twitter:title"
+    content="Sameena Sultana &amp; Mohammed Faisal Hussain"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Together in Faith, Forever in Love • Nikah Invitation • 24 December 2026"
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://ajjuparvez.github.io/wedding-invitation/Screen-2.jpg"
+  >
 
   <style>
     :root {
@@ -43,17 +102,9 @@
       min-height: 100svh;
       margin: 0 auto;
       overflow-x: hidden;
-
       background: var(--ivory);
       color: var(--forest);
-
-      font-family:
-        Baskerville,
-        "Baskerville Old Face",
-        "Iowan Old Style",
-        Georgia,
-        serif;
-
+      font-family: Baskerville, "Iowan Old Style", Georgia, serif;
       box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
     }
 
@@ -76,109 +127,67 @@
 
     .screen {
       position: relative;
-
       width: 100%;
       min-height: 100vh;
       min-height: 100svh;
-
       overflow: hidden;
-
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
 
     .small-label {
       color: var(--gold-light);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+      font-family: "Segoe UI", Arial, sans-serif;
       font-size: 8px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    /* =====================================
-       AUDIO CONTROL
-    ====================================== */
+    /* Audio */
 
     .audio-control {
       position: fixed;
-      right: max(14px, env(safe-area-inset-right, 0px));
+      right: 14px;
       bottom: max(16px, calc(var(--safe-bottom) + 10px));
       z-index: 900;
-
       display: none;
       align-items: center;
       justify-content: center;
-
       width: 42px;
       height: 42px;
-
       cursor: pointer;
-
       border: 1px solid rgba(238, 210, 135, 0.78);
       border-radius: 50%;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(72, 81, 64, 0.94),
-          rgba(39, 54, 42, 0.96)
-        );
-
+      background: linear-gradient(145deg, #485140f0, #27362af5);
       color: #f5dda0;
-
       font-size: 17px;
-
-      box-shadow:
-        0 8px 22px rgba(10, 15, 11, 0.3),
-        inset 0 0 0 2px rgba(255, 246, 213, 0.06);
-
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
+      box-shadow: 0 8px 22px rgba(10, 15, 11, 0.3);
     }
 
     .audio-control.visible {
       display: flex;
     }
 
-    /* =====================================
-       SCREEN 1: ENVELOPE
-    ====================================== */
+    /* Opening screen */
 
     #openingScreen {
       position: fixed;
       inset: 0;
       z-index: 1000;
-
       width: min(100%, 430px);
       height: 100vh;
       height: 100svh;
-
       margin: 0 auto;
       overflow: hidden;
-
       background:
         radial-gradient(
           circle at 50% 12%,
           rgba(204, 220, 187, 0.25),
           transparent 40%
         ),
-        linear-gradient(
-          160deg,
-          #7b8d72,
-          #53684f 48%,
-          #304733
-        );
-
-      transition:
-        opacity 0.75s ease,
-        visibility 0.75s ease;
+        linear-gradient(160deg, #7b8d72, #53684f 48%, #304733);
+      transition: opacity 0.75s ease, visibility 0.75s ease;
     }
 
     #openingScreen.finished {
@@ -189,27 +198,21 @@
 
     .opening-frame {
       position: absolute;
-
       inset:
         max(12px, var(--safe-top))
         13px
         max(12px, var(--safe-bottom));
-
       z-index: 50;
-
       border: 1px solid rgba(232, 207, 142, 0.58);
       border-radius: 27px;
-
       pointer-events: none;
     }
 
     .opening-pattern {
       position: absolute;
       inset: 0;
-
       opacity: 0.24;
       pointer-events: none;
-
       background:
         radial-gradient(
           ellipse at 18% 18%,
@@ -233,18 +236,17 @@
 
     .opening-title {
       position: absolute;
-
       top: max(7%, calc(var(--safe-top) + 22px));
       left: 20px;
       right: 20px;
-
       z-index: 40;
-
       text-align: center;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
 
-      transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
+    .opening-active .opening-title {
+      opacity: 0;
+      transform: translateY(-14px);
     }
 
     .opening-arabic {
@@ -255,54 +257,31 @@
 
     .opening-subtitle {
       margin-top: 5px;
-
       color: #e0d8c2;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
+      font: 7px "Segoe UI", Arial, sans-serif;
       letter-spacing: 3px;
       text-transform: uppercase;
-    }
-
-    .opening-active .opening-title {
-      opacity: 0;
-      transform: translateY(-14px);
     }
 
     .envelope-stage {
       position: absolute;
       inset: 0;
       z-index: 5;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding:
         calc(105px + var(--safe-top))
         24px
         calc(80px + var(--safe-bottom));
-
       perspective: 1200px;
     }
 
     .envelope-box {
       position: relative;
-
       width: min(350px, 86vw);
       aspect-ratio: 350 / 270;
-
-      filter:
-        drop-shadow(
-          0 22px 28px
-          rgba(17, 27, 18, 0.38)
-        );
-
+      filter: drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
       transition: transform 0.8s ease 1.15s;
     }
 
@@ -314,57 +293,38 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-
       overflow: hidden;
-
       border: 1px solid rgba(229, 204, 136, 0.62);
       border-radius: 9px;
-
       background:
         radial-gradient(
           circle,
           rgba(255, 255, 255, 0.08),
           transparent 52%
         ),
-        linear-gradient(
-          150deg,
-          #7c9074,
-          #536a54
-        );
+        linear-gradient(150deg, #7c9074, #536a54);
     }
 
     .envelope-interior {
       position: absolute;
-
       left: 3%;
       right: 3%;
       top: 3%;
-
-      height: 69%;
       z-index: 2;
-
+      height: 69%;
       border-radius: 8px 8px 45% 45%;
-
-      background:
-        linear-gradient(
-          #253c2b,
-          #4c654d
-        );
+      background: linear-gradient(#253c2b, #4c654d);
     }
 
     .envelope-glow {
       position: absolute;
-
       left: 8%;
       right: 8%;
       top: 15%;
-
-      height: 70%;
       z-index: 3;
-
+      height: 70%;
       opacity: 0;
       border-radius: 50%;
-
       background:
         radial-gradient(
           ellipse,
@@ -372,12 +332,8 @@
           rgba(242, 207, 117, 0.62) 35%,
           transparent 75%
         );
-
       transform: scale(0.35);
-
-      transition:
-        opacity 0.8s ease 0.42s,
-        transform 1s ease 0.4s;
+      transition: opacity 0.8s ease 0.42s, transform 1s ease 0.4s;
     }
 
     .opening-active .envelope-glow {
@@ -387,17 +343,13 @@
 
     .envelope-flap {
       position: absolute;
-
       left: 0;
       top: 0;
       z-index: 8;
-
       width: 100%;
       height: 56%;
-
       transform-origin: top center;
       transform-style: preserve-3d;
-
       transition:
         transform 1.1s cubic-bezier(0.62, 0, 0.22, 1),
         z-index 0s linear 0.55s;
@@ -407,33 +359,16 @@
     .flap-back {
       position: absolute;
       inset: 0;
-
-      clip-path:
-        polygon(
-          0 0,
-          100% 0,
-          50% 100%
-        );
-
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
       backface-visibility: hidden;
     }
 
     .flap-front {
-      background:
-        linear-gradient(
-          145deg,
-          #84967b,
-          #536a55
-        );
+      background: linear-gradient(145deg, #84967b, #536a55);
     }
 
     .flap-back {
-      background:
-        linear-gradient(
-          #d5bd85,
-          #81632e
-        );
-
+      background: linear-gradient(#d5bd85, #81632e);
       transform: rotateX(180deg);
     }
 
@@ -446,85 +381,51 @@
       position: absolute;
       inset: 0;
       z-index: 6;
-
       overflow: hidden;
       pointer-events: none;
     }
 
     .front-left {
       position: absolute;
-
       left: 0;
       bottom: 0;
-
       width: 50%;
       height: 100%;
-
-      clip-path:
-        polygon(
-          0 0,
-          100% 50%,
-          0 100%
-        );
-
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
       background: #617861;
     }
 
     .front-right {
       position: absolute;
-
       right: 0;
       bottom: 0;
-
       width: 50%;
       height: 100%;
-
-      clip-path:
-        polygon(
-          100% 0,
-          0 50%,
-          100% 100%
-        );
-
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
       background: #576f59;
     }
 
     .front-bottom {
       position: absolute;
-
       left: 0;
       right: 0;
       bottom: 0;
-
       height: 54%;
-
-      clip-path:
-        polygon(
-          0 100%,
-          50% 0,
-          100% 100%
-        );
-
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
       background: #73866e;
     }
 
     .wax-seal {
       position: absolute;
-
       left: 50%;
       top: 52%;
       z-index: 15;
-
       width: clamp(72px, 21vw, 88px);
       height: clamp(72px, 21vw, 88px);
-
       transform: translate(-50%, -50%);
-
       cursor: pointer;
-
       border: 4px double #f4dda1;
       border-radius: 50%;
-
       background:
         radial-gradient(
           circle at 32% 27%,
@@ -532,34 +433,18 @@
           #bb8732 48%,
           #6f4a16
         );
-
       color: #fff1c4;
-
       box-shadow:
         0 8px 19px rgba(33, 21, 3, 0.48),
         inset 0 0 0 5px rgba(103, 65, 14, 0.25);
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
-      font-size: clamp(14px, 4vw, 17px);
+      font: clamp(14px, 4vw, 17px) "Segoe Script", cursive;
       line-height: 1.05;
-
-      transition:
-        opacity 0.38s ease,
-        transform 0.38s ease;
+      transition: opacity 0.38s ease, transform 0.38s ease;
     }
 
     .opening-active .wax-seal {
       opacity: 0;
-
-      transform:
-        translate(-50%, -50%)
-        scale(0.4);
-
+      transform: translate(-50%, -50%) scale(0.4);
       pointer-events: none;
     }
 
@@ -567,9 +452,7 @@
       position: absolute;
       inset: 0;
       z-index: 35;
-
       opacity: 0;
-
       background:
         radial-gradient(
           circle,
@@ -577,13 +460,8 @@
           rgba(255, 224, 145, 0.65) 26%,
           transparent 70%
         );
-
       transform: scale(0.5);
-
-      transition:
-        opacity 0.7s ease 0.8s,
-        transform 0.9s ease 0.8s;
-
+      transition: opacity 0.7s ease 0.8s, transform 0.9s ease 0.8s;
       pointer-events: none;
     }
 
@@ -594,13 +472,10 @@
 
     .you-are-invited {
       position: absolute;
-
       left: 0;
       right: 0;
       bottom: max(7%, calc(var(--safe-bottom) + 20px));
-
       z-index: 42;
-
       color: #e5ca82;
       text-align: center;
     }
@@ -611,34 +486,22 @@
 
     .invited-text {
       margin-top: 5px;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font: 8px "Segoe UI", Arial, sans-serif;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    /* =====================================
-       SCREEN 2: INVITATION
-    ====================================== */
+    /* Invitation screen */
 
     #coupleScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding:
         max(14px, var(--safe-top))
         16px
         max(14px, var(--safe-bottom));
-
       text-align: center;
-
       background:
         #f5f0e5
         url("Screen-2.jpg")
@@ -649,17 +512,14 @@
     .couple-content {
       position: relative;
       z-index: 5;
-
       width: 100%;
       max-width: 390px;
-
       opacity: 0;
       transform: translateY(20px);
     }
 
     body.reveal-couple .couple-content {
-      animation:
-        coupleReveal 1.2s ease forwards;
+      animation: coupleReveal 1.2s ease forwards;
     }
 
     @keyframes coupleReveal {
@@ -671,34 +531,20 @@
 
     .screen2-bismillah {
       color: #926d28;
-
-      font-family:
-        "Geeza Pro",
-        "Traditional Arabic",
-        serif;
-
+      font-family: "Geeza Pro", "Traditional Arabic", serif;
       font-size: clamp(22px, 6.5vw, 29px);
       line-height: 1.5;
     }
 
     .screen2-ornament {
       margin: 1px 0 3px;
-
       color: #ad8435;
       font-size: 16px;
     }
 
     .faith-heading {
       color: #65523c;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(7px, 2.1vw, 9px);
-      font-weight: 600;
+      font: 600 clamp(7px, 2.1vw, 9px) "Segoe UI", Arial, sans-serif;
       line-height: 1.5;
       letter-spacing: 2.5px;
       text-transform: uppercase;
@@ -708,10 +554,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 120px;
       margin: 3px auto;
-
       color: #aa8337;
       font-size: 8px;
     }
@@ -719,17 +563,10 @@
     .faith-divider::before,
     .faith-divider::after {
       content: "";
-
       flex: 1;
       height: 1px;
       margin: 0 9px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #b58d43
-        );
+      background: linear-gradient(90deg, transparent, #b58d43);
     }
 
     .faith-divider::after {
@@ -738,11 +575,8 @@
 
     .invitation-line {
       max-width: 300px;
-
       margin: 3px auto 5px;
-
       color: #5d5548;
-
       font-size: clamp(10px, 2.8vw, 12px);
       font-style: italic;
       line-height: 1.32;
@@ -750,61 +584,38 @@
 
     .couple-name {
       max-width: 385px;
-
       margin: 5px auto 0;
-
       color: #393128;
-
       font-family:
         "Snell Roundhand",
         "Apple Chancery",
         "Segoe Script",
         "Brush Script MT",
         cursive;
-
       font-size: clamp(39px, 10.5vw, 50px);
       font-weight: 400;
       line-height: 0.97;
-
       text-wrap: balance;
-
-      text-shadow:
-        0 1px 1px rgba(255, 255, 255, 0.85);
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
     }
 
     .couple-name.long-name {
       max-width: 395px;
-
       font-size: clamp(33px, 9vw, 43px);
       line-height: 1;
     }
 
     .parent-role {
       margin-top: 3px;
-
       color: #927842;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
+      font-family: "Segoe Script", cursive;
       font-size: clamp(10px, 2.8vw, 12px);
     }
 
     .parent-name {
       margin-top: 1px;
-
       color: #625746;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(7px, 2.1vw, 9px);
+      font: clamp(7px, 2.1vw, 9px) "Segoe UI", Arial, sans-serif;
       letter-spacing: 0.6px;
     }
 
@@ -812,35 +623,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 110px;
       margin: 3px auto 1px;
-
       color: #ae8436;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
+      font-family: "Segoe Script", cursive;
       font-size: 26px;
     }
 
     .ampersand-wrap::before,
     .ampersand-wrap::after {
       content: "";
-
       flex: 1;
       height: 1px;
       margin: 0 8px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #b99145
-        );
+      background: linear-gradient(90deg, transparent, #b99145);
     }
 
     .ampersand-wrap::after {
@@ -849,17 +645,8 @@
 
     .love-tagline {
       margin-top: 5px;
-
       color: #8f7137;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: clamp(5px, 1.55vw, 6.5px);
-      font-weight: 600;
+      font: 600 clamp(5px, 1.55vw, 6.5px) "Segoe UI", Arial, sans-serif;
       line-height: 1.45;
       letter-spacing: 1.35px;
       text-transform: uppercase;
@@ -867,36 +654,23 @@
 
     .love-tagline .heart {
       margin: 0 4px;
-
       color: #b48635;
       font-size: 7px;
     }
 
     .scroll-hint {
       margin-top: 4px;
-
       color: #806936;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 5.5px;
-      font-weight: 600;
+      font: 600 5.5px "Segoe UI", Arial, sans-serif;
       letter-spacing: 1.7px;
       text-transform: uppercase;
     }
 
     .scroll-arrow {
       margin-top: 2px;
-
       color: #a37d35;
       font-size: 16px;
-
-      animation:
-        arrowBounce 1.4s infinite ease-in-out;
+      animation: arrowBounce 1.4s infinite ease-in-out;
     }
 
     @keyframes arrowBounce {
@@ -905,23 +679,18 @@
       }
     }
 
-    /* =====================================
-       SHARED GLASS BACKGROUND
-    ====================================== */
+    /* Shared background */
 
     #revealScreen,
     #finalScreen {
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding:
         max(18px, var(--safe-top))
         14px
         max(18px, var(--safe-bottom));
-
       text-align: center;
-
       background:
         linear-gradient(
           rgba(27, 29, 23, 0.12),
@@ -935,36 +704,28 @@
     .dark-panel {
       position: relative;
       z-index: 5;
-
       width: min(375px, 93vw);
-
       border: 1px solid rgba(226, 196, 120, 0.58);
       border-radius: 24px;
-
       background:
         linear-gradient(
           145deg,
           rgba(35, 38, 31, 0.64),
           rgba(54, 53, 44, 0.5)
         );
-
       box-shadow:
         0 18px 40px rgba(10, 12, 9, 0.3),
         inset 0 0 0 1px rgba(255, 246, 213, 0.08);
-
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
 
     .dark-panel::before {
       content: "";
-
       position: absolute;
       inset: 8px;
-
       border: 1px solid rgba(229, 202, 132, 0.2);
       border-radius: 17px;
-
       pointer-events: none;
     }
 
@@ -976,61 +737,35 @@
 
     .panel-title {
       margin-top: 6px;
-
       color: #fff5dc;
-
       font-size: clamp(28px, 7.8vw, 36px);
       font-weight: 400;
       font-style: italic;
       line-height: 1.08;
     }
 
-    /* =====================================
-       SCREEN 3: SCRATCH + COUNTDOWN
-    ====================================== */
+    /* Scratch + countdown */
 
     .reveal-panel {
-      padding:
-        clamp(18px, 3.8vh, 27px)
-        15px;
+      padding: clamp(18px, 3.8vh, 27px) 15px;
     }
 
     .scratch-description {
       max-width: 285px;
-
       margin: 6px auto 10px;
-
       color: rgba(240, 230, 207, 0.86);
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 9px;
-      line-height: 1.45;
+      font: 9px/1.45 "Segoe UI", Arial, sans-serif;
     }
 
     .scratch-card-shell {
       position: relative;
-
       width: min(225px, 61vw);
       aspect-ratio: 1;
-
       margin: 0 auto;
       padding: 8px;
-
       border: 1px solid #c79b48;
       border-radius: 18px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #fffaf0,
-          #ead5ac
-        );
-
+      background: linear-gradient(145deg, #fffaf0, #ead5ac);
       box-shadow:
         0 15px 30px rgba(5, 6, 4, 0.3),
         inset 0 0 0 4px #fff9ec,
@@ -1039,86 +774,54 @@
 
     .scratch-square-area {
       position: relative;
-
       width: 100%;
       height: 100%;
-
       overflow: hidden;
-
       border: 1px solid rgba(158, 109, 32, 0.62);
       border-radius: 12px;
-
       background: #fffaf0;
     }
 
     .square-result {
       position: absolute;
       inset: 0;
-
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       padding: 13px;
-
       background:
         radial-gradient(
           circle at 50% 35%,
           rgba(221, 184, 96, 0.16),
           transparent 42%
         ),
-        linear-gradient(
-          145deg,
-          #fffdf6,
-          #f2e2c2
-        );
+        linear-gradient(145deg, #fffdf6, #f2e2c2);
     }
 
     .reveal-label {
       color: #9e7937;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
-      font-weight: 600;
+      font: 600 7px "Segoe UI", Arial, sans-serif;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     .date-day {
       margin-top: 4px;
-
       color: #3a473b;
-
-      font-size:
-        clamp(49px, 14vw, 62px);
-
+      font-size: clamp(49px, 14vw, 62px);
       line-height: 0.88;
     }
 
     .date-month {
       margin-top: 6px;
-
       color: #987238;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
-      font-size:
-        clamp(23px, 6.5vw, 28px);
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(23px, 6.5vw, 28px);
     }
 
     .date-year {
       color: #3d483d;
-
       font-size: 21px;
       letter-spacing: 4px;
     }
@@ -1126,16 +829,8 @@
     .date-divider {
       width: 85px;
       height: 1px;
-
       margin: 8px auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #b38a40,
-          transparent
-        );
+      background: linear-gradient(90deg, transparent, #b38a40, transparent);
     }
 
     .date-time {
@@ -1147,16 +842,11 @@
       position: absolute;
       inset: 0;
       z-index: 8;
-
       width: 100%;
       height: 100%;
-
       cursor: grab;
       touch-action: none;
-
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     #scratchCanvas.cleared {
@@ -1167,18 +857,9 @@
 
     #scratchStatus {
       min-height: 12px;
-
       margin-top: 9px;
-
       color: #efd384;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
+      font: 7px "Segoe UI", Arial, sans-serif;
       letter-spacing: 1.2px;
       text-transform: uppercase;
     }
@@ -1186,25 +867,15 @@
     .merged-divider {
       width: 120px;
       height: 1px;
-
       margin: 13px auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #d8b869,
-          transparent
-        );
+      background: linear-gradient(90deg, transparent, #d8b869, transparent);
     }
 
     .countdown-area {
       max-height: 0;
       overflow: hidden;
-
       opacity: 0;
       transform: translateY(15px);
-
       transition:
         max-height 1.2s ease,
         opacity 0.8s ease 0.2s,
@@ -1219,81 +890,44 @@
 
     .countdown-heading {
       color: #fff5dc;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
-      font-size:
-        clamp(26px, 7vw, 32px);
-
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(26px, 7vw, 32px);
       line-height: 1.05;
     }
 
     .countdown-subtitle {
       margin-top: 5px;
-
       color: #e7ddc5;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 6px;
+      font: 6px "Segoe UI", Arial, sans-serif;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .countdown-grid {
       display: grid;
-      grid-template-columns:
-        repeat(4, 1fr);
-
+      grid-template-columns: repeat(4, 1fr);
       gap: 4px;
-
       margin-top: 11px;
     }
 
     .count-box {
       padding: 9px 1px;
-
-      border:
-        1px solid
-        rgba(231, 204, 132, 0.45);
-
+      border: 1px solid rgba(231, 204, 132, 0.45);
       border-radius: 8px;
-
-      background:
-        rgba(255, 250, 229, 0.05);
+      background: rgba(255, 250, 229, 0.05);
     }
 
     .count-number {
       display: block;
-
       color: #f1d68b;
-
-      font-size:
-        clamp(18px, 5.3vw, 23px);
+      font-size: clamp(18px, 5.3vw, 23px);
     }
 
     .count-label {
       display: block;
-
       margin-top: 5px;
-
       color: #e6dcc3;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 5px;
+      font: 5px "Segoe UI", Arial, sans-serif;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
@@ -1304,22 +938,17 @@
       position: absolute;
       inset: 0;
       z-index: 50;
-
       overflow: hidden;
       pointer-events: none;
     }
 
     .falling-piece {
       position: absolute;
-
       left: var(--left);
       top: -50px;
-
       width: var(--size);
       height: var(--size);
-
       opacity: 0;
-
       animation:
         flowerFall var(--duration)
         var(--delay)
@@ -1329,39 +958,24 @@
 
     .falling-piece.petal::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
-      border-radius:
-        80% 20% 65% 35%;
-
-      background:
-        var(--piece-color);
+      border-radius: 80% 20% 65% 35%;
+      background: var(--piece-color);
     }
 
     .falling-piece.flower::before {
       content: "✿";
-
       color: var(--piece-color);
       font-size: var(--size);
     }
 
     .falling-piece.leaf::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
-      border-radius:
-        100% 0 100% 0;
-
-      background:
-        linear-gradient(
-          135deg,
-          #b6bd9c,
-          #75856a
-        );
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, #b6bd9c, #75856a);
     }
 
     @keyframes flowerFall {
@@ -1371,7 +985,6 @@
 
       100% {
         opacity: 0;
-
         transform:
           translate3d(
             var(--drift),
@@ -1382,108 +995,54 @@
       }
     }
 
-    /* =====================================
-       SCREEN 4: VENUE + DUA
-    ====================================== */
+    /* Venue + dua */
 
     .final-panel {
-      padding:
-        clamp(19px, 4vh, 30px)
-        19px;
+      padding: clamp(19px, 4vh, 30px) 19px;
     }
 
     .venue-icon {
       width: 45px;
       height: 45px;
-
       margin: 10px auto 8px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
-      border:
-        1px solid
-        rgba(230, 199, 117, 0.65);
-
+      border: 1px solid rgba(230, 199, 117, 0.65);
       border-radius: 50%;
-
       color: #e3c36f;
     }
 
     .venue-name {
       color: #fff5dd;
-
-      font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        cursive;
-
-      font-size:
-        clamp(25px, 7vw, 32px);
+      font-family: "Segoe Script", cursive;
+      font-size: clamp(25px, 7vw, 32px);
     }
 
     .venue-city {
       margin-top: 5px;
-
       color: #e7cd89;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font: 8px "Segoe UI", Arial, sans-serif;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .venue-address {
       margin-top: 6px;
-
       color: #e3dac5;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
+      font: 8px "Segoe UI", Arial, sans-serif;
     }
 
     .map-button {
       display: inline-block;
-
       margin-top: 11px;
       padding: 11px 19px;
-
-      border:
-        1px solid
-        rgba(230, 198, 115, 0.7);
-
+      border: 1px solid rgba(230, 198, 115, 0.7);
       border-radius: 28px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #c59942,
-          #714d1d
-        );
-
+      background: linear-gradient(145deg, #c59942, #714d1d);
       color: #fff7e2;
-
       text-decoration: none;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
+      font: 7px "Segoe UI", Arial, sans-serif;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
@@ -1491,25 +1050,16 @@
     .final-divider {
       display: flex;
       align-items: center;
-
       width: 140px;
-
       margin: 15px auto;
     }
 
     .final-divider::before,
     .final-divider::after {
       content: "";
-
       flex: 1;
       height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #d8b869
-        );
+      background: linear-gradient(90deg, transparent, #d8b869);
     }
 
     .final-divider::after {
@@ -1518,108 +1068,56 @@
 
     .final-divider span {
       margin: 0 9px;
-
       color: #e4c675;
     }
 
     .dua-arabic {
       color: #f0d589;
-
-      font-family:
-        "Geeza Pro",
-        "Traditional Arabic",
-        serif;
-
-      font-size:
-        clamp(18px, 5.2vw, 23px);
-
+      font-family: "Geeza Pro", "Traditional Arabic", serif;
+      font-size: clamp(18px, 5.2vw, 23px);
       line-height: 1.55;
     }
 
     .dua-transliteration {
       margin-top: 8px;
-
       color: #f4ead1;
-
-      font-size:
-        clamp(11px, 3vw, 13px);
-
+      font-size: clamp(11px, 3vw, 13px);
       font-style: italic;
       line-height: 1.45;
     }
 
     .dua-meaning {
       max-width: 290px;
-
       margin: 7px auto 0;
-
       color: #ddd4c0;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
-      line-height: 1.5;
+      font: 8px/1.5 "Segoe UI", Arial, sans-serif;
     }
 
     .closing-line {
       width: 60px;
       height: 1px;
-
       margin: 11px auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #d8b869,
-          transparent
-        );
+      background: linear-gradient(90deg, transparent, #d8b869, transparent);
     }
 
     .closing-title {
       color: #fff5dd;
-
-      font-size:
-        clamp(19px, 5.5vw, 24px);
-
+      font-size: clamp(19px, 5.5vw, 24px);
       font-style: italic;
       line-height: 1.12;
     }
 
     .closing-message {
       max-width: 300px;
-
       margin: 7px auto 0;
-
       color: #ddd4c1;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 8px;
-      line-height: 1.5;
+      font: 8px/1.5 "Segoe UI", Arial, sans-serif;
     }
 
     .closing-couple {
       margin-top: 10px;
-
       color: #efd384;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
-      line-height: 1.4;
+      font: 7px/1.4 "Segoe UI", Arial, sans-serif;
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
@@ -1627,32 +1125,15 @@
     .restart-button {
       margin-top: 10px;
       padding: 9px 18px;
-
       cursor: pointer;
-
-      border:
-        1px solid
-        rgba(225, 194, 111, 0.62);
-
+      border: 1px solid rgba(225, 194, 111, 0.62);
       border-radius: 25px;
-
       background: transparent;
       color: #eee1bf;
-
-      font-family:
-        "Avenir Next",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-      font-size: 7px;
+      font: 7px "Segoe UI", Arial, sans-serif;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
-
-    /* =====================================
-       MOBILE ADJUSTMENTS
-    ====================================== */
 
     @media (max-width: 375px) {
       .couple-name {
@@ -1791,17 +1272,8 @@
 
 <body class="locked">
 
-  <!-- AUDIO: SILENT UNTIL TAP TO OPEN -->
-
-  <audio
-    id="backgroundAudio"
-    preload="auto"
-    loop
-  >
-    <source
-      src="islamic-background.mp3"
-      type="audio/mpeg"
-    >
+  <audio id="backgroundAudio" preload="auto" loop>
+    <source src="islamic-background.mp3" type="audio/mpeg">
   </audio>
 
   <button
@@ -1814,7 +1286,7 @@
     🔊
   </button>
 
-  <!-- SCREEN 1: ENVELOPE -->
+  <!-- Screen 1 -->
 
   <section id="openingScreen" class="screen">
 
@@ -1822,7 +1294,6 @@
     <div class="opening-frame"></div>
 
     <div class="opening-title">
-
       <div class="opening-arabic">
         بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
@@ -1830,11 +1301,9 @@
       <div class="opening-subtitle">
         A Celebration of Love &amp; Family
       </div>
-
     </div>
 
     <div class="envelope-stage">
-
       <div class="envelope-box" id="envelopeBox">
 
         <div class="envelope-back"></div>
@@ -1864,7 +1333,6 @@
         </button>
 
       </div>
-
     </div>
 
     <div class="opening-flash"></div>
@@ -1876,7 +1344,7 @@
 
   </section>
 
-  <!-- SCREEN 2: INVITATION -->
+  <!-- Screen 2 -->
 
   <section id="coupleScreen" class="screen">
 
@@ -1886,18 +1354,14 @@
         بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
 
-      <div class="screen2-ornament">
-        ❦
-      </div>
+      <div class="screen2-ornament">❦</div>
 
       <div class="faith-heading">
         Together in Faith<br>
         Forever in Love
       </div>
 
-      <div class="faith-divider">
-        ♥
-      </div>
+      <div class="faith-divider">♥</div>
 
       <div class="invitation-line">
         With the blessings of Allah<br>
@@ -1945,15 +1409,13 @@
         Scroll to reveal our special day
       </div>
 
-      <div class="scroll-arrow">
-        ↓
-      </div>
+      <div class="scroll-arrow">↓</div>
 
     </div>
 
   </section>
 
-  <!-- SCREEN 3: SCRATCH + COUNTDOWN -->
+  <!-- Screen 3 -->
 
   <section id="revealScreen" class="screen">
 
@@ -1968,9 +1430,7 @@
       id="revealPanel"
     >
 
-      <div class="ornament">
-        ◇ ❦ ◇
-      </div>
+      <div class="ornament">◇ ❦ ◇</div>
 
       <div class="small-label">
         Save the Date
@@ -1986,33 +1446,18 @@
       </div>
 
       <div class="scratch-card-shell">
-
         <div class="scratch-square-area">
 
           <div class="square-result">
-
             <div class="reveal-label">
               Nikah Ceremony
             </div>
 
-            <div class="date-day">
-              24
-            </div>
-
-            <div class="date-month">
-              December
-            </div>
-
-            <div class="date-year">
-              2026
-            </div>
-
+            <div class="date-day">24</div>
+            <div class="date-month">December</div>
+            <div class="date-year">2026</div>
             <div class="date-divider"></div>
-
-            <div class="date-time">
-              9:00 PM
-            </div>
-
+            <div class="date-time">9:00 PM</div>
           </div>
 
           <canvas
@@ -2021,7 +1466,6 @@
           ></canvas>
 
         </div>
-
       </div>
 
       <div id="scratchStatus" aria-live="polite">
@@ -2070,15 +1514,13 @@
 
   </section>
 
-  <!-- SCREEN 4: VENUE + DUA -->
+  <!-- Screen 4 -->
 
   <section id="finalScreen" class="screen">
 
     <div class="dark-panel final-panel">
 
-      <div class="ornament">
-        ◇ ❦ ◇
-      </div>
+      <div class="ornament">◇ ❦ ◇</div>
 
       <div class="small-label">
         Nikah Ceremony
@@ -2088,9 +1530,7 @@
         Venue
       </h2>
 
-      <div class="venue-icon">
-        ◎
-      </div>
+      <div class="venue-icon">◎</div>
 
       <div class="venue-name">
         H-Convention Center
@@ -2164,10 +1604,6 @@
   </section>
 
   <script>
-    /* =====================================
-       ELEMENTS
-    ====================================== */
-
     const openingScreen =
       document.getElementById("openingScreen");
 
@@ -2200,24 +1636,16 @@
       );
 
     const scratchStatus =
-      document.getElementById(
-        "scratchStatus"
-      );
+      document.getElementById("scratchStatus");
 
     const flowerShower =
-      document.getElementById(
-        "flowerShower"
-      );
+      document.getElementById("flowerShower");
 
     const revealPanel =
-      document.getElementById(
-        "revealPanel"
-      );
+      document.getElementById("revealPanel");
 
     const restartButton =
-      document.getElementById(
-        "restartButton"
-      );
+      document.getElementById("restartButton");
 
     let invitationOpened = false;
     let audioMuted = false;
@@ -2228,9 +1656,7 @@
     let lastY = 0;
     let scratchCounter = 0;
 
-    /* =====================================
-       ENVELOPE + AUDIO
-    ====================================== */
+    /* Opening and audio */
 
     waxSeal.addEventListener(
       "click",
@@ -2241,49 +1667,26 @@
 
         invitationOpened = true;
 
-        /*
-          Audio starts only after the user taps
-          Tap to Open. This satisfies browser
-          autoplay restrictions.
-        */
         backgroundAudio.volume = 0.35;
         backgroundAudio.muted = false;
         audioMuted = false;
 
-        const playPromise =
-          backgroundAudio.play();
-
-        if (
-          playPromise !== undefined
-        ) {
-          playPromise
-            .then(
-              function () {
-                audioControl.classList.add(
-                  "visible"
-                );
-
-                audioControl.textContent =
-                  "🔊";
-
-                audioControl.setAttribute(
-                  "aria-label",
-                  "Mute background audio"
-                );
-
-                audioControl.title =
-                  "Mute background audio";
-              }
-            )
-            .catch(
-              function (error) {
-                console.log(
-                  "Background audio could not start:",
-                  error
-                );
-              }
-            );
-        }
+        backgroundAudio
+          .play()
+          .then(
+            function () {
+              audioControl.classList.add("visible");
+              audioControl.textContent = "🔊";
+            }
+          )
+          .catch(
+            function (error) {
+              console.log(
+                "Background audio could not start:",
+                error
+              );
+            }
+          );
 
         openingScreen.classList.add(
           "opening-active"
@@ -2304,8 +1707,7 @@
 
         setTimeout(
           function () {
-            openingScreen.style.display =
-              "none";
+            openingScreen.style.display = "none";
 
             document.body.classList.remove(
               "locked"
@@ -2325,8 +1727,6 @@
       }
     );
 
-    /* Mute / unmute button */
-
     audioControl.addEventListener(
       "click",
       function () {
@@ -2340,9 +1740,6 @@
             "aria-label",
             "Play background audio"
           );
-
-          audioControl.title =
-            "Play background audio";
         } else {
           audioControl.textContent = "🔊";
 
@@ -2350,9 +1747,6 @@
             "aria-label",
             "Mute background audio"
           );
-
-          audioControl.title =
-            "Mute background audio";
 
           backgroundAudio.play().catch(
             function (error) {
@@ -2366,9 +1760,7 @@
       }
     );
 
-    /* =====================================
-       SCRATCH CARD
-    ====================================== */
+    /* Scratch canvas */
 
     function setupScratchCanvas() {
       const rectangle =
@@ -2411,10 +1803,7 @@
       );
     }
 
-    function drawScratchCover(
-      width,
-      height
-    ) {
+    function drawScratchCover(width, height) {
       scratchContext.globalCompositeOperation =
         "source-over";
 
@@ -2433,33 +1822,13 @@
           height
         );
 
-      coating.addColorStop(
-        0,
-        "#79531d"
-      );
+      coating.addColorStop(0, "#79531d");
+      coating.addColorStop(0.22, "#d6ae52");
+      coating.addColorStop(0.48, "#a2752e");
+      coating.addColorStop(0.72, "#efd082");
+      coating.addColorStop(1, "#76501a");
 
-      coating.addColorStop(
-        0.22,
-        "#d6ae52"
-      );
-
-      coating.addColorStop(
-        0.48,
-        "#a2752e"
-      );
-
-      coating.addColorStop(
-        0.72,
-        "#efd082"
-      );
-
-      coating.addColorStop(
-        1,
-        "#76501a"
-      );
-
-      scratchContext.fillStyle =
-        coating;
+      scratchContext.fillStyle = coating;
 
       scratchContext.fillRect(
         0,
@@ -2493,8 +1862,7 @@
         "rgba(81,48,8,0.28)"
       );
 
-      scratchContext.fillStyle =
-        shine;
+      scratchContext.fillStyle = shine;
 
       scratchContext.fillRect(
         0,
@@ -2551,11 +1919,8 @@
       scratchContext.fillStyle =
         "rgba(255,248,221,0.97)";
 
-      scratchContext.textAlign =
-        "center";
-
-      scratchContext.textBaseline =
-        "middle";
+      scratchContext.textAlign = "center";
+      scratchContext.textBaseline = "middle";
 
       scratchContext.font =
         "17px Georgia, serif";
@@ -2638,10 +2003,7 @@
       lastX = point.x;
       lastY = point.y;
 
-      eraseAt(
-        point.x,
-        point.y
-      );
+      eraseAt(point.x, point.y);
     }
 
     function moveScratch(event) {
@@ -2678,10 +2040,7 @@
 
       scratchContext.stroke();
 
-      eraseAt(
-        point.x,
-        point.y
-      );
+      eraseAt(point.x, point.y);
 
       lastX = point.x;
       lastY = point.y;
@@ -2786,9 +2145,7 @@
         index++
       ) {
         const piece =
-          document.createElement(
-            "span"
-          );
+          document.createElement("span");
 
         const typeValue =
           Math.random();
@@ -2797,17 +2154,11 @@
           "falling-piece";
 
         if (typeValue > 0.72) {
-          piece.classList.add(
-            "flower"
-          );
+          piece.classList.add("flower");
         } else if (typeValue > 0.56) {
-          piece.classList.add(
-            "leaf"
-          );
+          piece.classList.add("leaf");
         } else {
-          piece.classList.add(
-            "petal"
-          );
+          piece.classList.add("petal");
         }
 
         piece.style.setProperty(
@@ -2852,9 +2203,7 @@
           ]
         );
 
-        flowerShower.appendChild(
-          piece
-        );
+        flowerShower.appendChild(piece);
       }
 
       setTimeout(
@@ -2906,9 +2255,7 @@
       stopScratch
     );
 
-    /* =====================================
-       COUNTDOWN
-    ====================================== */
+    /* Countdown */
 
     const weddingDate =
       new Date(
@@ -2982,9 +2329,7 @@
       1000
     );
 
-    /* =====================================
-       RESTART
-    ====================================== */
+    /* Restart */
 
     restartButton.addEventListener(
       "click",
@@ -2992,11 +2337,6 @@
     );
 
     function restartInvitation() {
-      /*
-        Stop the background audio and return it
-        to the beginning. It starts again only
-        after the next Tap to Open.
-      */
       backgroundAudio.pause();
       backgroundAudio.currentTime = 0;
       backgroundAudio.muted = false;
@@ -3007,8 +2347,7 @@
         "visible"
       );
 
-      audioControl.textContent =
-        "🔊";
+      audioControl.textContent = "🔊";
 
       invitationOpened = false;
 
