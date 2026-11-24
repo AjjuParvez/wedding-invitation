@@ -10,7 +10,9 @@
 
   <meta name="theme-color" content="#405743">
 
-  <title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
+  <title>
+    Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation
+  </title>
 
   <style>
     :root {
@@ -98,6 +100,51 @@
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
+    }
+
+    /* =====================================
+       AUDIO CONTROL
+    ====================================== */
+
+    .audio-control {
+      position: fixed;
+      right: max(14px, env(safe-area-inset-right, 0px));
+      bottom: max(16px, calc(var(--safe-bottom) + 10px));
+      z-index: 900;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      width: 42px;
+      height: 42px;
+
+      cursor: pointer;
+
+      border: 1px solid rgba(238, 210, 135, 0.78);
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(72, 81, 64, 0.94),
+          rgba(39, 54, 42, 0.96)
+        );
+
+      color: #f5dda0;
+
+      font-size: 17px;
+
+      box-shadow:
+        0 8px 22px rgba(10, 15, 11, 0.3),
+        inset 0 0 0 2px rgba(255, 246, 213, 0.06);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .audio-control.visible {
+      display: flex;
     }
 
     /* =====================================
@@ -1744,6 +1791,29 @@
 
 <body class="locked">
 
+  <!-- AUDIO: SILENT UNTIL TAP TO OPEN -->
+
+  <audio
+    id="backgroundAudio"
+    preload="auto"
+    loop
+  >
+    <source
+      src="islamic-background.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+  <button
+    type="button"
+    class="audio-control"
+    id="audioControl"
+    aria-label="Mute background audio"
+    title="Mute background audio"
+  >
+    🔊
+  </button>
+
   <!-- SCREEN 1: ENVELOPE -->
 
   <section id="openingScreen" class="screen">
@@ -2094,7 +2164,9 @@
   </section>
 
   <script>
-    /* Envelope */
+    /* =====================================
+       ELEMENTS
+    ====================================== */
 
     const openingScreen =
       document.getElementById("openingScreen");
@@ -2105,7 +2177,60 @@
     const waxSeal =
       document.getElementById("waxSeal");
 
+    const backgroundAudio =
+      document.getElementById("backgroundAudio");
+
+    const audioControl =
+      document.getElementById("audioControl");
+
+    const scratchCanvas =
+      document.getElementById("scratchCanvas");
+
+    const scratchContext =
+      scratchCanvas.getContext(
+        "2d",
+        {
+          willReadFrequently: true
+        }
+      );
+
+    const scratchArea =
+      document.querySelector(
+        ".scratch-square-area"
+      );
+
+    const scratchStatus =
+      document.getElementById(
+        "scratchStatus"
+      );
+
+    const flowerShower =
+      document.getElementById(
+        "flowerShower"
+      );
+
+    const revealPanel =
+      document.getElementById(
+        "revealPanel"
+      );
+
+    const restartButton =
+      document.getElementById(
+        "restartButton"
+      );
+
     let invitationOpened = false;
+    let audioMuted = false;
+
+    let scratching = false;
+    let scratchComplete = false;
+    let lastX = 0;
+    let lastY = 0;
+    let scratchCounter = 0;
+
+    /* =====================================
+       ENVELOPE + AUDIO
+    ====================================== */
 
     waxSeal.addEventListener(
       "click",
@@ -2115,6 +2240,50 @@
         }
 
         invitationOpened = true;
+
+        /*
+          Audio starts only after the user taps
+          Tap to Open. This satisfies browser
+          autoplay restrictions.
+        */
+        backgroundAudio.volume = 0.35;
+        backgroundAudio.muted = false;
+        audioMuted = false;
+
+        const playPromise =
+          backgroundAudio.play();
+
+        if (
+          playPromise !== undefined
+        ) {
+          playPromise
+            .then(
+              function () {
+                audioControl.classList.add(
+                  "visible"
+                );
+
+                audioControl.textContent =
+                  "🔊";
+
+                audioControl.setAttribute(
+                  "aria-label",
+                  "Mute background audio"
+                );
+
+                audioControl.title =
+                  "Mute background audio";
+              }
+            )
+            .catch(
+              function (error) {
+                console.log(
+                  "Background audio could not start:",
+                  error
+                );
+              }
+            );
+        }
 
         openingScreen.classList.add(
           "opening-active"
@@ -2156,44 +2325,50 @@
       }
     );
 
-    /* Scratch card */
+    /* Mute / unmute button */
 
-    const scratchCanvas =
-      document.getElementById("scratchCanvas");
+    audioControl.addEventListener(
+      "click",
+      function () {
+        audioMuted = !audioMuted;
+        backgroundAudio.muted = audioMuted;
 
-    const scratchContext =
-      scratchCanvas.getContext(
-        "2d",
-        {
-          willReadFrequently: true
+        if (audioMuted) {
+          audioControl.textContent = "🔇";
+
+          audioControl.setAttribute(
+            "aria-label",
+            "Play background audio"
+          );
+
+          audioControl.title =
+            "Play background audio";
+        } else {
+          audioControl.textContent = "🔊";
+
+          audioControl.setAttribute(
+            "aria-label",
+            "Mute background audio"
+          );
+
+          audioControl.title =
+            "Mute background audio";
+
+          backgroundAudio.play().catch(
+            function (error) {
+              console.log(
+                "Audio could not resume:",
+                error
+              );
+            }
+          );
         }
-      );
+      }
+    );
 
-    const scratchArea =
-      document.querySelector(
-        ".scratch-square-area"
-      );
-
-    const scratchStatus =
-      document.getElementById(
-        "scratchStatus"
-      );
-
-    const flowerShower =
-      document.getElementById(
-        "flowerShower"
-      );
-
-    const revealPanel =
-      document.getElementById(
-        "revealPanel"
-      );
-
-    let scratching = false;
-    let scratchComplete = false;
-    let lastX = 0;
-    let lastY = 0;
-    let scratchCounter = 0;
+    /* =====================================
+       SCRATCH CARD
+    ====================================== */
 
     function setupScratchCanvas() {
       const rectangle =
@@ -2293,6 +2468,41 @@
         height
       );
 
+      const shine =
+        scratchContext.createRadialGradient(
+          width * 0.38,
+          height * 0.27,
+          5,
+          width * 0.5,
+          height * 0.5,
+          width * 0.68
+        );
+
+      shine.addColorStop(
+        0,
+        "rgba(255,245,199,0.5)"
+      );
+
+      shine.addColorStop(
+        0.52,
+        "rgba(255,220,130,0.1)"
+      );
+
+      shine.addColorStop(
+        1,
+        "rgba(81,48,8,0.28)"
+      );
+
+      scratchContext.fillStyle =
+        shine;
+
+      scratchContext.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
       for (
         let index = 0;
         index < 240;
@@ -2326,6 +2536,16 @@
         9,
         width - 18,
         height - 18
+      );
+
+      scratchContext.strokeStyle =
+        "rgba(103,65,13,0.65)";
+
+      scratchContext.strokeRect(
+        14,
+        14,
+        width - 28,
+        height - 28
       );
 
       scratchContext.fillStyle =
@@ -2686,7 +2906,9 @@
       stopScratch
     );
 
-    /* Countdown */
+    /* =====================================
+       COUNTDOWN
+    ====================================== */
 
     const weddingDate =
       new Date(
@@ -2760,12 +2982,9 @@
       1000
     );
 
-    /* Restart */
-
-    const restartButton =
-      document.getElementById(
-        "restartButton"
-      );
+    /* =====================================
+       RESTART
+    ====================================== */
 
     restartButton.addEventListener(
       "click",
@@ -2773,6 +2992,24 @@
     );
 
     function restartInvitation() {
+      /*
+        Stop the background audio and return it
+        to the beginning. It starts again only
+        after the next Tap to Open.
+      */
+      backgroundAudio.pause();
+      backgroundAudio.currentTime = 0;
+      backgroundAudio.muted = false;
+
+      audioMuted = false;
+
+      audioControl.classList.remove(
+        "visible"
+      );
+
+      audioControl.textContent =
+        "🔊";
+
       invitationOpened = false;
 
       openingScreen.style.display =
