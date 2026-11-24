@@ -7,7 +7,7 @@
     content="width=device-width, initial-scale=1, maximum-scale=1"
   >
 
-  <title>Tabu & Faizal | Wedding Invitation</title>
+  <title>Tabu &amp; Faizal | Wedding Invitation</title>
 
   <style>
     :root {
@@ -46,6 +46,12 @@
       box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
     }
 
+    body.invitation-locked {
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+    }
+
     button,
     a {
       -webkit-tap-highlight-color: transparent;
@@ -74,21 +80,6 @@
       pointer-events: none;
     }
 
-    .continue-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 13px 25px;
-      cursor: pointer;
-      border: 1px solid var(--gold);
-      border-radius: 30px;
-      background: var(--forest);
-      color: var(--ivory);
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
     .section-label {
       color: var(--gold);
       font-family: Arial, sans-serif;
@@ -106,7 +97,7 @@
     }
 
     /* =====================================
-       SCREEN 1: EMBOSSED ENVELOPE
+       SCREEN 1: FULL-SCREEN ENVELOPE
     ====================================== */
 
     #openingScreen {
@@ -114,11 +105,14 @@
       inset: 0;
       z-index: 1000;
       width: min(100%, 430px);
+      height: 100vh;
+      height: 100svh;
       margin: 0 auto;
+      overflow: hidden;
       background:
         radial-gradient(
           circle at 50% 12%,
-          rgba(204, 220, 187, 0.25),
+          rgba(204, 220, 187, 0.22),
           transparent 40%
         ),
         linear-gradient(
@@ -127,47 +121,63 @@
           #53684f 48%,
           #304733 100%
         );
-      transition: opacity 0.8s ease;
+      transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
     }
 
     #openingScreen.finished {
       opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-frame {
+      position: absolute;
+      inset: 13px;
+      z-index: 50;
+      border: 1px solid rgba(232, 207, 142, 0.58);
+      border-radius: 27px;
       pointer-events: none;
     }
 
     .embossed-pattern {
       position: absolute;
       inset: 0;
-      opacity: 0.22;
-      background-image:
+      z-index: 1;
+      opacity: 0.26;
+      pointer-events: none;
+      background:
         radial-gradient(
-          ellipse at 20% 20%,
-          transparent 0 25px,
-          rgba(235, 230, 207, 0.55) 26px 27px,
-          transparent 28px
+          ellipse at 18% 18%,
+          transparent 0 42px,
+          rgba(225, 228, 205, 0.28) 43px 45px,
+          transparent 46px
         ),
         radial-gradient(
-          ellipse at 80% 75%,
-          transparent 0 32px,
-          rgba(235, 230, 207, 0.45) 33px 34px,
-          transparent 35px
+          ellipse at 82% 72%,
+          transparent 0 54px,
+          rgba(225, 228, 205, 0.24) 55px 57px,
+          transparent 58px
         ),
         repeating-linear-gradient(
           45deg,
-          transparent 0 38px,
-          rgba(230, 220, 190, 0.19) 39px,
-          transparent 41px
+          transparent 0 37px,
+          rgba(224, 220, 187, 0.13) 38px,
+          transparent 40px
         );
-      pointer-events: none;
     }
 
     .opening-title {
       position: absolute;
-      top: 8%;
-      left: 0;
-      right: 0;
-      z-index: 6;
+      top: 7%;
+      left: 20px;
+      right: 20px;
+      z-index: 45;
       text-align: center;
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
     }
 
     .opening-arabic {
@@ -177,256 +187,294 @@
     }
 
     .opening-subtitle {
-      margin-top: 7px;
-      color: #e5ddc8;
+      margin-top: 5px;
+      color: #e0d8c2;
       font-family: Arial, sans-serif;
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    .envelope-stage {
-      position: absolute;
-      inset: 0;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1300px;
-    }
-
-    .envelope-box {
-      position: relative;
-      width: calc(100% - 44px);
-      max-width: 370px;
-      height: 330px;
-      margin-top: 35px;
-      filter: drop-shadow(0 22px 30px rgba(15, 25, 16, 0.35));
-    }
-
-    .envelope-back {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      border: 1px solid rgba(226, 203, 140, 0.55);
-      border-radius: 8px;
-      background:
-        radial-gradient(
-          circle at 50% 50%,
-          rgba(255, 255, 255, 0.08),
-          transparent 50%
-        ),
-        linear-gradient(
-          150deg,
-          #78896f,
-          #52684f
-        );
-    }
-
-    .envelope-back::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.2;
-      background:
-        repeating-linear-gradient(
-          38deg,
-          transparent 0 25px,
-          rgba(239, 228, 194, 0.28) 26px,
-          transparent 28px
-        );
-    }
-
-    .inside-glow {
-      position: absolute;
-      left: 7%;
-      right: 7%;
-      top: 22%;
-      height: 55%;
-      z-index: 1;
+    .envelope-open .opening-title {
       opacity: 0;
-      border-radius: 50%;
-      background:
-        radial-gradient(
-          ellipse,
-          rgba(255, 244, 190, 0.95) 0%,
-          rgba(239, 200, 104, 0.5) 40%,
-          transparent 72%
-        );
-      transform: scale(0.5);
-      transition:
-        opacity 0.9s ease 0.55s,
-        transform 1.2s ease 0.45s;
+      transform: translateY(-18px);
     }
 
-    .envelope-open .inside-glow {
-      opacity: 1;
-      transform: scale(1.45);
-    }
-
-    .invitation-peek {
-      position: absolute;
-      z-index: 2;
-      left: 11%;
-      bottom: 15px;
-      width: 78%;
-      height: 245px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--gold);
-      background: var(--ivory);
-      color: var(--forest);
-      text-align: center;
-      transform: translateY(105px);
-      transition: transform 1.15s ease 0.75s;
-    }
-
-    .envelope-open .invitation-peek {
-      transform: translateY(-42px);
-    }
-
-    .peek-small {
-      color: var(--gold);
-      font-family: Arial, sans-serif;
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .peek-name {
-      margin-top: 13px;
-      font-size: 33px;
-      font-style: italic;
-    }
-
-    .peek-date {
-      margin-top: 15px;
-      color: #7d693c;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-
-    .envelope-front {
+    .full-envelope {
       position: absolute;
       inset: 0;
       z-index: 5;
       overflow: hidden;
-      border-radius: 8px;
+      perspective: 1300px;
+    }
+
+    .envelope-interior {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 25%;
+      bottom: 0;
+      z-index: 3;
+      background:
+        linear-gradient(
+          180deg,
+          #263f2d 0%,
+          #486148 100%
+        );
+    }
+
+    .envelope-glow {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 20%;
+      height: 60%;
+      z-index: 4;
+      opacity: 0;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255, 246, 199, 0.98) 0%,
+          rgba(242, 205, 112, 0.52) 34%,
+          rgba(218, 174, 76, 0.15) 58%,
+          transparent 73%
+        );
+      transform: scale(0.35);
+      transition:
+        opacity 0.9s ease 0.38s,
+        transform 1.25s ease 0.38s;
+    }
+
+    .envelope-open .envelope-glow {
+      opacity: 1;
+      transform: scale(1.7);
+    }
+
+    /* Completely hidden before opening */
+
+    .hidden-invitation {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 21%;
+      bottom: 7%;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 38px 28px;
+      border: 1px solid #c9a95d;
+      border-radius: 18px;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(213, 187, 116, 0.22),
+          transparent 38%
+        ),
+        #f8f0db;
+      color: #304337;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform:
+        translateY(105%)
+        scale(0.88);
+      transition:
+        transform 1.25s cubic-bezier(0.25, 0.75, 0.25, 1) 0.72s,
+        opacity 0.65s ease 0.72s,
+        visibility 0s linear 0.72s;
+      box-shadow: 0 20px 45px rgba(18, 30, 20, 0.34);
+    }
+
+    .envelope-open .hidden-invitation {
+      opacity: 1;
+      visibility: visible;
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+    .hidden-bismillah {
+      margin-bottom: 20px;
+      color: #aa853e;
+      font-size: 23px;
+      line-height: 1.7;
+    }
+
+    .hidden-small {
+      color: #9c7d3e;
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hidden-names {
+      margin-top: 15px;
+      color: #304337;
+      font-size: 43px;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .hidden-ampersand {
+      margin: 10px 0;
+      color: #c29a4a;
+      font-size: 24px;
+    }
+
+    .hidden-date {
+      margin-top: 23px;
+      padding-top: 16px;
+      border-top: 1px solid #c9a95d;
+      color: #7e6332;
+      font-size: 15px;
+      letter-spacing: 2px;
+      line-height: 1.8;
+    }
+
+    /* Large, full-screen upper flap */
+
+    .full-flap {
+      position: absolute;
+      left: 0;
+      top: 16%;
+      z-index: 16;
+      width: 100%;
+      height: 47%;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition:
+        transform 1.35s cubic-bezier(0.6, 0, 0.22, 1),
+        z-index 0s linear 0.67s;
+    }
+
+    .flap-front,
+    .flap-inside {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+      );
+      backface-visibility: hidden;
+    }
+
+    .flap-front {
+      border-top: 1px solid rgba(236, 212, 150, 0.5);
+      background:
+        linear-gradient(
+          145deg,
+          #82947a,
+          #526a54
+        );
+    }
+
+    .flap-front::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.28;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 35px,
+          rgba(233, 225, 196, 0.17) 36px,
+          transparent 38px
+        );
+    }
+
+    .flap-inside {
+      background:
+        linear-gradient(
+          160deg,
+          #d8c088,
+          #81652f
+        );
+      transform: rotateX(180deg);
+    }
+
+    .envelope-open .full-flap {
+      z-index: 2;
+      transform: rotateX(180deg);
+    }
+
+    /* Lower folds cover the invitation completely */
+
+    .lower-envelope {
+      position: absolute;
+      inset: 0;
+      z-index: 11;
+      overflow: hidden;
       pointer-events: none;
     }
 
-    .front-left {
+    .lower-left {
       position: absolute;
       left: 0;
       bottom: 0;
       width: 0;
       height: 0;
-      border-top: 165px solid transparent;
-      border-bottom: 165px solid #667b60;
-      border-right: 185px solid transparent;
+      border-top: 50vh solid transparent;
+      border-bottom: 50vh solid #5e765e;
+      border-right: 50vw solid transparent;
     }
 
-    .front-right {
+    .lower-right {
       position: absolute;
       right: 0;
       bottom: 0;
       width: 0;
       height: 0;
-      border-top: 165px solid transparent;
-      border-bottom: 165px solid #5a7056;
-      border-left: 185px solid transparent;
+      border-top: 50vh solid transparent;
+      border-bottom: 50vh solid #536c56;
+      border-left: 50vw solid transparent;
     }
 
-    .front-bottom {
+    .lower-bottom {
       position: absolute;
-      left: 0;
+      left: 50%;
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 185px solid transparent;
-      border-right: 185px solid transparent;
-      border-bottom: 175px solid #73846a;
-    }
-
-    .envelope-flap {
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 7;
-      width: 100%;
-      height: 56%;
-      transform-origin: top center;
-      transform-style: preserve-3d;
-      transition:
-        transform 1.3s cubic-bezier(0.6, 0, 0.25, 1),
-        z-index 0s linear 0.65s;
-    }
-
-    .flap-face {
-      position: absolute;
-      inset: 0;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      border-top: 1px solid rgba(231, 210, 149, 0.6);
-      background:
-        linear-gradient(
-          145deg,
-          #829178,
-          #566c53
-        );
-      backface-visibility: hidden;
-    }
-
-    .flap-back {
-      position: absolute;
-      inset: 0;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      background:
-        linear-gradient(
-          145deg,
-          #d8c28c,
-          #8f733b
-        );
-      transform: rotateX(180deg);
-      backface-visibility: hidden;
-    }
-
-    .envelope-open .envelope-flap {
-      z-index: 2;
-      transform: rotateX(180deg);
+      transform: translateX(-50%);
+      border-left: 53vw solid transparent;
+      border-right: 53vw solid transparent;
+      border-bottom: 47vh solid #71846b;
     }
 
     .wax-seal {
       position: absolute;
       left: 50%;
-      top: 45%;
-      z-index: 12;
-      width: 92px;
-      height: 92px;
+      top: 48%;
+      z-index: 30;
+      width: 94px;
+      height: 94px;
       transform: translate(-50%, -50%);
       cursor: pointer;
-      border: 4px double #f4dda0;
-      border-radius: 48% 52% 46% 54%;
+      border: 4px double #f4dda1;
+      border-radius: 48% 52% 47% 53%;
       background:
         radial-gradient(
-          circle at 32% 26%,
-          #f0d47a 0%,
-          #c39439 47%,
-          #775019 100%
+          circle at 32% 27%,
+          #edd178 0%,
+          #bb8732 48%,
+          #6f4a16 100%
         );
-      color: #fff3c9;
+      color: #fff1c4;
       box-shadow:
-        0 8px 18px rgba(44, 26, 3, 0.44),
-        inset 0 0 0 4px rgba(103, 65, 14, 0.25);
+        0 8px 19px rgba(33, 21, 3, 0.48),
+        inset 0 0 0 5px rgba(103, 65, 14, 0.25);
       transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
+        opacity 0.43s ease,
+        transform 0.43s ease;
     }
 
     .wax-seal span {
       display: block;
-      padding-top: 21px;
+      padding-top: 19px;
       font-family: Georgia, serif;
       font-size: 17px;
       font-style: italic;
@@ -434,9 +482,17 @@
       text-align: center;
     }
 
+    .wax-seal:active {
+      transform:
+        translate(-50%, -50%)
+        scale(0.92);
+    }
+
     .envelope-open .wax-seal {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.55);
+      transform:
+        translate(-50%, -50%)
+        scale(0.4);
       pointer-events: none;
     }
 
@@ -444,10 +500,18 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 8%;
-      z-index: 8;
-      color: var(--gold-light);
+      bottom: 7%;
+      z-index: 40;
+      color: #e5ca82;
       text-align: center;
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    }
+
+    .envelope-open .you-are-invited {
+      opacity: 0;
+      transform: translateY(15px);
     }
 
     .invited-ornament {
@@ -455,9 +519,9 @@
     }
 
     .invited-text {
-      margin-top: 3px;
+      margin-top: 4px;
       font-family: Arial, sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
@@ -465,11 +529,11 @@
     .opening-sparkles {
       position: absolute;
       inset: 0;
-      z-index: 16;
+      z-index: 28;
       overflow: hidden;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.6s ease 0.8s;
+      transition: opacity 0.6s ease 0.65s;
     }
 
     .envelope-open .opening-sparkles {
@@ -481,44 +545,50 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #fff4bc;
-      box-shadow: 0 0 12px #fff0a5;
+      background: #fff2aa;
+      box-shadow: 0 0 13px #fff0a0;
       animation: sparkle 1.7s infinite ease-in-out;
     }
 
     .spark:nth-child(1) {
-      left: 22%;
-      top: 45%;
+      left: 18%;
+      top: 36%;
     }
 
     .spark:nth-child(2) {
-      left: 71%;
-      top: 39%;
+      right: 19%;
+      top: 42%;
       animation-delay: 0.3s;
     }
 
     .spark:nth-child(3) {
-      left: 37%;
-      top: 63%;
-      animation-delay: 0.6s;
+      left: 32%;
+      top: 60%;
+      animation-delay: 0.65s;
     }
 
     .spark:nth-child(4) {
-      left: 62%;
+      right: 31%;
       top: 57%;
-      animation-delay: 0.9s;
+      animation-delay: 0.95s;
+    }
+
+    .spark:nth-child(5) {
+      left: 50%;
+      top: 32%;
+      animation-delay: 1.15s;
     }
 
     @keyframes sparkle {
       0%,
       100% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: scale(0.25);
       }
 
       50% {
         opacity: 1;
-        transform: scale(1.7);
+        transform: scale(1.65);
       }
     }
 
@@ -676,8 +746,25 @@
       width: 265px;
       height: 240px;
       transform: translateX(-50%);
-      clip-path: path(
-        "M132.5 225 C110 207 22 148 22 80 C22 39 49 15 83 15 C106 15 124 29 132.5 47 C141 29 159 15 182 15 C216 15 243 39 243 80 C243 148 155 207 132.5 225 Z"
+      clip-path: polygon(
+        50% 92%,
+        42% 85%,
+        25% 70%,
+        10% 51%,
+        4% 32%,
+        7% 18%,
+        17% 8%,
+        31% 5%,
+        43% 10%,
+        50% 21%,
+        57% 10%,
+        69% 5%,
+        83% 8%,
+        93% 18%,
+        96% 32%,
+        90% 51%,
+        75% 70%,
+        58% 85%
       );
       display: flex;
       flex-direction: column;
@@ -1023,14 +1110,14 @@
   </style>
 </head>
 
-<body>
+<body class="invitation-locked">
 
-  <!-- SCREEN 1: EMBOSSED ENVELOPE -->
+  <!-- SCREEN 1: FULL-SCREEN EMBOSSED ENVELOPE -->
 
   <section id="openingScreen" class="screen">
 
     <div class="embossed-pattern"></div>
-    <div class="gold-frame"></div>
+    <div class="opening-frame"></div>
 
     <div class="opening-title">
 
@@ -1039,70 +1126,84 @@
       </div>
 
       <div class="opening-subtitle">
-        A Celebration of Love & Family
+        A Celebration of Love &amp; Family
       </div>
 
     </div>
 
-    <div class="envelope-stage">
+    <div class="full-envelope" id="envelopeBox">
 
-      <div class="envelope-box" id="envelopeBox">
+      <div class="envelope-interior"></div>
 
-        <div class="envelope-back"></div>
+      <div class="envelope-glow"></div>
 
-        <div class="inside-glow"></div>
+      <div class="hidden-invitation">
 
-        <div class="invitation-peek">
-
-          <div class="peek-small">
-            Nikah Invitation
-          </div>
-
-          <div class="peek-name">
-            Tabu & Faizal
-          </div>
-
-          <div class="peek-date">
-            24 • 12 • 2026
-          </div>
-
+        <div class="hidden-bismillah">
+          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
         </div>
 
-        <div class="envelope-flap">
-
-          <div class="flap-face"></div>
-          <div class="flap-back"></div>
-
+        <div class="hidden-small">
+          Together with their families
         </div>
 
-        <div class="envelope-front">
-
-          <div class="front-left"></div>
-          <div class="front-right"></div>
-          <div class="front-bottom"></div>
-
+        <div class="hidden-names">
+          Tabu
         </div>
 
-        <button
-          type="button"
-          class="wax-seal"
-          id="waxSeal"
-          aria-label="Tap to open wedding invitation"
-        >
-          <span>
-            Tap<br>to<br>Open
-          </span>
-        </button>
+        <div class="hidden-ampersand">
+          &amp;
+        </div>
+
+        <div class="hidden-names">
+          Faizal
+        </div>
+
+        <div class="hidden-date">
+          24 • DECEMBER • 2026<br>
+          9:00 PM
+        </div>
 
       </div>
+
+      <div class="full-flap">
+
+        <div class="flap-front"></div>
+        <div class="flap-inside"></div>
+
+      </div>
+
+      <div class="lower-envelope">
+
+        <div class="lower-left"></div>
+        <div class="lower-right"></div>
+        <div class="lower-bottom"></div>
+
+      </div>
+
+      <button
+        type="button"
+        class="wax-seal"
+        id="waxSeal"
+        aria-label="Tap to open the wedding invitation"
+      >
+        <span>
+          Tap<br>
+          to<br>
+          Open
+        </span>
+      </button>
 
     </div>
 
     <div class="opening-sparkles">
+
       <span class="spark"></span>
       <span class="spark"></span>
       <span class="spark"></span>
       <span class="spark"></span>
+      <span class="spark"></span>
+
     </div>
 
     <div class="you-are-invited">
@@ -1147,11 +1248,11 @@
 
       <div class="parent-line">
         Daughter of<br>
-        Amjad & Begum
+        Amjad &amp; Begum
       </div>
 
       <div class="ampersand">
-        &
+        &amp;
       </div>
 
       <h1 class="couple-name">
@@ -1160,7 +1261,7 @@
 
       <div class="parent-line">
         Son of<br>
-        Taher & Begum
+        Taher &amp; Begum
       </div>
 
       <div class="scroll-hint">
@@ -1396,7 +1497,7 @@
 
   <script>
     /* =====================================
-       ENVELOPE OPENING
+       FULL-SCREEN ENVELOPE OPENING
     ====================================== */
 
     const openingScreen =
@@ -1414,26 +1515,41 @@
     waxSeal.addEventListener(
       "click",
       function () {
+
         if (invitationOpened) {
           return;
         }
 
         invitationOpened = true;
 
-        envelopeBox.classList.add("envelope-open");
+        envelopeBox.classList.add(
+          "envelope-open"
+        );
 
         setTimeout(function () {
-          openingScreen.classList.add("finished");
-        }, 2900);
+
+          openingScreen.classList.add(
+            "finished"
+          );
+
+        }, 3300);
+
 
         setTimeout(function () {
+
           openingScreen.style.display = "none";
+
+          document.body.classList.remove(
+            "invitation-locked"
+          );
 
           window.scrollTo({
             top: 0,
-            behavior: "instant"
+            behavior: "auto"
           });
-        }, 3700);
+
+        }, 4100);
+
       }
     );
 
@@ -1468,7 +1584,6 @@
 
     function heartPath(context, width, height) {
       const centerX = width / 2;
-      const topY = 39;
       const scaleX = width / 320;
       const scaleY = height / 310;
 
@@ -1604,6 +1719,7 @@
         const size = Math.random() * 2.2 + 0.4;
 
         scratchContext.beginPath();
+
         scratchContext.arc(
           x,
           y,
@@ -1789,7 +1905,7 @@
       if (percentage < 58) {
         scratchStatus.textContent =
           percentage +
-          "% revealed — keep scratching";
+          "% revealed - keep scratching";
       }
 
       if (percentage >= 58) {
@@ -1824,6 +1940,11 @@
       stopScratch
     );
 
+    window.addEventListener(
+      "mouseleave",
+      stopScratch
+    );
+
     scratchCanvas.addEventListener(
       "touchstart",
       startScratch,
@@ -1842,6 +1963,11 @@
 
     scratchCanvas.addEventListener(
       "touchend",
+      stopScratch
+    );
+
+    scratchCanvas.addEventListener(
+      "touchcancel",
       stopScratch
     );
 
@@ -1948,21 +2074,29 @@
 
       openingScreen.style.display = "block";
 
-      openingScreen.classList.remove("finished");
+      openingScreen.classList.remove(
+        "finished"
+      );
 
       envelopeBox.classList.remove(
         "envelope-open"
       );
 
+      document.body.classList.add(
+        "invitation-locked"
+      );
+
       window.scrollTo({
         top: 0,
-        behavior: "instant"
+        behavior: "auto"
       });
 
       scratchComplete = false;
       scratching = false;
 
-      scratchCanvas.classList.remove("cleared");
+      scratchCanvas.classList.remove(
+        "cleared"
+      );
 
       scratchStatus.textContent =
         "Start scratching the heart";
