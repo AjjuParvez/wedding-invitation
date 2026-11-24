@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
+
   <meta name="theme-color" content="#405743">
 
   <title>Sameena Sultana &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
@@ -13,7 +15,6 @@
   <style>
     :root {
       --forest: #293d2d;
-      --sage: #73816a;
       --ivory: #f8f1df;
       --gold: #c79e4d;
       --gold-light: #ecd38d;
@@ -40,6 +41,7 @@
       min-height: 100svh;
       margin: 0 auto;
       overflow-x: hidden;
+
       background: var(--ivory);
       color: var(--forest);
 
@@ -72,17 +74,26 @@
 
     .screen {
       position: relative;
+
       width: 100%;
       min-height: 100vh;
       min-height: 100svh;
+
       overflow: hidden;
+
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
 
-    .sans-label {
+    .small-label {
       color: var(--gold-light);
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 8px;
       font-weight: 600;
       letter-spacing: 3px;
@@ -101,7 +112,9 @@
       width: min(100%, 430px);
       height: 100vh;
       height: 100svh;
+
       margin: 0 auto;
+      overflow: hidden;
 
       background:
         radial-gradient(
@@ -129,10 +142,12 @@
 
     .opening-frame {
       position: absolute;
+
       inset:
         max(12px, var(--safe-top))
         13px
         max(12px, var(--safe-bottom));
+
       z-index: 50;
 
       border: 1px solid rgba(232, 207, 142, 0.58);
@@ -141,9 +156,10 @@
       pointer-events: none;
     }
 
-    .embossed-pattern {
+    .opening-pattern {
       position: absolute;
       inset: 0;
+
       opacity: 0.24;
       pointer-events: none;
 
@@ -170,10 +186,13 @@
 
     .opening-title {
       position: absolute;
+
       top: max(7%, calc(var(--safe-top) + 22px));
       left: 20px;
       right: 20px;
+
       z-index: 40;
+
       text-align: center;
 
       transition:
@@ -189,8 +208,15 @@
 
     .opening-subtitle {
       margin-top: 5px;
+
       color: #e0d8c2;
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -220,11 +246,15 @@
 
     .envelope-box {
       position: relative;
+
       width: min(350px, 86vw);
       aspect-ratio: 350 / 270;
 
       filter:
-        drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
+        drop-shadow(
+          0 22px 28px
+          rgba(17, 27, 18, 0.38)
+        );
 
       transition: transform 0.8s ease 1.15s;
     }
@@ -236,8 +266,9 @@
     .envelope-back {
       position: absolute;
       inset: 0;
-      overflow: hidden;
       z-index: 1;
+
+      overflow: hidden;
 
       border: 1px solid rgba(229, 204, 136, 0.62);
       border-radius: 9px;
@@ -248,28 +279,41 @@
           rgba(255, 255, 255, 0.08),
           transparent 52%
         ),
-        linear-gradient(150deg, #7c9074, #536a54);
+        linear-gradient(
+          150deg,
+          #7c9074,
+          #536a54
+        );
     }
 
     .envelope-interior {
       position: absolute;
+
       left: 3%;
       right: 3%;
       top: 3%;
-      z-index: 2;
+
       height: 69%;
+      z-index: 2;
 
       border-radius: 8px 8px 45% 45%;
-      background: linear-gradient(#253c2b, #4c654d);
+
+      background:
+        linear-gradient(
+          #253c2b,
+          #4c654d
+        );
     }
 
     .envelope-glow {
       position: absolute;
+
       left: 8%;
       right: 8%;
       top: 15%;
-      z-index: 3;
+
       height: 70%;
+      z-index: 3;
 
       opacity: 0;
       border-radius: 50%;
@@ -296,6 +340,7 @@
 
     .envelope-flap {
       position: absolute;
+
       left: 0;
       top: 0;
       z-index: 8;
@@ -316,16 +361,32 @@
       position: absolute;
       inset: 0;
 
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          50% 100%
+        );
+
       backface-visibility: hidden;
     }
 
     .flap-front {
-      background: linear-gradient(145deg, #84967b, #536a55);
+      background:
+        linear-gradient(
+          145deg,
+          #84967b,
+          #536a55
+        );
     }
 
     .flap-back {
-      background: linear-gradient(#d5bd85, #81632e);
+      background:
+        linear-gradient(
+          #d5bd85,
+          #81632e
+        );
+
       transform: rotateX(180deg);
     }
 
@@ -338,48 +399,71 @@
       position: absolute;
       inset: 0;
       z-index: 6;
+
       overflow: hidden;
       pointer-events: none;
     }
 
     .front-left {
       position: absolute;
+
       left: 0;
       bottom: 0;
 
       width: 50%;
       height: 100%;
 
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      clip-path:
+        polygon(
+          0 0,
+          100% 50%,
+          0 100%
+        );
+
       background: #617861;
     }
 
     .front-right {
       position: absolute;
+
       right: 0;
       bottom: 0;
 
       width: 50%;
       height: 100%;
 
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      clip-path:
+        polygon(
+          100% 0,
+          0 50%,
+          100% 100%
+        );
+
       background: #576f59;
     }
 
     .front-bottom {
       position: absolute;
+
       left: 0;
       right: 0;
       bottom: 0;
 
       height: 54%;
 
-      clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      clip-path:
+        polygon(
+          0 100%,
+          50% 0,
+          100% 100%
+        );
+
       background: #73866e;
     }
 
     .wax-seal {
       position: absolute;
+
       left: 50%;
       top: 52%;
       z-index: 15;
@@ -388,10 +472,11 @@
       height: clamp(72px, 21vw, 88px);
 
       transform: translate(-50%, -50%);
+
       cursor: pointer;
 
       border: 4px double #f4dda1;
-      border-radius: 48% 52% 47% 53%;
+      border-radius: 50%;
 
       background:
         radial-gradient(
@@ -407,14 +492,6 @@
         0 8px 19px rgba(33, 21, 3, 0.48),
         inset 0 0 0 5px rgba(103, 65, 14, 0.25);
 
-      transition:
-        opacity 0.38s ease,
-        transform 0.38s ease;
-    }
-
-    .wax-seal span {
-      display: block;
-
       font-family:
         "Snell Roundhand",
         "Apple Chancery",
@@ -423,6 +500,10 @@
 
       font-size: clamp(14px, 4vw, 17px);
       line-height: 1.05;
+
+      transition:
+        opacity 0.38s ease,
+        transform 0.38s ease;
     }
 
     .opening-active .wax-seal {
@@ -466,9 +547,11 @@
 
     .you-are-invited {
       position: absolute;
+
       left: 0;
       right: 0;
       bottom: max(7%, calc(var(--safe-bottom) + 20px));
+
       z-index: 42;
 
       color: #e5ca82;
@@ -482,14 +565,19 @@
     .invited-text {
       margin-top: 5px;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     /* =====================================
-       SCREEN 2: COUPLE
+       SCREEN 2: INVITATION
     ====================================== */
 
     #coupleScreen {
@@ -498,9 +586,9 @@
       justify-content: center;
 
       padding:
-        max(24px, var(--safe-top))
-        20px
-        max(24px, var(--safe-bottom));
+        max(14px, var(--safe-top))
+        16px
+        max(14px, var(--safe-bottom));
 
       text-align: center;
 
@@ -516,14 +604,15 @@
       z-index: 5;
 
       width: 100%;
-      max-width: 380px;
+      max-width: 390px;
 
       opacity: 0;
       transform: translateY(20px);
     }
 
     body.reveal-couple .couple-content {
-      animation: coupleReveal 1.2s ease forwards;
+      animation:
+        coupleReveal 1.2s ease forwards;
     }
 
     @keyframes coupleReveal {
@@ -541,65 +630,81 @@
         "Traditional Arabic",
         serif;
 
-      font-size: clamp(23px, 7vw, 31px);
-      line-height: 1.6;
+      font-size: clamp(22px, 6.5vw, 29px);
+      line-height: 1.5;
     }
 
     .screen2-ornament {
-      margin: 3px 0 5px;
+      margin: 1px 0 3px;
+
       color: #ad8435;
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    .family-intro {
-      color: #6f6049;
-
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: clamp(7px, 2vw, 9px);
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .invitation-line {
-      max-width: 285px;
-      margin: 5px auto 7px;
-
-      color: #5d5548;
-      font-size: clamp(11px, 3vw, 13px);
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    .nikah-title {
-      color: #4a4034;
+    .faith-heading {
+      color: #65523c;
 
       font-family:
-        "Snell Roundhand",
-        "Apple Chancery",
-        "Segoe Script",
-        "Brush Script MT",
-        cursive;
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-      font-size: clamp(38px, 10vw, 49px);
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .of-text {
-      margin-top: 2px;
-
-      color: #9b7c40;
-
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 6px;
+      font-size: clamp(7px, 2.1vw, 9px);
+      font-weight: 600;
+      line-height: 1.5;
       letter-spacing: 2.5px;
       text-transform: uppercase;
     }
 
+    .faith-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 120px;
+      margin: 3px auto;
+
+      color: #aa8337;
+      font-size: 8px;
+    }
+
+    .faith-divider::before,
+    .faith-divider::after {
+      content: "";
+
+      flex: 1;
+      height: 1px;
+      margin: 0 9px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #b58d43
+        );
+    }
+
+    .faith-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .invitation-line {
+      max-width: 300px;
+
+      margin: 3px auto 5px;
+
+      color: #5d5548;
+
+      font-size: clamp(10px, 2.8vw, 12px);
+      font-style: italic;
+      line-height: 1.32;
+    }
+
     .couple-name {
-      max-width: 370px;
-      margin: 8px auto 0;
+      max-width: 385px;
+
+      margin: 5px auto 0;
 
       color: #393128;
 
@@ -610,9 +715,9 @@
         "Brush Script MT",
         cursive;
 
-      font-size: clamp(41px, 11vw, 52px);
+      font-size: clamp(39px, 10.5vw, 50px);
       font-weight: 400;
-      line-height: 0.98;
+      line-height: 0.97;
 
       text-wrap: balance;
 
@@ -621,13 +726,14 @@
     }
 
     .couple-name.long-name {
-      max-width: 385px;
-      font-size: clamp(35px, 9.5vw, 45px);
-      line-height: 1.01;
+      max-width: 395px;
+
+      font-size: clamp(33px, 9vw, 43px);
+      line-height: 1;
     }
 
     .parent-role {
-      margin-top: 5px;
+      margin-top: 3px;
 
       color: #927842;
 
@@ -637,7 +743,7 @@
         "Segoe Script",
         cursive;
 
-      font-size: clamp(11px, 3vw, 13px);
+      font-size: clamp(10px, 2.8vw, 12px);
     }
 
     .parent-name {
@@ -645,8 +751,13 @@
 
       color: #625746;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: clamp(8px, 2.3vw, 10px);
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: clamp(7px, 2.1vw, 9px);
       letter-spacing: 0.6px;
     }
 
@@ -655,8 +766,8 @@
       align-items: center;
       justify-content: center;
 
-      width: 115px;
-      margin: 6px auto 3px;
+      width: 110px;
+      margin: 3px auto 1px;
 
       color: #ae8436;
 
@@ -666,12 +777,13 @@
         "Segoe Script",
         cursive;
 
-      font-size: 28px;
+      font-size: 26px;
     }
 
     .ampersand-wrap::before,
     .ampersand-wrap::after {
       content: "";
+
       flex: 1;
       height: 1px;
       margin: 0 8px;
@@ -688,57 +800,53 @@
       transform: rotate(180deg);
     }
 
-    .bottom-divider {
-      display: flex;
-      align-items: center;
+    .love-tagline {
+      margin-top: 5px;
 
-      width: 105px;
-      margin: 7px auto 4px;
+      color: #8f7137;
+
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: clamp(5px, 1.55vw, 6.5px);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: 1.35px;
+      text-transform: uppercase;
     }
 
-    .bottom-divider::before,
-    .bottom-divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
+    .love-tagline .heart {
+      margin: 0 4px;
 
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #a7813b
-        );
-    }
-
-    .bottom-divider::after {
-      transform: rotate(180deg);
-    }
-
-    .bottom-divider span {
-      width: 6px;
-      height: 6px;
-      margin: 0 7px;
-
-      border: 1px solid #a7813b;
-      transform: rotate(45deg);
+      color: #b48635;
+      font-size: 7px;
     }
 
     .scroll-hint {
-      margin-top: 5px;
+      margin-top: 4px;
 
-      color: #8c7139;
+      color: #806936;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 7px;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 5.5px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
     }
 
     .scroll-arrow {
-      margin-top: 4px;
-      color: #aa8135;
-      font-size: 18px;
+      margin-top: 2px;
+
+      color: #a37d35;
+      font-size: 16px;
 
       animation:
         arrowBounce 1.4s infinite ease-in-out;
@@ -746,12 +854,12 @@
 
     @keyframes arrowBounce {
       50% {
-        transform: translateY(6px);
+        transform: translateY(5px);
       }
     }
 
     /* =====================================
-       SHARED BACKGROUND
+       SHARED GLASS BACKGROUND
     ====================================== */
 
     #revealScreen,
@@ -761,9 +869,9 @@
       justify-content: center;
 
       padding:
-        max(24px, var(--safe-top))
-        16px
-        max(24px, var(--safe-bottom));
+        max(18px, var(--safe-top))
+        14px
+        max(18px, var(--safe-bottom));
 
       text-align: center;
 
@@ -781,7 +889,7 @@
       position: relative;
       z-index: 5;
 
-      width: min(370px, 92vw);
+      width: min(375px, 93vw);
 
       border: 1px solid rgba(226, 196, 120, 0.58);
       border-radius: 24px;
@@ -803,6 +911,7 @@
 
     .dark-panel::before {
       content: "";
+
       position: absolute;
       inset: 8px;
 
@@ -814,16 +923,16 @@
 
     .ornament {
       color: #e4c675;
-      font-size: 17px;
+      font-size: 16px;
       letter-spacing: 7px;
     }
 
     .panel-title {
-      margin-top: 7px;
+      margin-top: 6px;
 
       color: #fff5dc;
 
-      font-size: clamp(29px, 8vw, 37px);
+      font-size: clamp(28px, 7.8vw, 36px);
       font-weight: 400;
       font-style: italic;
       line-height: 1.08;
@@ -835,33 +944,38 @@
 
     .reveal-panel {
       padding:
-        clamp(23px, 4.5vh, 32px)
-        17px
-        clamp(22px, 4vh, 30px);
+        clamp(18px, 3.8vh, 27px)
+        15px;
     }
 
     .scratch-description {
       max-width: 285px;
-      margin: 7px auto 13px;
+
+      margin: 6px auto 10px;
 
       color: rgba(240, 230, 207, 0.86);
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 10px;
-      line-height: 1.5;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 9px;
+      line-height: 1.45;
     }
 
     .scratch-card-shell {
       position: relative;
 
-      width: min(250px, 67vw);
+      width: min(225px, 61vw);
       aspect-ratio: 1;
 
       margin: 0 auto;
-      padding: 9px;
+      padding: 8px;
 
       border: 1px solid #c79b48;
-      border-radius: 20px;
+      border-radius: 18px;
 
       background:
         linear-gradient(
@@ -871,19 +985,21 @@
         );
 
       box-shadow:
-        0 18px 35px rgba(5, 6, 4, 0.3),
+        0 15px 30px rgba(5, 6, 4, 0.3),
         inset 0 0 0 4px #fff9ec,
         inset 0 0 0 6px rgba(174, 125, 45, 0.46);
     }
 
     .scratch-square-area {
       position: relative;
+
       width: 100%;
       height: 100%;
+
       overflow: hidden;
 
       border: 1px solid rgba(158, 109, 32, 0.62);
-      border-radius: 13px;
+      border-radius: 12px;
 
       background: #fffaf0;
     }
@@ -897,7 +1013,7 @@
       align-items: center;
       justify-content: center;
 
-      padding: 15px;
+      padding: 13px;
 
       background:
         radial-gradient(
@@ -915,22 +1031,32 @@
     .reveal-label {
       color: #9e7937;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    .square-date-day {
-      margin-top: 5px;
+    .date-day {
+      margin-top: 4px;
+
       color: #3a473b;
-      font-size: clamp(54px, 16vw, 69px);
+
+      font-size:
+        clamp(49px, 14vw, 62px);
+
       line-height: 0.88;
     }
 
-    .square-date-month {
-      margin-top: 7px;
+    .date-month {
+      margin-top: 6px;
+
       color: #987238;
 
       font-family:
@@ -939,20 +1065,22 @@
         "Segoe Script",
         cursive;
 
-      font-size: clamp(24px, 7vw, 30px);
+      font-size:
+        clamp(23px, 6.5vw, 28px);
     }
 
-    .square-date-year {
-      margin-top: 2px;
+    .date-year {
       color: #3d483d;
-      font-size: 22px;
+
+      font-size: 21px;
       letter-spacing: 4px;
     }
 
     .date-divider {
-      width: 90px;
+      width: 85px;
       height: 1px;
-      margin: 9px auto;
+
+      margin: 8px auto;
 
       background:
         linear-gradient(
@@ -963,9 +1091,9 @@
         );
     }
 
-    .square-date-time {
+    .date-time {
       color: #88652f;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     #scratchCanvas {
@@ -991,21 +1119,28 @@
     }
 
     #scratchStatus {
-      min-height: 13px;
-      margin-top: 11px;
+      min-height: 12px;
+
+      margin-top: 9px;
 
       color: #efd384;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
     }
 
     .merged-divider {
-      width: 125px;
+      width: 120px;
       height: 1px;
-      margin: 18px auto;
+
+      margin: 13px auto;
 
       background:
         linear-gradient(
@@ -1021,16 +1156,16 @@
       overflow: hidden;
 
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(15px);
 
       transition:
         max-height 1.2s ease,
-        opacity 0.8s ease 0.25s,
-        transform 0.8s ease 0.25s;
+        opacity 0.8s ease 0.2s,
+        transform 0.8s ease 0.2s;
     }
 
     .reveal-panel.date-revealed .countdown-area {
-      max-height: 340px;
+      max-height: 260px;
       opacity: 1;
       transform: translateY(0);
     }
@@ -1044,55 +1179,75 @@
         "Segoe Script",
         cursive;
 
-      font-size: clamp(27px, 7.5vw, 34px);
-      font-weight: 400;
+      font-size:
+        clamp(26px, 7vw, 32px);
+
       line-height: 1.05;
     }
 
     .countdown-subtitle {
-      margin-top: 6px;
+      margin-top: 5px;
 
       color: #e7ddc5;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 7px;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 6px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .countdown-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns:
+        repeat(4, 1fr);
 
-      gap: 5px;
-      margin-top: 16px;
+      gap: 4px;
+
+      margin-top: 11px;
     }
 
     .count-box {
-      padding: 11px 1px;
+      padding: 9px 1px;
 
-      border: 1px solid rgba(231, 204, 132, 0.45);
-      border-radius: 9px;
+      border:
+        1px solid
+        rgba(231, 204, 132, 0.45);
 
-      background: rgba(255, 250, 229, 0.05);
+      border-radius: 8px;
+
+      background:
+        rgba(255, 250, 229, 0.05);
     }
 
     .count-number {
       display: block;
+
       color: #f1d68b;
-      font-size: clamp(19px, 5.7vw, 24px);
-      line-height: 1;
+
+      font-size:
+        clamp(18px, 5.3vw, 23px);
     }
 
     .count-label {
       display: block;
-      margin-top: 6px;
+
+      margin-top: 5px;
 
       color: #e6dcc3;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 5px;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
 
@@ -1102,12 +1257,14 @@
       position: absolute;
       inset: 0;
       z-index: 50;
+
       overflow: hidden;
       pointer-events: none;
     }
 
     .falling-piece {
       position: absolute;
+
       left: var(--left);
       top: -50px;
 
@@ -1125,26 +1282,32 @@
 
     .falling-piece.petal::before {
       content: "";
+
       position: absolute;
       inset: 0;
 
-      border-radius: 80% 20% 65% 35%;
-      background: var(--piece-color);
+      border-radius:
+        80% 20% 65% 35%;
+
+      background:
+        var(--piece-color);
     }
 
     .falling-piece.flower::before {
       content: "✿";
+
       color: var(--piece-color);
       font-size: var(--size);
-      line-height: 1;
     }
 
     .falling-piece.leaf::before {
       content: "";
+
       position: absolute;
       inset: 0;
 
-      border-radius: 100% 0 100% 0;
+      border-radius:
+        100% 0 100% 0;
 
       background:
         linear-gradient(
@@ -1178,30 +1341,27 @@
 
     .final-panel {
       padding:
-        clamp(26px, 5vh, 36px)
-        22px
-        clamp(24px, 5vh, 34px);
-    }
-
-    .venue-block {
-      position: relative;
-      z-index: 2;
+        clamp(19px, 4vh, 30px)
+        19px;
     }
 
     .venue-icon {
-      width: 48px;
-      height: 48px;
-      margin: 14px auto 11px;
+      width: 45px;
+      height: 45px;
+
+      margin: 10px auto 8px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(230, 199, 117, 0.65);
+      border:
+        1px solid
+        rgba(230, 199, 117, 0.65);
+
       border-radius: 50%;
 
       color: #e3c36f;
-      font-size: 20px;
     }
 
     .venue-name {
@@ -1213,37 +1373,50 @@
         "Segoe Script",
         cursive;
 
-      font-size: clamp(27px, 7.5vw, 34px);
-      font-weight: 400;
-      line-height: 1.08;
+      font-size:
+        clamp(25px, 7vw, 32px);
     }
 
     .venue-city {
-      margin-top: 7px;
+      margin-top: 5px;
 
       color: #e7cd89;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 9px;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 8px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .venue-address {
-      margin-top: 8px;
+      margin-top: 6px;
 
       color: #e3dac5;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 9px;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 8px;
     }
 
     .map-button {
       display: inline-block;
-      margin-top: 15px;
-      padding: 12px 21px;
 
-      border: 1px solid rgba(230, 198, 115, 0.7);
+      margin-top: 11px;
+      padding: 11px 19px;
+
+      border:
+        1px solid
+        rgba(230, 198, 115, 0.7);
+
       border-radius: 28px;
 
       background:
@@ -1254,9 +1427,15 @@
         );
 
       color: #fff7e2;
+
       text-decoration: none;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -1265,13 +1444,16 @@
     .final-divider {
       display: flex;
       align-items: center;
-      width: 145px;
-      margin: 21px auto;
+
+      width: 140px;
+
+      margin: 15px auto;
     }
 
     .final-divider::before,
     .final-divider::after {
       content: "";
+
       flex: 1;
       height: 1px;
 
@@ -1289,13 +1471,8 @@
 
     .final-divider span {
       margin: 0 9px;
-      color: #e4c675;
-      font-size: 14px;
-    }
 
-    .dua-block {
-      position: relative;
-      z-index: 2;
+      color: #e4c675;
     }
 
     .dua-arabic {
@@ -1306,35 +1483,46 @@
         "Traditional Arabic",
         serif;
 
-      font-size: clamp(20px, 5.8vw, 25px);
-      line-height: 1.65;
+      font-size:
+        clamp(18px, 5.2vw, 23px);
+
+      line-height: 1.55;
     }
 
     .dua-transliteration {
-      margin-top: 11px;
+      margin-top: 8px;
 
       color: #f4ead1;
 
-      font-size: clamp(12px, 3.2vw, 14px);
+      font-size:
+        clamp(11px, 3vw, 13px);
+
       font-style: italic;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .dua-meaning {
       max-width: 290px;
-      margin: 9px auto 0;
+
+      margin: 7px auto 0;
 
       color: #ddd4c0;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 9px;
-      line-height: 1.55;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 8px;
+      line-height: 1.5;
     }
 
     .closing-line {
-      width: 65px;
+      width: 60px;
       height: 1px;
-      margin: 15px auto;
+
+      margin: 11px auto;
 
       background:
         linear-gradient(
@@ -1348,161 +1536,187 @@
     .closing-title {
       color: #fff5dd;
 
-      font-size: clamp(21px, 6vw, 26px);
-      font-weight: 400;
+      font-size:
+        clamp(19px, 5.5vw, 24px);
+
       font-style: italic;
-      line-height: 1.15;
+      line-height: 1.12;
     }
 
     .closing-message {
       max-width: 300px;
-      margin: 9px auto 0;
+
+      margin: 7px auto 0;
 
       color: #ddd4c1;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-size: 9px;
-      line-height: 1.55;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      font-size: 8px;
+      line-height: 1.5;
     }
 
     .closing-couple {
-      margin-top: 14px;
+      margin-top: 10px;
 
       color: #efd384;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
-      line-height: 1.5;
-      letter-spacing: 1.8px;
+      line-height: 1.4;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
     }
 
     .restart-button {
-      margin-top: 14px;
-      padding: 10px 19px;
+      margin-top: 10px;
+      padding: 9px 18px;
 
       cursor: pointer;
 
-      border: 1px solid rgba(225, 194, 111, 0.62);
+      border:
+        1px solid
+        rgba(225, 194, 111, 0.62);
+
       border-radius: 25px;
 
       background: transparent;
       color: #eee1bf;
 
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-family:
+        "Avenir Next",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       font-size: 7px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     /* =====================================
-       SMALL PHONES
+       MOBILE ADJUSTMENTS
     ====================================== */
 
     @media (max-width: 375px) {
       .couple-name {
-        font-size: 38px;
+        font-size: 36px;
       }
 
       .couple-name.long-name {
-        font-size: 33px;
+        font-size: 31px;
       }
 
       .dark-panel {
-        width: 93vw;
+        width: 94vw;
       }
 
       .scratch-card-shell {
-        width: min(230px, 65vw);
-      }
-
-      .final-panel {
-        padding-left: 18px;
-        padding-right: 18px;
+        width: min(210px, 60vw);
       }
     }
 
-    @media (max-height: 760px) {
+    @media (max-height: 700px) {
       #coupleScreen {
-        padding-top: 16px;
-        padding-bottom: 14px;
+        padding-top: 9px;
+        padding-bottom: 9px;
       }
 
       .screen2-bismillah {
-        font-size: 20px;
+        font-size: 19px;
+      }
+
+      .faith-heading {
+        font-size: 6.5px;
       }
 
       .invitation-line {
-        margin: 3px auto;
-        font-size: 10px;
-      }
-
-      .nikah-title {
-        font-size: 33px;
+        margin: 2px auto;
+        font-size: 9px;
       }
 
       .couple-name {
-        margin-top: 4px;
-        font-size: 34px;
+        margin-top: 3px;
+        font-size: 33px;
       }
 
       .couple-name.long-name {
-        font-size: 29px;
+        font-size: 28px;
       }
 
       .parent-role {
-        margin-top: 2px;
-        font-size: 10px;
+        margin-top: 1px;
+        font-size: 9px;
+      }
+
+      .love-tagline {
+        margin-top: 3px;
+        font-size: 5px;
       }
 
       .reveal-panel {
-        padding-top: 17px;
-        padding-bottom: 16px;
+        padding: 12px;
       }
 
       .scratch-description {
-        margin-bottom: 9px;
+        margin: 3px auto 7px;
       }
 
       .scratch-card-shell {
-        width: min(205px, 57vw);
+        width: min(185px, 53vw);
       }
 
       .merged-divider {
-        margin: 12px auto;
+        margin: 9px auto;
       }
 
       .countdown-grid {
-        margin-top: 10px;
-      }
-
-      .final-panel {
-        padding-top: 18px;
-        padding-bottom: 17px;
-      }
-
-      .venue-icon {
-        margin-top: 9px;
-      }
-
-      .final-divider {
-        margin: 14px auto;
-      }
-
-      .dua-arabic {
-        font-size: 18px;
-      }
-
-      .dua-transliteration {
         margin-top: 7px;
       }
 
+      .final-panel {
+        padding: 12px 16px;
+      }
+
+      .venue-icon {
+        margin: 6px auto;
+      }
+
+      .final-divider {
+        margin: 9px auto;
+      }
+
+      .dua-arabic {
+        font-size: 17px;
+      }
+
+      .dua-transliteration {
+        margin-top: 4px;
+      }
+
       .closing-line {
-        margin: 10px auto;
+        margin: 7px auto;
       }
 
       .closing-title {
-        font-size: 20px;
+        font-size: 18px;
+      }
+
+      .closing-message {
+        margin-top: 4px;
+      }
+
+      .restart-button {
+        margin-top: 7px;
       }
     }
 
@@ -1534,7 +1748,7 @@
 
   <section id="openingScreen" class="screen">
 
-    <div class="embossed-pattern"></div>
+    <div class="opening-pattern"></div>
     <div class="opening-frame"></div>
 
     <div class="opening-title">
@@ -1572,13 +1786,11 @@
           type="button"
           class="wax-seal"
           id="waxSeal"
-          aria-label="Tap to open the wedding invitation"
+          aria-label="Tap to open the invitation"
         >
-          <span>
-            Tap<br>
-            to<br>
-            Open
-          </span>
+          Tap<br>
+          to<br>
+          Open
         </button>
 
       </div>
@@ -1594,7 +1806,7 @@
 
   </section>
 
-  <!-- SCREEN 2: COUPLE -->
+  <!-- SCREEN 2: INVITATION -->
 
   <section id="coupleScreen" class="screen">
 
@@ -1608,21 +1820,19 @@
         ❦
       </div>
 
-      <div class="family-intro">
-        Together with their families
+      <div class="faith-heading">
+        Together in Faith<br>
+        Forever in Love
+      </div>
+
+      <div class="faith-divider">
+        ♥
       </div>
 
       <div class="invitation-line">
-        request the honour of your presence<br>
-        at the Nikah ceremony of
-      </div>
-
-      <div class="nikah-title">
-        Nikah
-      </div>
-
-      <div class="of-text">
-        of their beloved
+        With the blessings of Allah<br>
+        and the love of our families,<br>
+        we invite you to the Nikah ceremony of
       </div>
 
       <div class="couple-name">
@@ -1653,8 +1863,12 @@
         Taher &amp; Begum
       </div>
 
-      <div class="bottom-divider">
-        <span></span>
+      <div class="love-tagline">
+        Two Hearts
+        <span class="heart">♥</span>
+        One Deen
+        <span class="heart">♥</span>
+        A Lifetime Together
       </div>
 
       <div class="scroll-hint">
@@ -1688,7 +1902,7 @@
         ◇ ❦ ◇
       </div>
 
-      <div class="sans-label">
+      <div class="small-label">
         Save the Date
       </div>
 
@@ -1711,21 +1925,21 @@
               Nikah Ceremony
             </div>
 
-            <div class="square-date-day">
+            <div class="date-day">
               24
             </div>
 
-            <div class="square-date-month">
+            <div class="date-month">
               December
             </div>
 
-            <div class="square-date-year">
+            <div class="date-year">
               2026
             </div>
 
             <div class="date-divider"></div>
 
-            <div class="square-date-time">
+            <div class="date-time">
               9:00 PM
             </div>
 
@@ -1733,7 +1947,7 @@
 
           <canvas
             id="scratchCanvas"
-            aria-label="Scratch the gold card to reveal the Nikah date"
+            aria-label="Scratch to reveal the Nikah date"
           ></canvas>
 
         </div>
@@ -1744,10 +1958,7 @@
         Start scratching the gold card
       </div>
 
-      <div
-        class="countdown-area"
-        id="countdownArea"
-      >
+      <div class="countdown-area">
 
         <div class="merged-divider"></div>
 
@@ -1789,111 +2000,101 @@
 
   </section>
 
-  <!-- SCREEN 4: VENUE + DUA + CLOSING -->
+  <!-- SCREEN 4: VENUE + DUA -->
 
   <section id="finalScreen" class="screen">
 
     <div class="dark-panel final-panel">
 
-      <div class="venue-block">
-
-        <div class="ornament">
-          ◇ ❦ ◇
-        </div>
-
-        <div class="sans-label">
-          Nikah Ceremony
-        </div>
-
-        <h2 class="panel-title">
-          Venue
-        </h2>
-
-        <div class="venue-icon">
-          ◎
-        </div>
-
-        <div class="venue-name">
-          H-Convention Center
-        </div>
-
-        <div class="venue-city">
-          Medak
-        </div>
-
-        <div class="venue-address">
-          H-Convention Center, Medak
-        </div>
-
-        <a
-          class="map-button"
-          href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          📍 View on Google Maps
-        </a>
-
+      <div class="ornament">
+        ◇ ❦ ◇
       </div>
+
+      <div class="small-label">
+        Nikah Ceremony
+      </div>
+
+      <h2 class="panel-title">
+        Venue
+      </h2>
+
+      <div class="venue-icon">
+        ◎
+      </div>
+
+      <div class="venue-name">
+        H-Convention Center
+      </div>
+
+      <div class="venue-city">
+        Medak
+      </div>
+
+      <div class="venue-address">
+        H-Convention Center, Medak
+      </div>
+
+      <a
+        class="map-button"
+        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 View on Google Maps
+      </a>
 
       <div class="final-divider">
         <span>❦</span>
       </div>
 
-      <div class="dua-block">
-
-        <div class="dua-arabic">
-          بَارَكَ اللَّهُ لَكُمَا<br>
-          وَبَارَكَ عَلَيْكُمَا<br>
-          وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
-        </div>
-
-        <div class="dua-transliteration">
-          Barakallahu lakuma wa baraka
-          'alaykuma wa jama'a baynakuma fi khayr
-        </div>
-
-        <div class="dua-meaning">
-          May Allah bless both of you, shower His
-          blessings upon you, and unite you both
-          in goodness.
-        </div>
-
-        <div class="closing-line"></div>
-
-        <div class="closing-title">
-          Your presence will make<br>
-          our celebration complete
-        </div>
-
-        <div class="closing-message">
-          We would be honoured to celebrate this
-          beautiful beginning with you and your family.
-          Your presence and duas are sincerely requested.
-        </div>
-
-        <div class="closing-couple">
-          Sameena Sultana ♥ Mohammed Faisal Hussain
-        </div>
-
-        <button
-          type="button"
-          class="restart-button"
-          id="restartButton"
-        >
-          View Again
-        </button>
-
+      <div class="dua-arabic">
+        بَارَكَ اللَّهُ لَكُمَا<br>
+        وَبَارَكَ عَلَيْكُمَا<br>
+        وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
       </div>
+
+      <div class="dua-transliteration">
+        Barakallahu lakuma wa baraka
+        'alaykuma wa jama'a baynakuma fi khayr
+      </div>
+
+      <div class="dua-meaning">
+        May Allah bless both of you, shower His
+        blessings upon you, and unite you both
+        in goodness.
+      </div>
+
+      <div class="closing-line"></div>
+
+      <div class="closing-title">
+        Your presence will make<br>
+        our celebration complete
+      </div>
+
+      <div class="closing-message">
+        We would be honoured to celebrate this
+        beautiful beginning with you and your family.
+        Your presence and duas are sincerely requested.
+      </div>
+
+      <div class="closing-couple">
+        Sameena Sultana ♥ Mohammed Faisal Hussain
+      </div>
+
+      <button
+        type="button"
+        class="restart-button"
+        id="restartButton"
+      >
+        View Again
+      </button>
 
     </div>
 
   </section>
 
   <script>
-    /* =====================================
-       ENVELOPE OPENING
-    ====================================== */
+    /* Envelope */
 
     const openingScreen =
       document.getElementById("openingScreen");
@@ -1955,9 +2156,7 @@
       }
     );
 
-    /* =====================================
-       SCRATCH CARD
-    ====================================== */
+    /* Scratch card */
 
     const scratchCanvas =
       document.getElementById("scratchCanvas");
@@ -2059,11 +2258,30 @@
           height
         );
 
-      coating.addColorStop(0, "#79531d");
-      coating.addColorStop(0.22, "#d6ae52");
-      coating.addColorStop(0.48, "#a2752e");
-      coating.addColorStop(0.72, "#efd082");
-      coating.addColorStop(1, "#76501a");
+      coating.addColorStop(
+        0,
+        "#79531d"
+      );
+
+      coating.addColorStop(
+        0.22,
+        "#d6ae52"
+      );
+
+      coating.addColorStop(
+        0.48,
+        "#a2752e"
+      );
+
+      coating.addColorStop(
+        0.72,
+        "#efd082"
+      );
+
+      coating.addColorStop(
+        1,
+        "#76501a"
+      );
 
       scratchContext.fillStyle =
         coating;
@@ -2075,44 +2293,9 @@
         height
       );
 
-      const shine =
-        scratchContext.createRadialGradient(
-          width * 0.38,
-          height * 0.27,
-          5,
-          width * 0.5,
-          height * 0.5,
-          width * 0.68
-        );
-
-      shine.addColorStop(
-        0,
-        "rgba(255,245,199,0.5)"
-      );
-
-      shine.addColorStop(
-        0.52,
-        "rgba(255,220,130,0.1)"
-      );
-
-      shine.addColorStop(
-        1,
-        "rgba(81,48,8,0.28)"
-      );
-
-      scratchContext.fillStyle =
-        shine;
-
-      scratchContext.fillRect(
-        0,
-        0,
-        width,
-        height
-      );
-
       for (
         let index = 0;
-        index < 260;
+        index < 240;
         index++
       ) {
         scratchContext.beginPath();
@@ -2145,16 +2328,6 @@
         height - 18
       );
 
-      scratchContext.strokeStyle =
-        "rgba(103,65,13,0.65)";
-
-      scratchContext.strokeRect(
-        14,
-        14,
-        width - 28,
-        height - 28
-      );
-
       scratchContext.fillStyle =
         "rgba(255,248,221,0.97)";
 
@@ -2170,16 +2343,16 @@
       scratchContext.fillText(
         "◇  ❦  ◇",
         width / 2,
-        height / 2 - 46
+        height / 2 - 43
       );
 
       scratchContext.font =
-        "italic 25px Georgia, serif";
+        "italic 24px Georgia, serif";
 
       scratchContext.fillText(
         "Scratch Here",
         width / 2,
-        height / 2 - 6
+        height / 2 - 5
       );
 
       scratchContext.font =
@@ -2188,7 +2361,7 @@
       scratchContext.fillText(
         "GENTLY RUB WITH YOUR FINGER",
         width / 2,
-        height / 2 + 29
+        height / 2 + 27
       );
     }
 
@@ -2374,16 +2547,6 @@
       );
 
       startFlowerShower();
-
-      setTimeout(
-        function () {
-          revealPanel.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        },
-        850
-      );
     }
 
     function startFlowerShower() {
@@ -2523,9 +2686,7 @@
       stopScratch
     );
 
-    /* =====================================
-       COUNTDOWN
-    ====================================== */
+    /* Countdown */
 
     const weddingDate =
       new Date(
@@ -2546,8 +2707,7 @@
       if (distance > 0) {
         values.days =
           Math.floor(
-            distance /
-            86400000
+            distance / 86400000
           );
 
         values.hours =
@@ -2600,9 +2760,7 @@
       1000
     );
 
-    /* =====================================
-       RESTART
-    ====================================== */
+    /* Restart */
 
     const restartButton =
       document.getElementById(
