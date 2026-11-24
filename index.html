@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wedding Invitation</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top, #f4efe2 0%, #ddd2b9 45%, #a9ad90 100%);
+      font-family: Georgia, "Times New Roman", serif;
+      color: #3d4738;
+      padding: 20px;
+    }
+
+    .invitation {
+      width: min(420px, 100%);
+      min-height: 700px;
+      background:
+        linear-gradient(rgba(67, 82, 59, 0.93), rgba(42, 56, 38, 0.97));
+      border: 1px solid rgba(218, 193, 133, 0.8);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .invitation::before,
+    .invitation::after {
+      content: "❧";
+      position: absolute;
+      color: rgba(231, 213, 164, 0.18);
+      font-size: 220px;
+    }
+
+    .invitation::before {
+      top: -80px;
+      left: -60px;
+      transform: rotate(25deg);
+    }
+
+    .invitation::after {
+      bottom: -80px;
+      right: -60px;
+      transform: rotate(205deg);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      padding: 48px 30px;
+    }
+
+    .bismillah {
+      color: #ead8a4;
+      font-size: 30px;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .small-title {
+      color: #ddd3b9;
+      letter-spacing: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 45px;
+    }
+
+    .envelope {
+      width: 285px;
+      height: 190px;
+      margin: auto;
+      position: relative;
+      background: linear-gradient(145deg, #eee5cf, #cfc19f);
+      border-radius: 5px;
+      box-shadow: 0 20px 36px rgba(0, 0, 0, 0.32);
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .envelope:hover {
+      transform: translateY(-4px);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        35deg,
+        transparent 49%,
+        rgba(142, 120, 75, 0.25) 50%,
+        transparent 51%
+      );
+    }
+
+    .flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 142px solid transparent;
+      border-right: 142px solid transparent;
+      border-top: 105px solid #e4d8bc;
+      transform-origin: top;
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -35%);
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #e7cc7d, #b88931 55%, #715018 100%);
+      border: 3px double #f2dda0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff2c9;
+      font-size: 31px;
+      box-shadow: 0 5px 16px rgba(42, 30, 5, 0.5);
+    }
+
+    .tap {
+      margin-top: 42px;
+      color: #f2e8cb;
+      font-size: 24px;
+      font-style: italic;
+    }
+
+    .tap-subtitle {
+      margin-top: 10px;
+      color: #c9c3ae;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      font-size: 23px;
+      color: #e2c87e;
+      margin-top: 14px
