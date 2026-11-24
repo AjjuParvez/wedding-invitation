@@ -1,2549 +1,2811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, maximum-scale=1"
->
-<title>Tabu &amp; Faizal | Nikah Invitation</title>
-
-<style>
-:root {
-  --forest: #293d2d;
-  --forest-dark: #192b20;
-  --sage: #73816a;
-  --sage-light: #a9b49e;
-  --ivory: #f7f0df;
-  --gold: #c79e4d;
-  --gold-dark: #8d6a2d;
-  --gold-light: #ecd38d;
-  --text: #304337;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: #d7d0bc;
-}
-
-body {
-  width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
-  margin: 0 auto;
-  overflow-x: hidden;
-  background: var(--ivory);
-  color: var(--text);
-  font-family: Georgia, "Times New Roman", serif;
-  box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
-}
-
-body.locked {
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid var(--gold-light);
-  outline-offset: 4px;
-}
-
-.screen {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  overflow: hidden;
-}
-
-.gold-frame {
-  position: absolute;
-  inset: 14px;
-  z-index: 20;
-  border: 1px solid rgba(226, 198, 126, 0.55);
-  border-radius: 28px;
-  pointer-events: none;
-}
-
-.section-label {
-  color: var(--gold);
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.section-title {
-  margin-top: 10px;
-  color: var(--text);
-  font-size: 34px;
-  font-weight: normal;
-  font-style: italic;
-}
-
-/* =====================================
-   SCREEN 1: ENVELOPE
-===================================== */
-
-#openingScreen {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  width: min(100%, 430px);
-  height: 100vh;
-  height: 100svh;
-  margin: 0 auto;
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(204, 220, 187, 0.25),
-      transparent 40%
-    ),
-    linear-gradient(
-      160deg,
-      #7b8d72 0%,
-      #53684f 48%,
-      #304733 100%
-    );
-
-  transition:
-    opacity 0.75s ease,
-    visibility 0.75s ease;
-}
-
-#openingScreen.finished {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.opening-frame {
-  position: absolute;
-  inset: 13px;
-  z-index: 50;
-  border: 1px solid rgba(232, 207, 142, 0.58);
-  border-radius: 27px;
-  pointer-events: none;
-}
-
-.embossed-pattern {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.25;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      ellipse at 18% 18%,
-      transparent 0 42px,
-      rgba(225, 228, 205, 0.28) 43px 45px,
-      transparent 46px
-    ),
-    radial-gradient(
-      ellipse at 82% 72%,
-      transparent 0 54px,
-      rgba(225, 228, 205, 0.24) 55px 57px,
-      transparent 58px
-    ),
-    repeating-linear-gradient(
-      45deg,
-      transparent 0 37px,
-      rgba(224, 220, 187, 0.13) 38px,
-      transparent 40px
-    );
-}
-
-.opening-title {
-  position: absolute;
-  top: 8%;
-  left: 20px;
-  right: 20px;
-  z-index: 40;
-  text-align: center;
-
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-}
-
-.opening-arabic {
-  color: var(--gold-light);
-  font-size: 26px;
-  line-height: 1.7;
-}
-
-.opening-subtitle {
-  margin-top: 5px;
-  color: #e0d8c2;
-  font-family: Arial, sans-serif;
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.opening-active .opening-title {
-  opacity: 0;
-  transform: translateY(-14px);
-}
-
-.envelope-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 130px 25px 100px;
-  perspective: 1200px;
-}
-
-.envelope-box {
-  position: relative;
-  width: min(350px, 92vw);
-  height: 270px;
-
-  filter:
-    drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
-
-  transition:
-    transform 0.8s ease 1.15s;
-}
-
-.opening-active .envelope-box {
-  transform: scale(1.05);
-}
-
-.envelope-back {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  border: 1px solid rgba(229, 204, 136, 0.62);
-  border-radius: 9px;
-
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(255, 255, 255, 0.08),
-      transparent 52%
-    ),
-    linear-gradient(
-      150deg,
-      #7c9074,
-      #536a54
-    );
-}
-
-.envelope-back::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.24;
-
-  background:
-    repeating-linear-gradient(
-      42deg,
-      transparent 0 30px,
-      rgba(235, 227, 197, 0.18) 31px,
-      transparent 33px
-    );
-}
-
-.envelope-interior {
-  position: absolute;
-  left: 3%;
-  right: 3%;
-  top: 3%;
-  height: 69%;
-  z-index: 2;
-  border-radius: 8px 8px 45% 45%;
-
-  background:
-    linear-gradient(
-      180deg,
-      #253c2b,
-      #4c654d
-    );
-}
-
-.envelope-glow {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 15%;
-  height: 70%;
-  z-index: 3;
-  opacity: 0;
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(255, 248, 208, 0.98) 0%,
-      rgba(242, 207, 117, 0.62) 35%,
-      rgba(213, 168, 70, 0.18) 62%,
-      transparent 75%
-    );
-
-  transform: scale(0.35);
-
-  transition:
-    opacity 0.8s ease 0.42s,
-    transform 1.05s ease 0.4s;
-}
-
-.opening-active .envelope-glow {
-  opacity: 1;
-  transform: scale(1.45);
-}
-
-.envelope-flap {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 8;
-  width: 100%;
-  height: 56%;
-  transform-origin: top center;
-  transform-style: preserve-3d;
-
-  transition:
-    transform 1.1s cubic-bezier(0.62, 0, 0.22, 1),
-    z-index 0s linear 0.55s;
-}
-
-.flap-front,
-.flap-back {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  backface-visibility: hidden;
-}
-
-.flap-front {
-  border-top: 1px solid rgba(237, 214, 154, 0.62);
-
-  background:
-    linear-gradient(
-      145deg,
-      #84967b,
-      #536a55
-    );
-}
-
-.flap-front::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.24;
-
-  background:
-    repeating-linear-gradient(
-      45deg,
-      transparent 0 30px,
-      rgba(237, 226, 194, 0.18) 31px,
-      transparent 33px
-    );
-}
-
-.flap-back {
-  background:
-    linear-gradient(
-      160deg,
-      #d5bd85,
-      #81632e
-    );
-
-  transform: rotateX(180deg);
-}
-
-.opening-active .envelope-flap {
-  z-index: 2;
-  transform: rotateX(180deg);
-}
-
-.envelope-front {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  overflow: hidden;
-  border-radius: 9px;
-  pointer-events: none;
-}
-
-.front-left {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-top: 135px solid transparent;
-  border-bottom: 135px solid #617861;
-  border-right: 175px solid transparent;
-}
-
-.front-right {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-top: 135px solid transparent;
-  border-bottom: 135px solid #576f59;
-  border-left: 175px solid transparent;
-}
-
-.front-bottom {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 0;
-  height: 0;
-
-  transform: translateX(-50%);
-
-  border-left: 176px solid transparent;
-  border-right: 176px solid transparent;
-  border-bottom: 145px solid #73866e;
-}
-
-.wax-seal {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  z-index: 15;
-  width: 88px;
-  height: 88px;
-
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-
-  border: 4px double #f4dda1;
-  border-radius: 48% 52% 47% 53%;
-
-  background:
-    radial-gradient(
-      circle at 32% 27%,
-      #edd178 0%,
-      #bb8732 48%,
-      #6f4a16 100%
-    );
-
-  color: #fff1c4;
-
-  box-shadow:
-    0 8px 19px rgba(33, 21, 3, 0.48),
-    inset 0 0 0 5px rgba(103, 65, 14, 0.25);
-
-  transition:
-    opacity 0.38s ease,
-    transform 0.38s ease;
-}
-
-.wax-seal span {
-  display: block;
-  padding-top: 18px;
-  font-family: Georgia, serif;
-  font-size: 16px;
-  font-style: italic;
-  line-height: 1.05;
-  text-align: center;
-}
-
-.opening-active .wax-seal {
-  opacity: 0;
-  transform:
-    translate(-50%, -50%)
-    scale(0.45);
-  pointer-events: none;
-}
-
-.opening-flash {
-  position: absolute;
-  inset: 0;
-  z-index: 35;
-  opacity: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 252, 226, 0.98) 0%,
-      rgba(255, 224, 145, 0.65) 26%,
-      transparent 70%
-    );
-
-  transform: scale(0.5);
-
-  transition:
-    opacity 0.65s ease 0.85s,
-    transform 0.9s ease 0.8s;
-}
-
-.opening-active .opening-flash {
-  opacity: 1;
-  transform: scale(1.7);
-}
-
-.opening-sparkles {
-  position: absolute;
-  inset: 0;
-  z-index: 36;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  transition: opacity 0.5s ease 0.55s;
-}
-
-.opening-active .opening-sparkles {
-  opacity: 1;
-}
-
-.spark {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #fff2aa;
-  box-shadow: 0 0 13px #fff0a0;
-  animation: sparkle 1.4s infinite ease-in-out;
-}
-
-.spark:nth-child(1) {
-  left: 18%;
-  top: 37%;
-}
-
-.spark:nth-child(2) {
-  right: 19%;
-  top: 42%;
-  animation-delay: 0.25s;
-}
-
-.spark:nth-child(3) {
-  left: 32%;
-  top: 60%;
-  animation-delay: 0.5s;
-}
-
-.spark:nth-child(4) {
-  right: 31%;
-  top: 57%;
-  animation-delay: 0.75s;
-}
-
-.spark:nth-child(5) {
-  left: 50%;
-  top: 34%;
-  animation-delay: 1s;
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0.25);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.65);
-  }
-}
-
-.you-are-invited {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 8%;
-  z-index: 42;
-  color: #e5ca82;
-  text-align: center;
-
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-}
-
-.opening-active .you-are-invited {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-.invited-ornament {
-  font-size: 20px;
-}
-
-.invited-text {
-  margin-top: 4px;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-/* =====================================
-   SCREEN 2: UPLOADED BACKGROUND
-===================================== */
-
-#coupleScreen {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 85px 45px 70px;
-  overflow: hidden;
-  text-align: center;
-
-  background-color: #f5f0e5;
-  background-image: url("Screen-2.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.screen2-reading-layer {
-  position: absolute;
-  left: 16%;
-  right: 16%;
-  top: 15%;
-  bottom: 12%;
-  z-index: 2;
-  border-radius: 48% 48% 14px 14px;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(255, 253, 247, 0.72) 0%,
-      rgba(255, 253, 247, 0.42) 58%,
-      transparent 82%
-    );
-
-  pointer-events: none;
-}
-
-.couple-content {
-  position: relative;
-  z-index: 8;
-  width: 100%;
-  max-width: 285px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(22px);
-}
-
-body.reveal-couple .couple-content {
-  animation: coupleReveal 1.3s ease forwards;
-}
-
-@keyframes coupleReveal {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.screen2-bismillah {
-  color: #80652f;
-  font-size: 28px;
-  line-height: 1.55;
-  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.65);
-}
-
-.screen2-ornament {
-  margin: 7px 0 10px;
-  color: #a4813d;
-  font-size: 20px;
-}
-
-.family-intro {
-  color: #65593f;
-  font-family: Arial, sans-serif;
-  font-size: 7px;
-  font-weight: bold;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-}
-
-.invitation-line {
-  max-width: 235px;
-  margin: 8px auto 10px;
-  color: #5b5140;
-  font-size: 12px;
-  font-style: italic;
-  line-height: 1.45;
-}
-
-.nikah-title {
-  color: #3f3b33;
-  font-size: 35px;
-  font-weight: normal;
-  font-style: italic;
-  line-height: 1;
-}
-
-.of-text {
-  margin-top: 6px;
-  color: #8c7440;
-  font-family: Arial, sans-serif;
-  font-size: 7px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.couple-name {
-  margin-top: 5px;
-  color: #3d3932;
-  font-size: clamp(45px, 13vw, 57px);
-  font-weight: normal;
-  font-style: italic;
-  line-height: 0.94;
-  text-shadow: 0 2px 5px rgba(255, 255, 255, 0.65);
-}
-
-.parent-line {
-  margin-top: 7px;
-  color: #6f624c;
-  font-family: Arial, sans-serif;
-  font-size: 7px;
-  letter-spacing: 0.7px;
-  line-height: 1.5;
-}
-
-.classic-ampersand {
-  position: relative;
-  width: 88px;
-  margin: 9px auto 7px;
-  color: #9e7932;
-  font-size: 22px;
-  font-style: italic;
-}
-
-.classic-ampersand::before,
-.classic-ampersand::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 29px;
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #ad8d48
-    );
-}
-
-.classic-ampersand::before {
-  left: 0;
-}
-
-.classic-ampersand::after {
-  right: 0;
-  transform: rotate(180deg);
-}
-
-.classic-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 95px;
-  margin: 10px auto 7px;
-}
-
-.classic-divider::before,
-.classic-divider::after {
-  content: "";
-  width: 35px;
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #a18442
-    );
-}
-
-.classic-divider::after {
-  transform: rotate(180deg);
-}
-
-.classic-divider span {
-  width: 6px;
-  height: 6px;
-  margin: 0 6px;
-  border: 1px solid #a18442;
-  transform: rotate(45deg);
-}
-
-.scroll-hint {
-  margin-top: 11px;
-  color: #806936;
-  font-family: Arial, sans-serif;
-  font-size: 6px;
-  font-weight: bold;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-}
-
-.scroll-arrow {
-  margin-top: 7px;
-  color: #a37d35;
-  font-size: 18px;
-  animation: bounce 1.4s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(7px);
-  }
-}
-
-/* =====================================
-   SCREEN 3: SQUARE SCRATCH CARD
-===================================== */
-
-#scratchScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 55px 22px;
-  text-align: center;
-  isolation: isolate;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(166, 142, 94, 0.11),
-      transparent 41%
-    ),
-    var(--ivory);
-}
-
-.scratch-content {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-}
-
-.scratch-info {
-  max-width: 300px;
-  margin: 12px auto 26px;
-  color: #71695a;
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  line-height: 1.7;
-}
-
-.scratch-square-area {
-  position: relative;
-  width: min(300px, 84vw);
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
-  overflow: hidden;
-
-  border: 1px solid rgba(174, 137, 65, 0.75);
-  border-radius: 18px;
-
-  background: #fffaf0;
-
-  box-shadow:
-    0 18px 38px rgba(75, 62, 34, 0.14);
-}
-
-.square-result {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  padding: 25px;
-
-  background:
-    radial-gradient(
-      circle at 50% 34%,
-      rgba(215, 187, 112, 0.2),
-      transparent 48%
-    ),
-    linear-gradient(
-      145deg,
-      #fffaf0,
-      #f0dfbb
-    );
-
-  color: var(--forest);
-}
-
-.reveal-label {
-  color: #a1813e;
-  font-family: Arial, sans-serif;
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.square-date-day {
-  margin-top: 12px;
-  color: var(--forest);
-  font-size: 82px;
-  line-height: 0.9;
-}
-
-.square-date-month {
-  margin-top: 11px;
-  color: #87662d;
-  font-size: 24px;
-  font-style: italic;
-}
-
-.square-date-year {
-  margin-top: 6px;
-  color: var(--forest);
-  font-size: 28px;
-  letter-spacing: 4px;
-}
-
-.square-date-time {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid var(--gold);
-  color: #8c6f35;
-  font-size: 18px;
-}
-
-#scratchCanvas {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  cursor: grab;
-  touch-action: none;
-  transition: opacity 0.65s ease;
-}
-
-#scratchCanvas.cleared {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.scratch-status {
-  min-height: 16px;
-  margin-top: 20px;
-  color: #8a7953;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* Flower shower */
-
-.flower-shower {
-  position: absolute;
-  inset: 0;
-  z-index: 40;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.falling-flower {
-  position: absolute;
-  top: -50px;
-  left: var(--left);
-  z-index: 1;
-
-  width: var(--size);
-  height: var(--size);
-
-  opacity: 0;
-
-  animation:
-    flowerFall var(--duration)
-    var(--delay)
-    cubic-bezier(0.2, 0.62, 0.35, 1)
-    forwards;
-}
-
-.falling-flower::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 70% 30% 66% 34%;
-  background: var(--petal-color);
-  box-shadow:
-    0 0 7px rgba(183, 145, 70, 0.2);
-}
-
-.falling-flower.blossom::before {
-  border-radius: 50%;
-  background:
-    radial-gradient(
-      circle,
-      #dbb965 0 14%,
-      var(--petal-color) 15% 43%,
-      transparent 44%
-    );
-}
-
-.falling-flower.leaf::before {
-  border-radius: 100% 0 100% 0;
-  background:
-    linear-gradient(
-      135deg,
-      #9baa87,
-      #60775f
-    );
-}
-
-@keyframes flowerFall {
-  0% {
-    opacity: 0;
-    transform:
-      translate3d(0, -30px, 0)
-      rotate(0deg);
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  45% {
-    transform:
-      translate3d(var(--drift), 45vh, 0)
-      rotate(210deg);
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translate3d(
-        calc(var(--drift) * -0.5),
-        112vh,
-        0
-      )
-      rotate(520deg);
-  }
-}
-
-/* =====================================
-   SCREEN 4: COUNTDOWN
-===================================== */
-
-#countdownScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 70px 20px;
-  text-align: center;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(144, 166, 131, 0.25),
-      transparent 57%
-    ),
-    linear-gradient(
-      180deg,
-      #415b45,
-      #243b2b
-    );
-}
-
-.countdown-content {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-}
-
-.countdown-title {
-  margin-top: 9px;
-  color: var(--ivory);
-  font-size: 35px;
-  font-style: italic;
-}
-
-.countdown-subtitle {
-  margin-top: 9px;
-  color: #d4cab4;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 37px;
-}
-
-.count-box {
-  min-width: 0;
-  padding: 19px 3px;
-
-  border: 1px solid rgba(223, 194, 119, 0.48);
-  border-radius: 8px;
-
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.count-number {
-  display: block;
-  color: var(--gold-light);
-  font-size: 26px;
-  line-height: 1;
-}
-
-.count-label {
-  display: block;
-  margin-top: 9px;
-  color: #ded5c0;
-  font-family: Arial, sans-serif;
-  font-size: 7px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.countdown-date {
-  margin-top: 30px;
-  color: #ead7a4;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
-/* =====================================
-   SCREEN 5: LOCATION
-===================================== */
-
-#locationScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 70px 23px;
-  text-align: center;
-  background: var(--ivory);
-}
-
-.location-content {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-}
-
-.venue-card {
-  margin-top: 31px;
-  padding: 38px 21px;
-  border: 1px solid var(--gold);
-  background: #fffaf0;
-
-  box-shadow:
-    0 16px 38px rgba(80, 66, 31, 0.11);
-}
-
-.venue-icon {
-  width: 58px;
-  height: 58px;
-  margin: 0 auto 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-
-  color: var(--gold);
-  font-size: 24px;
-}
-
-.venue-name {
-  color: var(--forest);
-  font-size: 26px;
-  font-weight: normal;
-}
-
-.venue-city {
-  margin-top: 8px;
-  color: #716b5c;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-}
-
-.venue-address {
-  margin-top: 9px;
-  color: #7b725e;
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-.venue-date {
-  margin-top: 20px;
-  color: #806334;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.map-button {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 25px;
-  border: 1px solid var(--gold);
-  border-radius: 30px;
-  background: var(--forest);
-  color: var(--ivory);
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* =====================================
-   SCREEN 6: DUA
-===================================== */
-
-#duaScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 75px 28px;
-  text-align: center;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(218, 191, 118, 0.12),
-      transparent 40%
-    ),
-    linear-gradient(
-      180deg,
-      #405943,
-      #203729
-    );
-}
-
-.dua-content {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-}
-
-.dua-arabic {
-  color: var(--gold-light);
-  font-size: 28px;
-  line-height: 1.9;
-}
-
-.dua-transliteration {
-  margin-top: 20px;
-  color: #f0e5ca;
-  font-size: 15px;
-  font-style: italic;
-  line-height: 1.65;
-}
-
-.dua-meaning {
-  max-width: 310px;
-  margin: 16px auto 0;
-  color: #cec6b1;
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  line-height: 1.8;
-}
-
-.closing-line {
-  width: 70px;
-  height: 1px;
-  margin: 32px auto;
-  background: var(--gold);
-}
-
-.closing-title {
-  color: var(--ivory);
-  font-size: 29px;
-  font-style: italic;
-  line-height: 1.2;
-}
-
-.closing-message {
-  max-width: 310px;
-  margin: 20px auto 0;
-  color: #d5cdb9;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-.closing-couple {
-  margin-top: 32px;
-  color: var(--gold-light);
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.restart-button {
-  margin-top: 34px;
-  padding: 11px 20px;
-  cursor: pointer;
-  border: 1px solid rgba(220, 191, 116, 0.6);
-  border-radius: 25px;
-  background: transparent;
-  color: #ddd3ba;
-  font-family: Arial, sans-serif;
-  font-size: 8px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-@media (max-height: 720px) {
-  #coupleScreen {
-    padding-top: 50px;
-    padding-bottom: 35px;
-  }
-
-  .screen2-bismillah {
-    font-size: 23px;
-  }
-
-  .couple-name {
-    font-size: 42px;
-  }
-
-  #scratchScreen {
-    padding-top: 35px;
-    padding-bottom: 30px;
-  }
-
-  .scratch-square-area {
-    width: min(265px, 76vw);
-  }
-}
-
-@media (min-width: 431px) {
-  #openingScreen {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+  >
+
+  <title>SAMEENA SULTANA &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
+
+  <style>
+    :root {
+      --forest: #293d2d;
+      --forest-dark: #192b20;
+      --sage: #73816a;
+      --sage-light: #a9b49e;
+      --ivory: #f8f1df;
+      --ivory-light: #fffaf0;
+      --gold: #c79e4d;
+      --gold-dark: #7d5920;
+      --gold-light: #ecd38d;
+      --text: #304337;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #d7d0bc;
+    }
+
+    body {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      overflow-x: hidden;
+      background: var(--ivory);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
+    }
+
+    body.locked {
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--gold-light);
+      outline-offset: 4px;
+    }
+
+    .screen {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+
+    .gold-frame {
+      position: absolute;
+      inset: 14px;
+      z-index: 20;
+      border: 1px solid rgba(226, 198, 126, 0.55);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      color: var(--text);
+      font-size: 34px;
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    /* =====================================
+       SCREEN 1: ENVELOPE
+    ====================================== */
+
+    #openingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      width: min(100%, 430px);
+      height: 100vh;
+      height: 100svh;
+      margin: 0 auto;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 12%,
+          rgba(204, 220, 187, 0.25),
+          transparent 40%
+        ),
+        linear-gradient(
+          160deg,
+          #7b8d72 0%,
+          #53684f 48%,
+          #304733 100%
+        );
+
+      transition:
+        opacity 0.75s ease,
+        visibility 0.75s ease;
+    }
+
+    #openingScreen.finished {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-frame {
+      position: absolute;
+      inset: 13px;
+      z-index: 50;
+      border: 1px solid rgba(232, 207, 142, 0.58);
+      border-radius: 27px;
+      pointer-events: none;
+    }
+
+    .embossed-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.25;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse at 18% 18%,
+          transparent 0 42px,
+          rgba(225, 228, 205, 0.28) 43px 45px,
+          transparent 46px
+        ),
+        radial-gradient(
+          ellipse at 82% 72%,
+          transparent 0 54px,
+          rgba(225, 228, 205, 0.24) 55px 57px,
+          transparent 58px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 37px,
+          rgba(224, 220, 187, 0.13) 38px,
+          transparent 40px
+        );
+    }
+
+    .opening-title {
+      position: absolute;
+      top: 8%;
+      left: 20px;
+      right: 20px;
+      z-index: 40;
+      text-align: center;
+
+      transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+    }
+
+    .opening-arabic {
+      color: var(--gold-light);
+      font-size: 26px;
+      line-height: 1.7;
+    }
+
+    .opening-subtitle {
+      margin-top: 5px;
+      color: #e0d8c2;
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .opening-active .opening-title {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+
+    .envelope-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 25px 100px;
+      perspective: 1200px;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: min(350px, 92vw);
+      height: 270px;
+
+      filter:
+        drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
+
+      transition:
+        transform 0.8s ease 1.15s;
+    }
+
+    .opening-active .envelope-box {
+      transform: scale(1.05);
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      border: 1px solid rgba(229, 204, 136, 0.62);
+      border-radius: 9px;
+
+      background:
+        radial-gradient(
+          circle at 50% 40%,
+          rgba(255, 255, 255, 0.08),
+          transparent 52%
+        ),
+        linear-gradient(
+          150deg,
+          #7c9074,
+          #536a54
+        );
+    }
+
+    .envelope-back::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.24;
+
+      background:
+        repeating-linear-gradient(
+          42deg,
+          transparent 0 30px,
+          rgba(235, 227, 197, 0.18) 31px,
+          transparent 33px
+        );
+    }
+
+    .envelope-interior {
+      position: absolute;
+      left: 3%;
+      right: 3%;
+      top: 3%;
+      height: 69%;
+      z-index: 2;
+      border-radius: 8px 8px 45% 45%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #253c2b,
+          #4c654d
+        );
+    }
+
+    .envelope-glow {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 15%;
+      height: 70%;
+      z-index: 3;
+      opacity: 0;
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255, 248, 208, 0.98) 0%,
+          rgba(242, 207, 117, 0.62) 35%,
+          rgba(213, 168, 70, 0.18) 62%,
+          transparent 75%
+        );
+
+      transform: scale(0.35);
+
+      transition:
+        opacity 0.8s ease 0.42s,
+        transform 1.05s ease 0.4s;
+    }
+
+    .opening-active .envelope-glow {
+      opacity: 1;
+      transform: scale(1.45);
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 8;
+      width: 100%;
+      height: 56%;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+
+      transition:
+        transform 1.1s cubic-bezier(0.62, 0, 0.22, 1),
+        z-index 0s linear 0.55s;
+    }
+
+    .flap-front,
+    .flap-back {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      backface-visibility: hidden;
+    }
+
+    .flap-front {
+      border-top: 1px solid rgba(237, 214, 154, 0.62);
+
+      background:
+        linear-gradient(
+          145deg,
+          #84967b,
+          #536a55
+        );
+    }
+
+    .flap-front::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.24;
+
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 30px,
+          rgba(237, 226, 194, 0.18) 31px,
+          transparent 33px
+        );
+    }
+
+    .flap-back {
+      background:
+        linear-gradient(
+          160deg,
+          #d5bd85,
+          #81632e
+        );
+
+      transform: rotateX(180deg);
+    }
+
+    .opening-active .envelope-flap {
+      z-index: 2;
+      transform: rotateX(180deg);
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      overflow: hidden;
+      border-radius: 9px;
+      pointer-events: none;
+    }
+
+    .front-left {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+
+      border-top: 135px solid transparent;
+      border-bottom: 135px solid #617861;
+      border-right: 175px solid transparent;
+    }
+
+    .front-right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+
+      border-top: 135px solid transparent;
+      border-bottom: 135px solid #576f59;
+      border-left: 175px solid transparent;
+    }
+
+    .front-bottom {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 0;
+
+      transform: translateX(-50%);
+
+      border-left: 176px solid transparent;
+      border-right: 176px solid transparent;
+      border-bottom: 145px solid #73866e;
+    }
+
+    .wax-seal {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      z-index: 15;
+      width: 88px;
+      height: 88px;
+
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+      border: 4px double #f4dda1;
+      border-radius: 48% 52% 47% 53%;
+
+      background:
+        radial-gradient(
+          circle at 32% 27%,
+          #edd178 0%,
+          #bb8732 48%,
+          #6f4a16 100%
+        );
+
+      color: #fff1c4;
+
+      box-shadow:
+        0 8px 19px rgba(33, 21, 3, 0.48),
+        inset 0 0 0 5px rgba(103, 65, 14, 0.25);
+
+      transition:
+        opacity 0.38s ease,
+        transform 0.38s ease;
+    }
+
+    .wax-seal span {
+      display: block;
+      padding-top: 18px;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .opening-active .wax-seal {
+      opacity: 0;
+      transform:
+        translate(-50%, -50%)
+        scale(0.45);
+      pointer-events: none;
+    }
+
+    .opening-flash {
+      position: absolute;
+      inset: 0;
+      z-index: 35;
+      opacity: 0;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 252, 226, 0.98) 0%,
+          rgba(255, 224, 145, 0.65) 26%,
+          transparent 70%
+        );
+
+      transform: scale(0.5);
+
+      transition:
+        opacity 0.65s ease 0.85s,
+        transform 0.9s ease 0.8s;
+    }
+
+    .opening-active .opening-flash {
+      opacity: 1;
+      transform: scale(1.7);
+    }
+
+    .opening-sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: 36;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s ease 0.55s;
+    }
+
+    .opening-active .opening-sparkles {
+      opacity: 1;
+    }
+
+    .spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff2aa;
+      box-shadow: 0 0 13px #fff0a0;
+      animation: sparkle 1.4s infinite ease-in-out;
+    }
+
+    .spark:nth-child(1) {
+      left: 18%;
+      top: 37%;
+    }
+
+    .spark:nth-child(2) {
+      right: 19%;
+      top: 42%;
+      animation-delay: 0.25s;
+    }
+
+    .spark:nth-child(3) {
+      left: 32%;
+      top: 60%;
+      animation-delay: 0.5s;
+    }
+
+    .spark:nth-child(4) {
+      right: 31%;
+      top: 57%;
+      animation-delay: 0.75s;
+    }
+
+    .spark:nth-child(5) {
+      left: 50%;
+      top: 34%;
+      animation-delay: 1s;
+    }
+
+    @keyframes sparkle {
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(0.25);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.65);
+      }
+    }
+
+    .you-are-invited {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 8%;
+      z-index: 42;
+      color: #e5ca82;
+      text-align: center;
+
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    }
+
+    .opening-active .you-are-invited {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .invited-ornament {
+      font-size: 20px;
+    }
+
+    .invited-text {
+      margin-top: 4px;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* =====================================
+       SCREEN 2: UPLOADED BACKGROUND
+    ====================================== */
+
+    #coupleScreen {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 100vh;
+      min-height: 100svh;
+
+      padding: 85px 45px 70px;
+      overflow: hidden;
+      text-align: center;
+
+      background-color: #f5f0e5;
+      background-image: url("Screen-2.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .screen2-reading-layer {
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      top: 15%;
+      bottom: 12%;
+      z-index: 2;
+      border-radius: 48% 48% 14px 14px;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255, 253, 247, 0.72) 0%,
+          rgba(255, 253, 247, 0.42) 58%,
+          transparent 82%
+        );
+
+      pointer-events: none;
+    }
+
+    .couple-content {
+      position: relative;
+      z-index: 8;
+      width: 100%;
+      max-width: 285px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    body.reveal-couple .couple-content {
+      animation: coupleReveal 1.3s ease forwards;
+    }
+
+    @keyframes coupleReveal {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .screen2-bismillah {
+      color: #80652f;
+      font-size: 28px;
+      line-height: 1.55;
+      text-shadow: 0 2px 6px rgba(255, 255, 255, 0.65);
+    }
+
+    .screen2-ornament {
+      margin: 7px 0 10px;
+      color: #a4813d;
+      font-size: 20px;
+    }
+
+    .family-intro {
+      color: #65593f;
+      font-family: Arial, sans-serif;
+      font-size: 7px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .invitation-line {
+      max-width: 235px;
+      margin: 8px auto 10px;
+      color: #5b5140;
+      font-size: 12px;
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .nikah-title {
+      color: #3f3b33;
+      font-size: 35px;
+      font-weight: normal;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .of-text {
+      margin-top: 6px;
+      color: #8c7440;
+      font-family: Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .couple-name {
+      margin-top: 5px;
+      color: #3d3932;
+      font-size: clamp(45px, 13vw, 57px);
+      font-weight: normal;
+      font-style: italic;
+      line-height: 0.94;
+      text-shadow: 0 2px 5px rgba(255, 255, 255, 0.65);
+    }
+
+    .parent-line {
+      margin-top: 7px;
+      color: #6f624c;
+      font-family: Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 0.7px;
+      line-height: 1.5;
+    }
+
+    .classic-ampersand {
+      position: relative;
+      width: 88px;
+      margin: 9px auto 7px;
+      color: #9e7932;
+      font-size: 22px;
+      font-style: italic;
+    }
+
+    .classic-ampersand::before,
+    .classic-ampersand::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 29px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #ad8d48
+        );
+    }
+
+    .classic-ampersand::before {
+      left: 0;
+    }
+
+    .classic-ampersand::after {
+      right: 0;
+      transform: rotate(180deg);
+    }
+
+    .classic-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 95px;
+      margin: 10px auto 7px;
+    }
+
+    .classic-divider::before,
+    .classic-divider::after {
+      content: "";
+      width: 35px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #a18442
+        );
+    }
+
+    .classic-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .classic-divider span {
+      width: 6px;
+      height: 6px;
+      margin: 0 6px;
+      border: 1px solid #a18442;
+      transform: rotate(45deg);
+    }
+
+    .scroll-hint {
+      margin-top: 11px;
+      color: #806936;
+      font-family: Arial, sans-serif;
+      font-size: 6px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+      margin-top: 7px;
+      color: #a37d35;
+      font-size: 18px;
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(7px);
+      }
+    }
+
+    /* =====================================
+       SCREEN 3: LUXURY SCRATCH CARD
+    ====================================== */
+
+    #scratchScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 54px 22px 45px;
+      text-align: center;
+      isolation: isolate;
+
+      background:
+        radial-gradient(
+          circle at 50% 15%,
+          rgba(207, 167, 80, 0.13),
+          transparent 38%
+        ),
+        linear-gradient(
+          180deg,
+          #fbf5e7,
+          #f2e6cf
+        );
+    }
+
+    #scratchScreen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.15;
+      pointer-events: none;
+
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 26px,
+          rgba(165, 126, 55, 0.14) 27px,
+          transparent 28px
+        );
+    }
+
+    .scratch-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .scratch-intro-ornament {
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 17px;
+      letter-spacing: 8px;
+    }
+
+    .scratch-info {
+      max-width: 300px;
+      margin: 12px auto 25px;
+      color: #71695a;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .scratch-card-shell {
+      position: relative;
+      width: min(310px, 86vw);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      padding: 11px;
+
+      border: 1px solid #b98c3f;
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffaf0,
+          #ead5ac
+        );
+
+      box-shadow:
+        0 25px 45px rgba(92, 67, 25, 0.18),
+        0 5px 12px rgba(92, 67, 25, 0.1),
+        inset 0 0 0 4px #fff9ec,
+        inset 0 0 0 6px rgba(174, 125, 45, 0.46);
+    }
+
+    .scratch-card-shell::before,
+    .scratch-card-shell::after {
+      content: "◆";
+      position: absolute;
+      z-index: 12;
+      color: #b48a3d;
+      font-size: 12px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .scratch-card-shell::before {
+      left: 17px;
+      top: 17px;
+    }
+
+    .scratch-card-shell::after {
+      right: 17px;
+      bottom: 17px;
+    }
+
+    .scratch-square-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      border: 1px solid rgba(158, 109, 32, 0.62);
+      border-radius: 14px;
+
+      background: var(--ivory-light);
+    }
+
+    .scratch-square-area::before,
+    .scratch-square-area::after {
+      content: "❦";
+      position: absolute;
+      z-index: 10;
+      color: rgba(165, 120, 45, 0.56);
+      font-size: 24px;
+      pointer-events: none;
+    }
+
+    .scratch-square-area::before {
+      left: 12px;
+      bottom: 9px;
+      transform: rotate(22deg);
+    }
+
+    .scratch-square-area::after {
+      right: 12px;
+      top: 9px;
+      transform: rotate(202deg);
+    }
+
+    .square-result {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(221, 184, 96, 0.16),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #fffdf6,
+          #f2e2c2
+        );
+
+      color: var(--forest);
+    }
+
+    .result-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      margin-bottom: 13px;
+      color: #b08740;
+      font-size: 13px;
+    }
+
+    .result-ornament::before,
+    .result-ornament::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      margin: 0 9px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #b08740
+        );
+    }
+
+    .result-ornament::after {
+      transform: rotate(180deg);
+    }
+
+    .reveal-label {
+      color: #9e7937;
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .square-date-day {
+      margin-top: 11px;
+      color: #3a473b;
+      font-size: 80px;
+      line-height: 0.88;
+
+      text-shadow:
+        0 3px 6px rgba(150, 103, 31, 0.13);
+    }
+
+    .square-date-month {
+      margin-top: 12px;
+      color: #987238;
+      font-size: 25px;
+      font-style: italic;
+    }
+
+    .square-date-year {
+      margin-top: 5px;
+      color: #3d483d;
+      font-size: 27px;
+      letter-spacing: 5px;
+    }
+
+    .result-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 145px;
+      margin: 17px auto 0;
+    }
+
+    .result-divider::before,
+    .result-divider::after {
+      content: "";
+      width: 52px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #b38a40
+        );
+    }
+
+    .result-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .result-divider span {
+      width: 7px;
+      height: 7px;
+      margin: 0 8px;
+      border: 1px solid #af8338;
+      transform: rotate(45deg);
+    }
+
+    .square-date-time {
+      margin-top: 14px;
+      color: #88652f;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    #scratchCanvas.cleared {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    .scratch-status {
+      min-height: 16px;
+      margin-top: 20px;
+      color: #8a713d;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    /* =====================================
+       FLOWER SHOWER
+    ====================================== */
+
+    .flower-shower {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .falling-piece {
+      position: absolute;
+      left: var(--left);
+      top: -50px;
+      width: var(--size);
+      height: var(--size);
+      opacity: 0;
+
+      animation:
+        flowerFall var(--duration)
+        var(--delay)
+        cubic-bezier(0.18, 0.62, 0.32, 1)
+        forwards;
+    }
+
+    .falling-piece.petal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 80% 20% 65% 35%;
+      background: var(--piece-color);
+
+      box-shadow:
+        0 0 8px rgba(176, 127, 44, 0.18);
+    }
+
+    .falling-piece.flower::before {
+      content: "✿";
+      position: absolute;
+      inset: 0;
+      color: var(--piece-color);
+      font-size: var(--size);
+      line-height: 1;
+
+      text-shadow:
+        0 0 8px rgba(176, 127, 44, 0.18);
+    }
+
+    .falling-piece.leaf::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 100% 0 100% 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          #b6bd9c,
+          #75856a
+        );
+    }
+
+    @keyframes flowerFall {
+      0% {
+        opacity: 0;
+        transform:
+          translate3d(0, -30px, 0)
+          rotate(0deg);
+      }
+
+      9% {
+        opacity: 1;
+      }
+
+      45% {
+        transform:
+          translate3d(var(--drift), 48vh, 0)
+          rotate(210deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate3d(
+            calc(var(--drift) * -0.5),
+            112vh,
+            0
+          )
+          rotate(540deg);
+      }
+    }
+
+    /* =====================================
+       SCREEN 4: COUNTDOWN
+    ====================================== */
+
+    #countdownScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px;
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(144, 166, 131, 0.25),
+          transparent 57%
+        ),
+        linear-gradient(
+          180deg,
+          #415b45,
+          #243b2b
+        );
+    }
+
+    .countdown-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .countdown-title {
+      margin-top: 9px;
+      color: var(--ivory);
+      font-size: 35px;
+      font-style: italic;
+    }
+
+    .countdown-subtitle {
+      margin-top: 9px;
+      color: #d4cab4;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 37px;
+    }
+
+    .count-box {
+      min-width: 0;
+      padding: 19px 3px;
+
+      border: 1px solid rgba(223, 194, 119, 0.48);
+      border-radius: 8px;
+
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .count-number {
+      display: block;
+      color: var(--gold-light);
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 9px;
+      color: #ded5c0;
+      font-family: Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .countdown-date {
+      margin-top: 30px;
+      color: #ead7a4;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    /* =====================================
+       SCREEN 5: LOCATION
+    ====================================== */
+
+    #locationScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 23px;
+      text-align: center;
+      background: var(--ivory);
+    }
+
+    .location-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .venue-card {
+      margin-top: 31px;
+      padding: 38px 21px;
+      border: 1px solid var(--gold);
+      background: #fffaf0;
+
+      box-shadow:
+        0 16px 38px rgba(80, 66, 31, 0.11);
+    }
+
+    .venue-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 24px;
+    }
+
+    .venue-name {
+      color: var(--forest);
+      font-size: 26px;
+      font-weight: normal;
+    }
+
+    .venue-city {
+      margin-top: 8px;
+      color: #716b5c;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .venue-address {
+      margin-top: 9px;
+      color: #7b725e;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .venue-date {
+      margin-top: 20px;
+      color: #806334;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .map-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 25px;
+
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+
+      background: var(--forest);
+      color: var(--ivory);
+
+      text-decoration: none;
+
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* =====================================
+       SCREEN 6: DUA
+    ====================================== */
+
+    #duaScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 75px 28px;
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(218, 191, 118, 0.12),
+          transparent 40%
+        ),
+        linear-gradient(
+          180deg,
+          #405943,
+          #203729
+        );
+    }
+
+    .dua-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .dua-arabic {
+      color: var(--gold-light);
+      font-size: 28px;
+      line-height: 1.9;
+    }
+
+    .dua-transliteration {
+      margin-top: 20px;
+      color: #f0e5ca;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    .dua-meaning {
+      max-width: 310px;
+      margin: 16px auto 0;
+      color: #cec6b1;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .closing-line {
+      width: 70px;
+      height: 1px;
+      margin: 32px auto;
+      background: var(--gold);
+    }
+
+    .closing-title {
+      color: var(--ivory);
+      font-size: 29px;
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .closing-message {
+      max-width: 310px;
+      margin: 20px auto 0;
+      color: #d5cdb9;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .closing-couple {
+      margin-top: 32px;
+      color: var(--gold-light);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .restart-button {
+      margin-top: 34px;
+      padding: 11px 20px;
+      cursor: pointer;
+
+      border: 1px solid rgba(220, 191, 116, 0.6);
+      border-radius: 25px;
+
+      background: transparent;
+      color: #ddd3ba;
+
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-height: 720px) {
+      #coupleScreen {
+        padding-top: 50px;
+        padding-bottom: 35px;
+      }
+
+      .screen2-bismillah {
+        font-size: 23px;
+      }
+
+      .couple-name {
+        font-size: 42px;
+      }
+
+      #scratchScreen {
+        padding-top: 28px;
+        padding-bottom: 25px;
+      }
+
+      .scratch-info {
+        margin-bottom: 15px;
+      }
+
+      .scratch-card-shell {
+        width: min(270px, 76vw);
+      }
+
+      .square-date-day {
+        font-size: 66px;
+      }
+    }
+
+    @media (min-width: 431px) {
+      #openingScreen {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="locked">
 
-<!-- SCREEN 1: ENVELOPE -->
+  <!-- SCREEN 1 -->
 
-<section id="openingScreen" class="screen">
+  <section id="openingScreen" class="screen">
 
-  <div class="embossed-pattern"></div>
-  <div class="opening-frame"></div>
+    <div class="embossed-pattern"></div>
+    <div class="opening-frame"></div>
 
-  <div class="opening-title">
+    <div class="opening-title">
 
-    <div class="opening-arabic">
-      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-    </div>
-
-    <div class="opening-subtitle">
-      A Celebration of Love &amp; Family
-    </div>
-
-  </div>
-
-  <div class="envelope-stage">
-
-    <div class="envelope-box" id="envelopeBox">
-
-      <div class="envelope-back"></div>
-      <div class="envelope-interior"></div>
-      <div class="envelope-glow"></div>
-
-      <div class="envelope-flap">
-        <div class="flap-front"></div>
-        <div class="flap-back"></div>
+      <div class="opening-arabic">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
 
-      <div class="envelope-front">
-        <div class="front-left"></div>
-        <div class="front-right"></div>
-        <div class="front-bottom"></div>
+      <div class="opening-subtitle">
+        A Celebration of Love &amp; Family
+      </div>
+
+    </div>
+
+    <div class="envelope-stage">
+
+      <div class="envelope-box" id="envelopeBox">
+
+        <div class="envelope-back"></div>
+        <div class="envelope-interior"></div>
+        <div class="envelope-glow"></div>
+
+        <div class="envelope-flap">
+          <div class="flap-front"></div>
+          <div class="flap-back"></div>
+        </div>
+
+        <div class="envelope-front">
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="front-bottom"></div>
+        </div>
+
+        <button
+          type="button"
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Tap to open the wedding invitation"
+        >
+          <span>
+            Tap<br>
+            to<br>
+            Open
+          </span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="opening-flash"></div>
+
+    <div class="opening-sparkles">
+      <span class="spark"></span>
+      <span class="spark"></span>
+      <span class="spark"></span>
+      <span class="spark"></span>
+      <span class="spark"></span>
+    </div>
+
+    <div class="you-are-invited">
+
+      <div class="invited-ornament">
+        ❧
+      </div>
+
+      <div class="invited-text">
+        You Are Invited
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCREEN 2 -->
+
+  <section id="coupleScreen" class="screen">
+
+    <div class="screen2-reading-layer"></div>
+
+    <div class="couple-content">
+
+      <div class="screen2-bismillah">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+      </div>
+
+      <div class="screen2-ornament">
+        ❦
+      </div>
+
+      <div class="family-intro">
+        Together with their families
+      </div>
+
+      <div class="invitation-line">
+        request the honour of your presence
+        at the Nikah celebration
+      </div>
+
+      <h2 class="nikah-title">
+        Nikah
+      </h2>
+
+      <div class="of-text">
+        of their beloved
+      </div>
+
+      <h1 class="couple-name">
+        SAMEENA SULTANA
+      </h1>
+
+      <div class="parent-line">
+        Daughter of<br>
+        Amjad &amp; Begum
+      </div>
+
+      <div class="classic-ampersand">
+        &amp;
+      </div>
+
+      <h1 class="couple-name">
+        Mohammed Faisal Hussain
+      </h1>
+
+      <div class="parent-line">
+        Son of<br>
+        Taher &amp; Begum
+      </div>
+
+      <div class="classic-divider">
+        <span></span>
+      </div>
+
+      <div class="scroll-hint">
+        Scroll to reveal our special day
+      </div>
+
+      <div class="scroll-arrow">
+        ↓
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCREEN 3 -->
+
+  <section id="scratchScreen" class="screen">
+
+    <div
+      class="flower-shower"
+      id="flowerShower"
+      aria-hidden="true"
+    ></div>
+
+    <div class="scratch-content">
+
+      <div class="scratch-intro-ornament">
+        ◇ ❦ ◇
+      </div>
+
+      <div class="section-label">
+        Save the Date
+      </div>
+
+      <h2 class="section-title">
+        Scratch to Reveal
+      </h2>
+
+      <div class="scratch-info">
+        Gently scratch the gold card to reveal
+        the Nikah date and time.
+      </div>
+
+      <div class="scratch-card-shell">
+
+        <div class="scratch-square-area">
+
+          <div class="square-result">
+
+            <div class="result-ornament">
+              ◆
+            </div>
+
+            <div class="reveal-label">
+              Nikah Ceremony
+            </div>
+
+            <div class="square-date-day">
+              24
+            </div>
+
+            <div class="square-date-month">
+              December
+            </div>
+
+            <div class="square-date-year">
+              2026
+            </div>
+
+            <div class="result-divider">
+              <span></span>
+            </div>
+
+            <div class="square-date-time">
+              9:00 PM
+            </div>
+
+          </div>
+
+          <canvas
+            id="scratchCanvas"
+            aria-label="Scratch the luxury gold card to reveal the wedding date"
+          ></canvas>
+
+        </div>
+
+      </div>
+
+      <div
+        class="scratch-status"
+        id="scratchStatus"
+        aria-live="polite"
+      >
+        Start scratching the gold card
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCREEN 4 -->
+
+  <section id="countdownScreen" class="screen">
+
+    <div class="gold-frame"></div>
+
+    <div class="countdown-content">
+
+      <div class="section-label">
+        Save the Date
+      </div>
+
+      <h2 class="countdown-title">
+        Counting Down to Forever
+      </h2>
+
+      <div class="countdown-subtitle">
+        Until our special day
+      </div>
+
+      <div class="countdown-grid">
+
+        <div class="count-box">
+          <span class="count-number" id="days">00</span>
+          <span class="count-label">Days</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="hours">00</span>
+          <span class="count-label">Hours</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="minutes">00</span>
+          <span class="count-label">Minutes</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="seconds">00</span>
+          <span class="count-label">Seconds</span>
+        </div>
+
+      </div>
+
+      <div class="countdown-date">
+        24 December 2026 • 9:00 PM
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCREEN 5 -->
+
+  <section id="locationScreen" class="screen">
+
+    <div class="location-content">
+
+      <div class="section-label">
+        Nikah Ceremony
+      </div>
+
+      <h2 class="section-title">
+        Venue
+      </h2>
+
+      <div class="venue-card">
+
+        <div class="venue-icon">
+          ◉
+        </div>
+
+        <h3 class="venue-name">
+          H-Convention Center
+        </h3>
+
+        <div class="venue-city">
+          Medak
+        </div>
+
+        <div class="venue-address">
+          H-Convention Center, Medak
+        </div>
+
+        <div class="venue-date">
+          24 December 2026<br>
+          9:00 PM
+        </div>
+
+        <a
+          class="map-button"
+          href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          📍 View on Google Maps
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCREEN 6 -->
+
+  <section id="duaScreen" class="screen">
+
+    <div class="gold-frame"></div>
+
+    <div class="dua-content">
+
+      <div class="dua-arabic">
+        بَارَكَ اللَّهُ لَكُمَا<br>
+        وَبَارَكَ عَلَيْكُمَا<br>
+        وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+      </div>
+
+      <div class="dua-transliteration">
+        Barakallahu lakuma wa baraka
+        'alaykuma wa jama'a baynakuma fi khayr
+      </div>
+
+      <div class="dua-meaning">
+        May Allah bless both of you, shower His
+        blessings upon you, and unite you both
+        in goodness.
+      </div>
+
+      <div class="closing-line"></div>
+
+      <h2 class="closing-title">
+        Your presence will make
+        our celebration complete
+      </h2>
+
+      <div class="closing-message">
+        We would be honoured to celebrate this
+        beautiful beginning with you and your family.
+        Your presence and duas are sincerely requested.
+      </div>
+
+      <div class="closing-couple">
+        SAMEENA SULTANA ♥ Mohammed Faisal Hussain
       </div>
 
       <button
         type="button"
-        class="wax-seal"
-        id="waxSeal"
-        aria-label="Tap to open the wedding invitation"
+        class="restart-button"
+        onclick="restartInvitation()"
       >
-        <span>
-          Tap<br>
-          to<br>
-          Open
-        </span>
+        View Again
       </button>
 
     </div>
 
-  </div>
-
-  <div class="opening-flash"></div>
-
-  <div class="opening-sparkles">
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-  </div>
-
-  <div class="you-are-invited">
-
-    <div class="invited-ornament">
-      ❧
-    </div>
-
-    <div class="invited-text">
-      You Are Invited
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 2: COUPLE -->
-
-<section id="coupleScreen" class="screen">
-
-  <div class="screen2-reading-layer"></div>
-
-  <div class="couple-content">
-
-    <div class="screen2-bismillah">
-      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-    </div>
-
-    <div class="screen2-ornament">
-      ❦
-    </div>
-
-    <div class="family-intro">
-      Together with their families
-    </div>
-
-    <div class="invitation-line">
-      request the honour of your presence
-      at the Nikah celebration
-    </div>
-
-    <h2 class="nikah-title">
-      Nikah
-    </h2>
-
-    <div class="of-text">
-      of their beloved
-    </div>
-
-    <h1 class="couple-name">
-      Tabu
-    </h1>
-
-    <div class="parent-line">
-      Daughter of<br>
-      Amjad &amp; Begum
-    </div>
-
-    <div class="classic-ampersand">
-      &amp;
-    </div>
-
-    <h1 class="couple-name">
-      Faizal
-    </h1>
-
-    <div class="parent-line">
-      Son of<br>
-      Taher &amp; Begum
-    </div>
-
-    <div class="classic-divider">
-      <span></span>
-    </div>
-
-    <div class="scroll-hint">
-      Scroll to reveal our special day
-    </div>
-
-    <div class="scroll-arrow">
-      ↓
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 3: SQUARE SCRATCH DATE -->
-
-<section id="scratchScreen" class="screen">
-
-  <div
-    class="flower-shower"
-    id="flowerShower"
-    aria-hidden="true"
-  ></div>
-
-  <div class="scratch-content">
-
-    <div class="section-label">
-      Save the Date
-    </div>
-
-    <h2 class="section-title">
-      Scratch to Reveal
-    </h2>
-
-    <div class="scratch-info">
-      Gently scratch the card with your finger
-      to reveal the Nikah date and time.
-    </div>
-
-    <div class="scratch-square-area">
-
-      <div class="square-result">
-
-        <div class="reveal-label">
-          Nikah Ceremony
-        </div>
-
-        <div class="square-date-day">
-          24
-        </div>
-
-        <div class="square-date-month">
-          December
-        </div>
-
-        <div class="square-date-year">
-          2026
-        </div>
-
-        <div class="square-date-time">
-          9:00 PM
-        </div>
-
-      </div>
-
-      <canvas
-        id="scratchCanvas"
-        aria-label="Scratch the square card to reveal the wedding date"
-      ></canvas>
-
-    </div>
-
-    <div
-      class="scratch-status"
-      id="scratchStatus"
-      aria-live="polite"
-    >
-      Start scratching the card
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 4: COUNTDOWN -->
-
-<section id="countdownScreen" class="screen">
-
-  <div class="gold-frame"></div>
-
-  <div class="countdown-content">
-
-    <div class="section-label">
-      Save the Date
-    </div>
-
-    <h2 class="countdown-title">
-      Counting Down to Forever
-    </h2>
-
-    <div class="countdown-subtitle">
-      Until our special day
-    </div>
-
-    <div class="countdown-grid">
-
-      <div class="count-box">
-        <span class="count-number" id="days">00</span>
-        <span class="count-label">Days</span>
-      </div>
-
-      <div class="count-box">
-        <span class="count-number" id="hours">00</span>
-        <span class="count-label">Hours</span>
-      </div>
-
-      <div class="count-box">
-        <span class="count-number" id="minutes">00</span>
-        <span class="count-label">Minutes</span>
-      </div>
-
-      <div class="count-box">
-        <span class="count-number" id="seconds">00</span>
-        <span class="count-label">Seconds</span>
-      </div>
-
-    </div>
-
-    <div class="countdown-date">
-      24 December 2026 • 9:00 PM
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 5: LOCATION -->
-
-<section id="locationScreen" class="screen">
-
-  <div class="location-content">
-
-    <div class="section-label">
-      Nikah Ceremony
-    </div>
-
-    <h2 class="section-title">
-      Venue
-    </h2>
-
-    <div class="venue-card">
-
-      <div class="venue-icon">
-        ◉
-      </div>
-
-      <h3 class="venue-name">
-        H-Convention Center
-      </h3>
-
-      <div class="venue-city">
-        Medak
-      </div>
-
-      <div class="venue-address">
-        H-Convention Center, Medak
-      </div>
-
-      <div class="venue-date">
-        24 December 2026<br>
-        9:00 PM
-      </div>
-
-      <a
-        class="map-button"
-        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        📍 View on Google Maps
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SCREEN 6: DUA -->
-
-<section id="duaScreen" class="screen">
-
-  <div class="gold-frame"></div>
-
-  <div class="dua-content">
-
-    <div class="dua-arabic">
-      بَارَكَ اللَّهُ لَكُمَا<br>
-      وَبَارَكَ عَلَيْكُمَا<br>
-      وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
-    </div>
-
-    <div class="dua-transliteration">
-      Barakallahu lakuma wa baraka
-      'alaykuma wa jama'a baynakuma fi khayr
-    </div>
-
-    <div class="dua-meaning">
-      May Allah bless both of you, shower His
-      blessings upon you, and unite you both
-      in goodness.
-    </div>
-
-    <div class="closing-line"></div>
-
-    <h2 class="closing-title">
-      Your presence will make
-      our celebration complete
-    </h2>
-
-    <div class="closing-message">
-      We would be honoured to celebrate this
-      beautiful beginning with you and your family.
-      Your presence and duas are sincerely requested.
-    </div>
-
-    <div class="closing-couple">
-      Tabu ♥ Faizal
-    </div>
-
-    <button
-      type="button"
-      class="restart-button"
-      onclick="restartInvitation()"
-    >
-      View Again
-    </button>
-
-  </div>
-
-</section>
-
-<script>
-/* =====================================
-   ENVELOPE OPENING
-===================================== */
-
-const openingScreen =
-  document.getElementById("openingScreen");
-
-const envelopeBox =
-  document.getElementById("envelopeBox");
-
-const waxSeal =
-  document.getElementById("waxSeal");
-
-let invitationOpened = false;
-
-waxSeal.addEventListener(
-  "click",
-  function () {
-    if (invitationOpened) {
-      return;
+  </section>
+
+  <script>
+    /* =====================================
+       ENVELOPE
+    ====================================== */
+
+    const openingScreen =
+      document.getElementById("openingScreen");
+
+    const envelopeBox =
+      document.getElementById("envelopeBox");
+
+    const waxSeal =
+      document.getElementById("waxSeal");
+
+    let invitationOpened = false;
+
+    waxSeal.addEventListener(
+      "click",
+      function () {
+        if (invitationOpened) {
+          return;
+        }
+
+        invitationOpened = true;
+
+        openingScreen.classList.add(
+          "opening-active"
+        );
+
+        envelopeBox.classList.add(
+          "opening-active"
+        );
+
+        setTimeout(function () {
+          openingScreen.classList.add(
+            "finished"
+          );
+        }, 1750);
+
+        setTimeout(function () {
+          openingScreen.style.display =
+            "none";
+
+          document.body.classList.remove(
+            "locked"
+          );
+
+          document.body.classList.add(
+            "reveal-couple"
+          );
+
+          window.scrollTo({
+            top: 0,
+            behavior: "auto"
+          });
+        }, 2400);
+      }
+    );
+
+    /* =====================================
+       SCRATCH CARD
+    ====================================== */
+
+    const scratchCanvas =
+      document.getElementById("scratchCanvas");
+
+    const scratchContext =
+      scratchCanvas.getContext(
+        "2d",
+        {
+          willReadFrequently: true
+        }
+      );
+
+    const scratchArea =
+      document.querySelector(
+        ".scratch-square-area"
+      );
+
+    const scratchStatus =
+      document.getElementById(
+        "scratchStatus"
+      );
+
+    const flowerShower =
+      document.getElementById(
+        "flowerShower"
+      );
+
+    let scratching = false;
+    let scratchComplete = false;
+    let lastX = 0;
+    let lastY = 0;
+    let scratchCounter = 0;
+
+    function setupScratchCanvas() {
+      const rectangle =
+        scratchArea.getBoundingClientRect();
+
+      const scale =
+        Math.max(
+          1,
+          window.devicePixelRatio || 1
+        );
+
+      scratchCanvas.width =
+        Math.round(
+          rectangle.width * scale
+        );
+
+      scratchCanvas.height =
+        Math.round(
+          rectangle.height * scale
+        );
+
+      scratchCanvas.style.width =
+        rectangle.width + "px";
+
+      scratchCanvas.style.height =
+        rectangle.height + "px";
+
+      scratchContext.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        0,
+        0
+      );
+
+      drawLuxuryScratchCover(
+        rectangle.width,
+        rectangle.height
+      );
     }
 
-    invitationOpened = true;
+    function drawLuxuryScratchCover(
+      width,
+      height
+    ) {
+      scratchContext.globalCompositeOperation =
+        "source-over";
 
-    openingScreen.classList.add(
-      "opening-active"
-    );
-
-    envelopeBox.classList.add(
-      "opening-active"
-    );
-
-    setTimeout(function () {
-      openingScreen.classList.add(
-        "finished"
+      scratchContext.clearRect(
+        0,
+        0,
+        width,
+        height
       );
-    }, 1750);
 
-    setTimeout(function () {
+      const coating =
+        scratchContext.createLinearGradient(
+          0,
+          0,
+          width,
+          height
+        );
+
+      coating.addColorStop(
+        0,
+        "#7f591f"
+      );
+
+      coating.addColorStop(
+        0.2,
+        "#d7b25c"
+      );
+
+      coating.addColorStop(
+        0.47,
+        "#9d712d"
+      );
+
+      coating.addColorStop(
+        0.7,
+        "#edcf82"
+      );
+
+      coating.addColorStop(
+        1,
+        "#7a541c"
+      );
+
+      scratchContext.fillStyle =
+        coating;
+
+      scratchContext.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      const glow =
+        scratchContext.createRadialGradient(
+          width * 0.4,
+          height * 0.3,
+          10,
+          width * 0.5,
+          height * 0.5,
+          width * 0.65
+        );
+
+      glow.addColorStop(
+        0,
+        "rgba(255,243,191,0.42)"
+      );
+
+      glow.addColorStop(
+        0.48,
+        "rgba(255,225,147,0.13)"
+      );
+
+      glow.addColorStop(
+        1,
+        "rgba(75,42,6,0.28)"
+      );
+
+      scratchContext.fillStyle =
+        glow;
+
+      scratchContext.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      for (
+        let index = 0;
+        index < 320;
+        index++
+      ) {
+        const x =
+          Math.random() * width;
+
+        const y =
+          Math.random() * height;
+
+        const size =
+          Math.random() * 2.2 + 0.4;
+
+        scratchContext.beginPath();
+
+        scratchContext.arc(
+          x,
+          y,
+          size,
+          0,
+          Math.PI * 2
+        );
+
+        scratchContext.fillStyle =
+          "rgba(255,239,181," +
+          (Math.random() * 0.54 + 0.12) +
+          ")";
+
+        scratchContext.fill();
+      }
+
+      scratchContext.strokeStyle =
+        "rgba(255,239,187,0.72)";
+
+      scratchContext.lineWidth = 1.5;
+
+      scratchContext.strokeRect(
+        9,
+        9,
+        width - 18,
+        height - 18
+      );
+
+      scratchContext.strokeStyle =
+        "rgba(103,65,13,0.65)";
+
+      scratchContext.strokeRect(
+        14,
+        14,
+        width - 28,
+        height - 28
+      );
+
+      scratchContext.fillStyle =
+        "rgba(255,248,221,0.97)";
+
+      scratchContext.textAlign =
+        "center";
+
+      scratchContext.textBaseline =
+        "middle";
+
+      scratchContext.font =
+        "18px Georgia, serif";
+
+      scratchContext.fillText(
+        "◇  ❦  ◇",
+        width / 2,
+        height / 2 - 60
+      );
+
+      scratchContext.font =
+        "italic 29px Georgia, serif";
+
+      scratchContext.fillText(
+        "Scratch Here",
+        width / 2,
+        height / 2 - 12
+      );
+
+      scratchContext.font =
+        "9px Arial, sans-serif";
+
+      scratchContext.fillText(
+        "GENTLY RUB WITH YOUR FINGER",
+        width / 2,
+        height / 2 + 30
+      );
+    }
+
+    function pointerPosition(event) {
+      const rectangle =
+        scratchCanvas.getBoundingClientRect();
+
+      let clientX;
+      let clientY;
+
+      if (
+        event.touches &&
+        event.touches[0]
+      ) {
+        clientX =
+          event.touches[0].clientX;
+
+        clientY =
+          event.touches[0].clientY;
+      } else {
+        clientX =
+          event.clientX;
+
+        clientY =
+          event.clientY;
+      }
+
+      return {
+        x: clientX - rectangle.left,
+        y: clientY - rectangle.top
+      };
+    }
+
+    function beginScratch(event) {
+      if (scratchComplete) {
+        return;
+      }
+
+      event.preventDefault();
+
+      scratching = true;
+
+      const point =
+        pointerPosition(event);
+
+      lastX = point.x;
+      lastY = point.y;
+
+      eraseScratch(
+        point.x,
+        point.y
+      );
+    }
+
+    function moveScratch(event) {
+      if (
+        !scratching ||
+        scratchComplete
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const point =
+        pointerPosition(event);
+
+      scratchContext.globalCompositeOperation =
+        "destination-out";
+
+      scratchContext.lineWidth = 42;
+      scratchContext.lineCap = "round";
+      scratchContext.lineJoin = "round";
+
+      scratchContext.beginPath();
+
+      scratchContext.moveTo(
+        lastX,
+        lastY
+      );
+
+      scratchContext.lineTo(
+        point.x,
+        point.y
+      );
+
+      scratchContext.stroke();
+
+      eraseScratch(
+        point.x,
+        point.y
+      );
+
+      lastX = point.x;
+      lastY = point.y;
+
+      scratchCounter += 1;
+
+      if (
+        scratchCounter >= 10
+      ) {
+        scratchCounter = 0;
+        checkScratchAmount();
+      }
+    }
+
+    function stopScratch() {
+      if (!scratching) {
+        return;
+      }
+
+      scratching = false;
+      checkScratchAmount();
+    }
+
+    function eraseScratch(x, y) {
+      scratchContext.globalCompositeOperation =
+        "destination-out";
+
+      scratchContext.beginPath();
+
+      scratchContext.arc(
+        x,
+        y,
+        24,
+        0,
+        Math.PI * 2
+      );
+
+      scratchContext.fill();
+    }
+
+    function checkScratchAmount() {
+      if (scratchComplete) {
+        return;
+      }
+
+      const imageData =
+        scratchContext.getImageData(
+          0,
+          0,
+          scratchCanvas.width,
+          scratchCanvas.height
+        ).data;
+
+      let transparent = 0;
+      let checked = 0;
+
+      for (
+        let index = 3;
+        index < imageData.length;
+        index += 64
+      ) {
+        checked += 1;
+
+        if (
+          imageData[index] < 40
+        ) {
+          transparent += 1;
+        }
+      }
+
+      const percentage =
+        Math.round(
+          transparent /
+          checked *
+          100
+        );
+
+      if (
+        percentage < 55
+      ) {
+        scratchStatus.textContent =
+          percentage +
+          "% revealed - keep scratching";
+      }
+
+      if (
+        percentage >= 55
+      ) {
+        completeScratch();
+      }
+    }
+
+    function completeScratch() {
+      if (scratchComplete) {
+        return;
+      }
+
+      scratchComplete = true;
+      scratching = false;
+
+      scratchCanvas.classList.add(
+        "cleared"
+      );
+
+      scratchStatus.textContent =
+        "The special date has been revealed ✨";
+
+      startFlowerShower();
+    }
+
+    /* =====================================
+       FLOWER SHOWER
+    ====================================== */
+
+    function startFlowerShower() {
+      flowerShower.innerHTML = "";
+
+      const colors = [
+        "#fffaf0",
+        "#f3e5c4",
+        "#e8c978",
+        "#d6ac52",
+        "#f8efd9"
+      ];
+
+      const totalPieces = 38;
+
+      for (
+        let index = 0;
+        index < totalPieces;
+        index++
+      ) {
+        const piece =
+          document.createElement("span");
+
+        const typeValue =
+          Math.random();
+
+        piece.className =
+          "falling-piece";
+
+        if (
+          typeValue > 0.72
+        ) {
+          piece.classList.add(
+            "flower"
+          );
+        } else if (
+          typeValue > 0.56
+        ) {
+          piece.classList.add(
+            "leaf"
+          );
+        } else {
+          piece.classList.add(
+            "petal"
+          );
+        }
+
+        const left =
+          Math.random() * 100;
+
+        const size =
+          10 + Math.random() * 17;
+
+        const duration =
+          2.8 + Math.random() * 2.5;
+
+        const delay =
+          Math.random() * 1.25;
+
+        const drift =
+          -60 + Math.random() * 120;
+
+        const color =
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ];
+
+        piece.style.setProperty(
+          "--left",
+          left + "%"
+        );
+
+        piece.style.setProperty(
+          "--size",
+          size + "px"
+        );
+
+        piece.style.setProperty(
+          "--duration",
+          duration + "s"
+        );
+
+        piece.style.setProperty(
+          "--delay",
+          delay + "s"
+        );
+
+        piece.style.setProperty(
+          "--drift",
+          drift + "px"
+        );
+
+        piece.style.setProperty(
+          "--piece-color",
+          color
+        );
+
+        flowerShower.appendChild(
+          piece
+        );
+      }
+
+      setTimeout(function () {
+        flowerShower.innerHTML =
+          "";
+      }, 6500);
+    }
+
+    scratchCanvas.addEventListener(
+      "mousedown",
+      beginScratch
+    );
+
+    scratchCanvas.addEventListener(
+      "mousemove",
+      moveScratch
+    );
+
+    window.addEventListener(
+      "mouseup",
+      stopScratch
+    );
+
+    window.addEventListener(
+      "mouseleave",
+      stopScratch
+    );
+
+    scratchCanvas.addEventListener(
+      "touchstart",
+      beginScratch,
+      {
+        passive: false
+      }
+    );
+
+    scratchCanvas.addEventListener(
+      "touchmove",
+      moveScratch,
+      {
+        passive: false
+      }
+    );
+
+    scratchCanvas.addEventListener(
+      "touchend",
+      stopScratch
+    );
+
+    scratchCanvas.addEventListener(
+      "touchcancel",
+      stopScratch
+    );
+
+    /* =====================================
+       COUNTDOWN
+    ====================================== */
+
+    const weddingDate =
+      new Date(
+        "2026-12-24T21:00:00+05:30"
+      ).getTime();
+
+    function updateCountdown() {
+      const now =
+        new Date().getTime();
+
+      const distance =
+        weddingDate - now;
+
+      if (
+        distance <= 0
+      ) {
+        document.getElementById("days")
+          .textContent = "00";
+
+        document.getElementById("hours")
+          .textContent = "00";
+
+        document.getElementById("minutes")
+          .textContent = "00";
+
+        document.getElementById("seconds")
+          .textContent = "00";
+
+        return;
+      }
+
+      const days =
+        Math.floor(
+          distance /
+          (1000 * 60 * 60 * 24)
+        );
+
+      const hours =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60 * 60 * 24)
+          ) /
+          (1000 * 60 * 60)
+        );
+
+      const minutes =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60 * 60)
+          ) /
+          (1000 * 60)
+        );
+
+      const seconds =
+        Math.floor(
+          (
+            distance %
+            (1000 * 60)
+          ) /
+          1000
+        );
+
+      document.getElementById("days")
+        .textContent =
+        String(days).padStart(
+          2,
+          "0"
+        );
+
+      document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(
+          2,
+          "0"
+        );
+
+      document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(
+          2,
+          "0"
+        );
+
+      document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(
+          2,
+          "0"
+        );
+    }
+
+    updateCountdown();
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
+    /* =====================================
+       RESTART
+    ====================================== */
+
+    function restartInvitation() {
+      invitationOpened = false;
+
       openingScreen.style.display =
-        "none";
+        "block";
+
+      openingScreen.classList.remove(
+        "finished",
+        "opening-active"
+      );
+
+      envelopeBox.classList.remove(
+        "opening-active"
+      );
 
       document.body.classList.remove(
-        "locked"
+        "reveal-couple"
       );
 
       document.body.classList.add(
-        "reveal-couple"
+        "locked"
       );
 
       window.scrollTo({
         top: 0,
         behavior: "auto"
       });
-    }, 2400);
-  }
-);
 
+      scratchComplete = false;
+      scratching = false;
+      scratchCounter = 0;
 
-/* =====================================
-   SQUARE SCRATCH CARD
-===================================== */
-
-const scratchCanvas =
-  document.getElementById("scratchCanvas");
-
-const scratchContext =
-  scratchCanvas.getContext(
-    "2d",
-    {
-      willReadFrequently: true
-    }
-  );
-
-const scratchArea =
-  document.querySelector(".scratch-square-area");
-
-const scratchStatus =
-  document.getElementById("scratchStatus");
-
-const flowerShower =
-  document.getElementById("flowerShower");
-
-let scratching = false;
-let scratchComplete = false;
-let lastX = 0;
-let lastY = 0;
-let scratchCounter = 0;
-
-
-function setupScratchCanvas() {
-  const rectangle =
-    scratchArea.getBoundingClientRect();
-
-  const scale =
-    Math.max(
-      1,
-      window.devicePixelRatio || 1
-    );
-
-  scratchCanvas.width =
-    Math.round(rectangle.width * scale);
-
-  scratchCanvas.height =
-    Math.round(rectangle.height * scale);
-
-  scratchCanvas.style.width =
-    rectangle.width + "px";
-
-  scratchCanvas.style.height =
-    rectangle.height + "px";
-
-  scratchContext.setTransform(
-    scale,
-    0,
-    0,
-    scale,
-    0,
-    0
-  );
-
-  drawScratchCover(
-    rectangle.width,
-    rectangle.height
-  );
-}
-
-
-function drawScratchCover(width, height) {
-  scratchContext.globalCompositeOperation =
-    "source-over";
-
-  scratchContext.clearRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-  const gradient =
-    scratchContext.createLinearGradient(
-      0,
-      0,
-      width,
-      height
-    );
-
-  gradient.addColorStop(
-    0,
-    "#8b9982"
-  );
-
-  gradient.addColorStop(
-    0.48,
-    "#63765e"
-  );
-
-  gradient.addColorStop(
-    1,
-    "#3b5140"
-  );
-
-  scratchContext.fillStyle =
-    gradient;
-
-  scratchContext.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-  scratchContext.save();
-
-  for (
-    let i = 0;
-    i < 300;
-    i++
-  ) {
-    const x =
-      Math.random() * width;
-
-    const y =
-      Math.random() * height;
-
-    const size =
-      Math.random() * 2.4 + 0.5;
-
-    scratchContext.beginPath();
-
-    scratchContext.arc(
-      x,
-      y,
-      size,
-      0,
-      Math.PI * 2
-    );
-
-    scratchContext.fillStyle =
-      "rgba(236,208,135," +
-      (Math.random() * 0.55 + 0.15) +
-      ")";
-
-    scratchContext.fill();
-  }
-
-  scratchContext.restore();
-
-  scratchContext.strokeStyle =
-    "rgba(236,208,135,0.42)";
-
-  scratchContext.lineWidth = 2;
-
-  scratchContext.strokeRect(
-    8,
-    8,
-    width - 16,
-    height - 16
-  );
-
-  scratchContext.fillStyle =
-    "rgba(255,245,219,0.97)";
-
-  scratchContext.textAlign =
-    "center";
-
-  scratchContext.textBaseline =
-    "middle";
-
-  scratchContext.font =
-    "italic 29px Georgia, serif";
-
-  scratchContext.fillText(
-    "Scratch Here",
-    width / 2,
-    height / 2 - 12
-  );
-
-  scratchContext.font =
-    "9px Arial, sans-serif";
-
-  scratchContext.fillText(
-    "GENTLY RUB WITH YOUR FINGER",
-    width / 2,
-    height / 2 + 28
-  );
-}
-
-
-function pointerPosition(event) {
-  const rectangle =
-    scratchCanvas.getBoundingClientRect();
-
-  let clientX;
-  let clientY;
-
-  if (
-    event.touches &&
-    event.touches[0]
-  ) {
-    clientX =
-      event.touches[0].clientX;
-
-    clientY =
-      event.touches[0].clientY;
-  } else {
-    clientX =
-      event.clientX;
-
-    clientY =
-      event.clientY;
-  }
-
-  return {
-    x: clientX - rectangle.left,
-    y: clientY - rectangle.top
-  };
-}
-
-
-function beginScratch(event) {
-  if (scratchComplete) {
-    return;
-  }
-
-  event.preventDefault();
-
-  scratching = true;
-
-  const point =
-    pointerPosition(event);
-
-  lastX = point.x;
-  lastY = point.y;
-
-  eraseScratch(
-    point.x,
-    point.y
-  );
-}
-
-
-function moveScratch(event) {
-  if (
-    !scratching ||
-    scratchComplete
-  ) {
-    return;
-  }
-
-  event.preventDefault();
-
-  const point =
-    pointerPosition(event);
-
-  scratchContext.globalCompositeOperation =
-    "destination-out";
-
-  scratchContext.lineWidth = 42;
-  scratchContext.lineCap = "round";
-  scratchContext.lineJoin = "round";
-
-  scratchContext.beginPath();
-
-  scratchContext.moveTo(
-    lastX,
-    lastY
-  );
-
-  scratchContext.lineTo(
-    point.x,
-    point.y
-  );
-
-  scratchContext.stroke();
-
-  eraseScratch(
-    point.x,
-    point.y
-  );
-
-  lastX = point.x;
-  lastY = point.y;
-
-  scratchCounter += 1;
-
-  if (
-    scratchCounter >= 10
-  ) {
-    scratchCounter = 0;
-    checkScratchAmount();
-  }
-}
-
-
-function stopScratch() {
-  if (!scratching) {
-    return;
-  }
-
-  scratching = false;
-
-  checkScratchAmount();
-}
-
-
-function eraseScratch(x, y) {
-  scratchContext.globalCompositeOperation =
-    "destination-out";
-
-  scratchContext.beginPath();
-
-  scratchContext.arc(
-    x,
-    y,
-    24,
-    0,
-    Math.PI * 2
-  );
-
-  scratchContext.fill();
-}
-
-
-function checkScratchAmount() {
-  if (scratchComplete) {
-    return;
-  }
-
-  const imageData =
-    scratchContext.getImageData(
-      0,
-      0,
-      scratchCanvas.width,
-      scratchCanvas.height
-    ).data;
-
-  let transparent = 0;
-  let checked = 0;
-
-  for (
-    let index = 3;
-    index < imageData.length;
-    index += 64
-  ) {
-    checked += 1;
-
-    if (
-      imageData[index] < 40
-    ) {
-      transparent += 1;
-    }
-  }
-
-  const percentage =
-    Math.round(
-      transparent /
-      checked *
-      100
-    );
-
-  if (
-    percentage < 55
-  ) {
-    scratchStatus.textContent =
-      percentage +
-      "% revealed - keep scratching";
-  }
-
-  if (
-    percentage >= 55
-  ) {
-    completeScratch();
-  }
-}
-
-
-function completeScratch() {
-  if (scratchComplete) {
-    return;
-  }
-
-  scratchComplete = true;
-  scratching = false;
-
-  scratchCanvas.classList.add(
-    "cleared"
-  );
-
-  scratchStatus.textContent =
-    "The special date has been revealed ✨";
-
-  startFlowerShower();
-}
-
-
-/* =====================================
-   FLOWER SHOWER
-===================================== */
-
-function startFlowerShower() {
-  flowerShower.innerHTML = "";
-
-  const petalColors = [
-    "#fff8e6",
-    "#f2dfbd",
-    "#e7c982",
-    "#d7b55f",
-    "#f8edd2"
-  ];
-
-  const flowerCount = 34;
-
-  for (
-    let index = 0;
-    index < flowerCount;
-    index++
-  ) {
-    const flower =
-      document.createElement("span");
-
-    const randomType =
-      Math.random();
-
-    flower.className =
-      "falling-flower";
-
-    if (
-      randomType > 0.73
-    ) {
-      flower.classList.add(
-        "blossom"
+      scratchCanvas.classList.remove(
+        "cleared"
       );
-    } else if (
-      randomType > 0.56
-    ) {
-      flower.classList.add(
-        "leaf"
-      );
-    }
 
-    const left =
-      Math.random() * 100;
+      scratchStatus.textContent =
+        "Start scratching the gold card";
 
-    const size =
-      10 + Math.random() * 17;
+      flowerShower.innerHTML = "";
 
-    const duration =
-      2.7 + Math.random() * 2.3;
-
-    const delay =
-      Math.random() * 1.2;
-
-    const drift =
-      -55 + Math.random() * 110;
-
-    const color =
-      petalColors[
-        Math.floor(
-          Math.random() *
-          petalColors.length
-        )
-      ];
-
-    flower.style.setProperty(
-      "--left",
-      left + "%"
-    );
-
-    flower.style.setProperty(
-      "--size",
-      size + "px"
-    );
-
-    flower.style.setProperty(
-      "--duration",
-      duration + "s"
-    );
-
-    flower.style.setProperty(
-      "--delay",
-      delay + "s"
-    );
-
-    flower.style.setProperty(
-      "--drift",
-      drift + "px"
-    );
-
-    flower.style.setProperty(
-      "--petal-color",
-      color
-    );
-
-    flowerShower.appendChild(
-      flower
-    );
-  }
-
-  setTimeout(function () {
-    flowerShower.innerHTML = "";
-  }, 6200);
-}
-
-
-scratchCanvas.addEventListener(
-  "mousedown",
-  beginScratch
-);
-
-scratchCanvas.addEventListener(
-  "mousemove",
-  moveScratch
-);
-
-window.addEventListener(
-  "mouseup",
-  stopScratch
-);
-
-window.addEventListener(
-  "mouseleave",
-  stopScratch
-);
-
-scratchCanvas.addEventListener(
-  "touchstart",
-  beginScratch,
-  {
-    passive: false
-  }
-);
-
-scratchCanvas.addEventListener(
-  "touchmove",
-  moveScratch,
-  {
-    passive: false
-  }
-);
-
-scratchCanvas.addEventListener(
-  "touchend",
-  stopScratch
-);
-
-scratchCanvas.addEventListener(
-  "touchcancel",
-  stopScratch
-);
-
-
-/* =====================================
-   COUNTDOWN
-===================================== */
-
-const weddingDate =
-  new Date(
-    "2026-12-24T21:00:00+05:30"
-  ).getTime();
-
-
-function updateCountdown() {
-  const now =
-    new Date().getTime();
-
-  const distance =
-    weddingDate - now;
-
-  if (
-    distance <= 0
-  ) {
-    document.getElementById("days")
-      .textContent = "00";
-
-    document.getElementById("hours")
-      .textContent = "00";
-
-    document.getElementById("minutes")
-      .textContent = "00";
-
-    document.getElementById("seconds")
-      .textContent = "00";
-
-    return;
-  }
-
-  const days =
-    Math.floor(
-      distance /
-      (1000 * 60 * 60 * 24)
-    );
-
-  const hours =
-    Math.floor(
-      (
-        distance %
-        (1000 * 60 * 60 * 24)
-      ) /
-      (1000 * 60 * 60)
-    );
-
-  const minutes =
-    Math.floor(
-      (
-        distance %
-        (1000 * 60 * 60)
-      ) /
-      (1000 * 60)
-    );
-
-  const seconds =
-    Math.floor(
-      (
-        distance %
-        (1000 * 60)
-      ) /
-      1000
-    );
-
-  document.getElementById("days")
-    .textContent =
-    String(days).padStart(
-      2,
-      "0"
-    );
-
-  document.getElementById("hours")
-    .textContent =
-    String(hours).padStart(
-      2,
-      "0"
-    );
-
-  document.getElementById("minutes")
-    .textContent =
-    String(minutes).padStart(
-      2,
-      "0"
-    );
-
-  document.getElementById("seconds")
-    .textContent =
-    String(seconds).padStart(
-      2,
-      "0"
-    );
-}
-
-
-updateCountdown();
-
-setInterval(
-  updateCountdown,
-  1000
-);
-
-
-/* =====================================
-   RESTART
-===================================== */
-
-function restartInvitation() {
-  invitationOpened = false;
-
-  openingScreen.style.display =
-    "block";
-
-  openingScreen.classList.remove(
-    "finished",
-    "opening-active"
-  );
-
-  envelopeBox.classList.remove(
-    "opening-active"
-  );
-
-  document.body.classList.remove(
-    "reveal-couple"
-  );
-
-  document.body.classList.add(
-    "locked"
-  );
-
-  window.scrollTo({
-    top: 0,
-    behavior: "auto"
-  });
-
-  scratchComplete = false;
-  scratching = false;
-  scratchCounter = 0;
-
-  scratchCanvas.classList.remove(
-    "cleared"
-  );
-
-  scratchStatus.textContent =
-    "Start scratching the card";
-
-  flowerShower.innerHTML = "";
-
-  setupScratchCanvas();
-}
-
-
-window.addEventListener(
-  "load",
-  setupScratchCanvas
-);
-
-window.addEventListener(
-  "resize",
-  function () {
-    if (
-      !scratchComplete
-    ) {
       setupScratchCanvas();
     }
-  }
-);
-</script>
+
+    window.addEventListener(
+      "load",
+      setupScratchCanvas
+    );
+
+    window.addEventListener(
+      "resize",
+      function () {
+        if (
+          !scratchComplete
+        ) {
+          setupScratchCanvas();
+        }
+      }
+    );
+  </script>
 
 </body>
 </html>
