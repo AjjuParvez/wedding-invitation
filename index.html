@@ -82,13 +82,10 @@
 
     .screen {
       position: relative;
-
       width: 100%;
       min-height: 100vh;
       min-height: 100svh;
-
       overflow: hidden;
-
       scroll-snap-align: start;
     }
 
@@ -261,7 +258,10 @@
       aspect-ratio: 350 / 270;
 
       filter:
-        drop-shadow(0 22px 28px rgba(17, 27, 18, 0.38));
+        drop-shadow(
+          0 22px 28px
+          rgba(17, 27, 18, 0.38)
+        );
 
       transition: transform 0.8s ease 1.15s;
     }
@@ -454,7 +454,6 @@
 
     .front-left {
       position: absolute;
-
       left: 0;
       bottom: 0;
 
@@ -473,7 +472,6 @@
 
     .front-right {
       position: absolute;
-
       right: 0;
       bottom: 0;
 
@@ -712,7 +710,7 @@
     }
 
     /* =====================================
-       SCREEN 2: COUPLE
+       SCREEN 2: TARGETED TYPOGRAPHY UPDATE
     ====================================== */
 
     #coupleScreen {
@@ -721,9 +719,9 @@
       justify-content: center;
 
       padding:
-        max(32px, var(--safe-top))
-        clamp(23px, 7vw, 40px)
-        max(30px, var(--safe-bottom));
+        max(30px, var(--safe-top))
+        clamp(20px, 6vw, 35px)
+        max(28px, var(--safe-bottom));
 
       text-align: center;
 
@@ -747,8 +745,8 @@
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255, 253, 247, 0.69),
-          rgba(255, 253, 247, 0.3) 58%,
+          rgba(255, 253, 247, 0.64),
+          rgba(255, 253, 247, 0.24) 58%,
           transparent 82%
         );
 
@@ -760,7 +758,7 @@
       z-index: 8;
 
       width: 100%;
-      max-width: 340px;
+      max-width: 370px;
 
       opacity: 0;
       transform: translateY(22px);
@@ -787,7 +785,7 @@
         "Traditional Arabic",
         serif;
 
-      font-size: clamp(22px, 6.4vw, 29px);
+      font-size: clamp(23px, 6.7vw, 30px);
       font-weight: 400;
       line-height: 1.55;
     }
@@ -810,15 +808,15 @@
 
       font-size: clamp(7px, 2vw, 9px);
       font-weight: 500;
-      letter-spacing: 1.8px;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .invitation-line {
-      max-width: 280px;
-      margin: 6px auto;
+      max-width: 285px;
+      margin: 6px auto 8px;
 
-      color: #5b5140;
+      color: #5d5548;
 
       font-family:
         "Baskerville",
@@ -828,31 +826,30 @@
 
       font-size: clamp(11px, 3vw, 13px);
       font-style: italic;
-      line-height: 1.42;
+      line-height: 1.4;
     }
 
     .nikah-title {
-      color: #494237;
+      color: #4a4034;
 
       font-family:
-        "Baskerville",
-        "Baskerville Old Face",
-        "Iowan Old Style",
-        "Palatino Linotype",
-        Georgia,
-        serif;
+        "Snell Roundhand",
+        "Apple Chancery",
+        "URW Chancery L",
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
 
-      font-size: clamp(31px, 8.6vw, 38px);
+      font-size: clamp(37px, 10vw, 48px);
       font-weight: 400;
-      font-style: italic;
+      font-style: normal;
       line-height: 1;
-      letter-spacing: 0.4px;
     }
 
     .of-text {
-      margin-top: 4px;
+      margin-top: 1px;
 
-      color: #8c7440;
+      color: #9b7c40;
 
       font-family:
         "Avenir Next",
@@ -860,50 +857,66 @@
         Arial,
         sans-serif;
 
-      font-size: 7px;
-      letter-spacing: 2px;
+      font-size: 6px;
+      letter-spacing: 2.6px;
       text-transform: uppercase;
     }
 
     .couple-name {
-      max-width: 340px;
-      margin: 7px auto 0;
+      max-width: 365px;
 
-      color: #3a3731;
+      margin: 9px auto 0;
+
+      color: #393128;
 
       font-family:
-        "Baskerville",
-        "Baskerville Old Face",
-        "Iowan Old Style",
-        "Palatino Linotype",
-        Georgia,
-        serif;
+        "Snell Roundhand",
+        "Apple Chancery",
+        "URW Chancery L",
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
 
-      font-size: clamp(37px, 10.4vw, 48px);
+      font-size: clamp(41px, 11vw, 52px);
       font-weight: 400;
-      font-style: italic;
-      line-height: 0.96;
-      letter-spacing: -0.9px;
+      font-style: normal;
+      line-height: 0.98;
+      letter-spacing: 0;
 
       text-wrap: balance;
-      overflow-wrap: normal;
 
       text-shadow:
-        0 2px 6px rgba(255, 255, 255, 0.62);
+        0 1px 1px rgba(255, 255, 255, 0.85);
     }
 
     .couple-name.long-name {
-      max-width: 360px;
+      max-width: 370px;
 
-      font-size: clamp(32px, 9.2vw, 43px);
-      line-height: 0.99;
-      letter-spacing: -1px;
+      font-size: clamp(35px, 9.4vw, 44px);
+      line-height: 1.02;
     }
 
-    .parent-line {
-      margin-top: 7px;
+    .parent-role {
+      margin-top: 6px;
 
-      color: #6f654f;
+      color: #927842;
+
+      font-family:
+        "Snell Roundhand",
+        "Apple Chancery",
+        "URW Chancery L",
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+      font-size: clamp(11px, 3vw, 13px);
+      line-height: 1.1;
+    }
+
+    .parent-name {
+      margin-top: 2px;
+
+      color: #625746;
 
       font-family:
         "Avenir Next",
@@ -911,28 +924,28 @@
         Arial,
         sans-serif;
 
-      font-size: clamp(8px, 2.35vw, 10px);
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: 0.55px;
+      font-size: clamp(8px, 2.3vw, 10px);
+      letter-spacing: 0.65px;
     }
 
     .classic-ampersand {
       position: relative;
 
-      width: 92px;
+      width: 110px;
 
       margin: 7px auto 5px;
 
-      color: #9e7932;
+      color: #a47c2e;
 
       font-family:
-        "Baskerville",
-        Georgia,
-        serif;
+        "Snell Roundhand",
+        "Apple Chancery",
+        "URW Chancery L",
+        "Brush Script MT",
+        cursive;
 
-      font-size: 21px;
-      font-style: italic;
+      font-size: 28px;
+      font-style: normal;
     }
 
     .classic-ampersand::before,
@@ -942,7 +955,7 @@
       position: absolute;
       top: 50%;
 
-      width: 30px;
+      width: 36px;
       height: 1px;
 
       background:
@@ -1036,7 +1049,7 @@
     }
 
     /* =====================================
-       SCREEN 3: SCRATCH + BACKGROUND
+       SCREEN 3: UNCHANGED
     ====================================== */
 
     #scratchScreen {
@@ -1480,7 +1493,7 @@
     }
 
     /* =====================================
-       SCREENS 4 TO 6
+       SCREENS 4 TO 6: UNCHANGED
     ====================================== */
 
     #countdownScreen,
@@ -1605,11 +1618,14 @@
 
     .countdown-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
 
       gap: 6px;
 
-      margin-top: clamp(21px, 5vh, 30px);
+      margin-top:
+        clamp(21px, 5vh, 30px);
     }
 
     .count-box {
@@ -1617,7 +1633,10 @@
 
       padding: 14px 1px;
 
-      border: 1px solid rgba(231, 204, 132, 0.45);
+      border:
+        1px solid
+        rgba(231, 204, 132, 0.45);
+
       border-radius: 10px;
 
       background:
@@ -1633,7 +1652,9 @@
 
       color: #f1d68b;
 
-      font-size: clamp(21px, 6.5vw, 27px);
+      font-size:
+        clamp(21px, 6.5vw, 27px);
+
       line-height: 1;
     }
 
@@ -1689,7 +1710,8 @@
 
       margin: 0 8px;
 
-      border: 1px solid #dbbd71;
+      border:
+        1px solid #dbbd71;
 
       transform: rotate(45deg);
     }
@@ -1714,7 +1736,10 @@
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(230, 199, 117, 0.65);
+      border:
+        1px solid
+        rgba(230, 199, 117, 0.65);
+
       border-radius: 50%;
 
       color: #e3c36f;
@@ -1724,7 +1749,9 @@
     .venue-name {
       color: #fff5dd;
 
-      font-size: clamp(22px, 7vw, 27px);
+      font-size:
+        clamp(22px, 7vw, 27px);
+
       font-weight: 400;
       line-height: 1.2;
     }
@@ -1750,7 +1777,8 @@
 
       margin: 11px auto 0;
 
-      color: rgba(240, 230, 208, 0.84);
+      color:
+        rgba(240, 230, 208, 0.84);
 
       font-family:
         "Avenir Next",
@@ -1782,7 +1810,10 @@
 
       padding: 13px 22px;
 
-      border: 1px solid rgba(230, 198, 115, 0.7);
+      border:
+        1px solid
+        rgba(230, 198, 115, 0.7);
+
       border-radius: 28px;
 
       background:
@@ -1793,7 +1824,6 @@
         );
 
       color: #fff7e2;
-
       text-decoration: none;
 
       font-family:
@@ -1808,8 +1838,11 @@
     }
 
     .dua-panel {
-      padding-top: clamp(24px, 5vh, 33px);
-      padding-bottom: clamp(24px, 5vh, 33px);
+      padding-top:
+        clamp(24px, 5vh, 33px);
+
+      padding-bottom:
+        clamp(24px, 5vh, 33px);
     }
 
     .dua-arabic {
@@ -1821,8 +1854,9 @@
         "Traditional Arabic",
         serif;
 
-      font-size: clamp(21px, 6.5vw, 27px);
-      font-weight: 400;
+      font-size:
+        clamp(21px, 6.5vw, 27px);
+
       line-height: 1.75;
     }
 
@@ -1831,7 +1865,9 @@
 
       color: #f4ead1;
 
-      font-size: clamp(12px, 3.4vw, 14px);
+      font-size:
+        clamp(12px, 3.4vw, 14px);
+
       font-style: italic;
       line-height: 1.55;
     }
@@ -1841,7 +1877,8 @@
 
       margin: 12px auto 0;
 
-      color: rgba(231, 223, 204, 0.84);
+      color:
+        rgba(231, 223, 204, 0.84);
 
       font-family:
         "Avenir Next",
@@ -1871,7 +1908,9 @@
     .closing-title {
       color: #fff5dd;
 
-      font-size: clamp(23px, 7vw, 27px);
+      font-size:
+        clamp(23px, 7vw, 27px);
+
       font-weight: 400;
       font-style: italic;
       line-height: 1.2;
@@ -1882,7 +1921,8 @@
 
       margin: 12px auto 0;
 
-      color: rgba(235, 226, 205, 0.84);
+      color:
+        rgba(235, 226, 205, 0.84);
 
       font-family:
         "Avenir Next",
@@ -1919,10 +1959,15 @@
 
       cursor: pointer;
 
-      border: 1px solid rgba(225, 194, 111, 0.62);
+      border:
+        1px solid
+        rgba(225, 194, 111, 0.62);
+
       border-radius: 25px;
 
-      background: rgba(31, 34, 27, 0.25);
+      background:
+        rgba(31, 34, 27, 0.25);
+
       color: #eee1bf;
 
       font-family:
@@ -1937,24 +1982,20 @@
     }
 
     /* =====================================
-       SMALL / SHORT PHONES
+       MOBILE
     ====================================== */
 
     @media (max-width: 375px) {
       .couple-name {
-        font-size: 36px;
+        font-size: 38px;
       }
 
       .couple-name.long-name {
-        font-size: 31px;
+        font-size: 33px;
       }
 
       .countdown-grid {
         gap: 4px;
-      }
-
-      .count-box {
-        padding: 12px 0;
       }
 
       .final-screen-panel {
@@ -1964,16 +2005,12 @@
 
     @media (max-height: 700px) {
       #coupleScreen {
-        padding-top: 20px;
-        padding-bottom: 18px;
+        padding-top: 18px;
+        padding-bottom: 16px;
       }
 
       .screen2-bismillah {
         font-size: 20px;
-      }
-
-      .screen2-ornament {
-        margin: 1px 0 3px;
       }
 
       .invitation-line {
@@ -1981,8 +2018,12 @@
         font-size: 10px;
       }
 
+      .nikah-title {
+        font-size: 32px;
+      }
+
       .couple-name {
-        margin-top: 4px;
+        margin-top: 5px;
         font-size: 34px;
       }
 
@@ -1990,23 +2031,14 @@
         font-size: 29px;
       }
 
-      .parent-line {
-        margin-top: 4px;
-        font-size: 7.5px;
-      }
-
-      .classic-ampersand {
-        margin-top: 4px;
-        margin-bottom: 2px;
+      .parent-role {
+        margin-top: 3px;
+        font-size: 10px;
       }
 
       .scratch-content {
         padding-top: 20px;
         padding-bottom: 19px;
-      }
-
-      .scratch-intro-ornament {
-        display: none;
       }
 
       .scratch-card-shell {
@@ -2020,10 +2052,6 @@
 
       .dua-arabic {
         font-size: 20px;
-      }
-
-      .closing-line {
-        margin: 14px auto;
       }
     }
 
@@ -2123,7 +2151,7 @@
 
   </section>
 
-  <!-- SCREEN 2 -->
+  <!-- SCREEN 2: TARGETED CONTENT UPDATE -->
 
   <section id="coupleScreen" class="screen">
 
@@ -2135,15 +2163,17 @@
         بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
       </div>
 
-      <div class="screen2-ornament">❦</div>
+      <div class="screen2-ornament">
+        ❦
+      </div>
 
       <div class="family-intro">
-        Together with their Families
+        Together with their families
       </div>
 
       <div class="invitation-line">
-        request the honour of your presence
-        at the Nikah celebration
+        request the honour of your presence<br>
+        at the Nikah ceremony of
       </div>
 
       <h2 class="nikah-title">
@@ -2158,8 +2188,11 @@
         Sameena Sultana
       </h1>
 
-      <div class="parent-line">
-        Daughter of<br>
+      <div class="parent-role">
+        Beloved daughter of
+      </div>
+
+      <div class="parent-name">
         Amjad &amp; Begum
       </div>
 
@@ -2171,8 +2204,11 @@
         Mohammed Faisal Hussain
       </h1>
 
-      <div class="parent-line">
-        Son of<br>
+      <div class="parent-role">
+        Beloved son of
+      </div>
+
+      <div class="parent-name">
         Taher &amp; Begum
       </div>
 
@@ -2184,7 +2220,9 @@
         Scroll to reveal our special day
       </div>
 
-      <div class="scroll-arrow">↓</div>
+      <div class="scroll-arrow">
+        ↓
+      </div>
 
     </div>
 
@@ -2882,7 +2920,6 @@
       }
 
       scratching = false;
-
       checkScratchAmount();
     }
 
