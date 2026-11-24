@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1"
   >
 
-  <title>SAMEENA SULTANA &amp; Mohammed Faisal Hussain | Nikah Invitation</title>
+  <title>Tabu &amp; Faizal | Nikah Invitation</title>
 
   <style>
     :root {
       --forest: #293d2d;
       --forest-dark: #192b20;
       --sage: #73816a;
-      --sage-light: #a9b49e;
       --ivory: #f8f1df;
       --ivory-light: #fffaf0;
       --gold: #c79e4d;
@@ -237,6 +235,7 @@
       inset: 0;
       z-index: 1;
       overflow: hidden;
+
       border: 1px solid rgba(229, 204, 136, 0.62);
       border-radius: 9px;
 
@@ -300,7 +299,7 @@
           ellipse at center,
           rgba(255, 248, 208, 0.98) 0%,
           rgba(242, 207, 117, 0.62) 35%,
-          rgba(213, 168, 70, 0.18) 62%,
+          rgba(213, 168, 76, 0.18) 62%,
           transparent 75%
         );
 
@@ -396,7 +395,6 @@
       bottom: 0;
       width: 0;
       height: 0;
-
       border-top: 135px solid transparent;
       border-bottom: 135px solid #617861;
       border-right: 175px solid transparent;
@@ -408,7 +406,6 @@
       bottom: 0;
       width: 0;
       height: 0;
-
       border-top: 135px solid transparent;
       border-bottom: 135px solid #576f59;
       border-left: 175px solid transparent;
@@ -420,9 +417,7 @@
       bottom: 0;
       width: 0;
       height: 0;
-
       transform: translateX(-50%);
-
       border-left: 176px solid transparent;
       border-right: 176px solid transparent;
       border-bottom: 145px solid #73866e;
@@ -435,7 +430,6 @@
       z-index: 15;
       width: 88px;
       height: 88px;
-
       transform: translate(-50%, -50%);
       cursor: pointer;
 
@@ -524,10 +518,13 @@
       position: absolute;
       width: 6px;
       height: 6px;
+
       border-radius: 50%;
       background: #fff2aa;
       box-shadow: 0 0 13px #fff0a0;
-      animation: sparkle 1.4s infinite ease-in-out;
+
+      animation:
+        sparkle 1.4s infinite ease-in-out;
     }
 
     .spark:nth-child(1) {
@@ -822,7 +819,9 @@
       margin-top: 7px;
       color: #a37d35;
       font-size: 18px;
-      animation: bounce 1.4s infinite ease-in-out;
+
+      animation:
+        bounce 1.4s infinite ease-in-out;
     }
 
     @keyframes bounce {
@@ -1117,6 +1116,7 @@
       height: 100%;
       cursor: grab;
       touch-action: none;
+
       transition:
         opacity 0.7s ease,
         transform 0.7s ease;
@@ -1138,9 +1138,7 @@
       text-transform: uppercase;
     }
 
-    /* =====================================
-       FLOWER SHOWER
-    ====================================== */
+    /* Flower shower */
 
     .flower-shower {
       position: absolute;
@@ -1233,28 +1231,132 @@
     }
 
     /* =====================================
-       SCREEN 4: COUNTDOWN
+       SHARED BACKGROUND: SCREENS 4 TO 6
     ====================================== */
 
-    #countdownScreen {
+    #countdownScreen,
+    #locationScreen,
+    #duaScreen {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 70px 20px;
+
+      min-height: 100vh;
+      min-height: 100svh;
+
+      padding: 65px 24px;
       text-align: center;
+
+      background-color: #686258;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(27, 29, 23, 0.08),
+          rgba(26, 28, 22, 0.3)
+        ),
+        url("Screens.jpg");
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #countdownScreen::before,
+    #locationScreen::before,
+    #duaScreen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
 
       background:
         radial-gradient(
-          circle at center,
-          rgba(144, 166, 131, 0.25),
-          transparent 57%
-        ),
-        linear-gradient(
-          180deg,
-          #415b45,
-          #243b2b
+          ellipse at center,
+          rgba(34, 34, 27, 0.08),
+          rgba(26, 27, 21, 0.24) 87%
         );
     }
+
+    .final-screen-panel {
+      position: relative;
+      z-index: 5;
+
+      width: 100%;
+      max-width: 350px;
+
+      padding: 42px 25px;
+
+      border: 1px solid rgba(226, 196, 120, 0.55);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(35, 38, 31, 0.7),
+          rgba(54, 53, 44, 0.52)
+        );
+
+      box-shadow:
+        0 20px 45px rgba(10, 12, 9, 0.31),
+        inset 0 0 0 1px rgba(255, 246, 213, 0.08);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .final-screen-panel::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      z-index: -1;
+
+      border: 1px solid rgba(229, 202, 132, 0.18);
+      border-radius: 18px;
+
+      pointer-events: none;
+    }
+
+    .final-ornament {
+      margin-bottom: 13px;
+      color: #e4c675;
+      font-size: 19px;
+      letter-spacing: 8px;
+    }
+
+    .final-label {
+      color: #e4c675;
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .final-title {
+      margin-top: 11px;
+      color: #fff5dc;
+      font-size: 35px;
+      font-weight: normal;
+      font-style: italic;
+      line-height: 1.15;
+
+      text-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .final-subtitle {
+      margin-top: 11px;
+      color: rgba(242, 230, 199, 0.82);
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* =====================================
+       SCREEN 4: COUNTDOWN
+    ====================================== */
 
     .countdown-content {
       position: relative;
@@ -1262,50 +1364,42 @@
       width: 100%;
     }
 
-    .countdown-title {
-      margin-top: 9px;
-      color: var(--ivory);
-      font-size: 35px;
-      font-style: italic;
-    }
-
-    .countdown-subtitle {
-      margin-top: 9px;
-      color: #d4cab4;
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 37px;
+      gap: 7px;
+      margin-top: 34px;
     }
 
     .count-box {
       min-width: 0;
-      padding: 19px 3px;
+      padding: 18px 2px;
 
-      border: 1px solid rgba(223, 194, 119, 0.48);
-      border-radius: 8px;
+      border: 1px solid rgba(231, 204, 132, 0.45);
+      border-radius: 11px;
 
-      background: rgba(255, 255, 255, 0.045);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 250, 229, 0.08),
+          rgba(26, 29, 23, 0.12)
+        );
+
+      box-shadow:
+        inset 0 0 15px rgba(231, 196, 107, 0.04);
     }
 
     .count-number {
       display: block;
-      color: var(--gold-light);
-      font-size: 26px;
+      color: #f1d68b;
+      font-size: 27px;
       line-height: 1;
     }
 
     .count-label {
       display: block;
       margin-top: 9px;
-      color: #ded5c0;
+      color: #e6dcc3;
       font-family: Arial, sans-serif;
       font-size: 7px;
       letter-spacing: 1px;
@@ -1313,24 +1407,50 @@
     }
 
     .countdown-date {
-      margin-top: 30px;
-      color: #ead7a4;
+      margin-top: 28px;
+      color: #f0d99c;
       font-size: 15px;
+      line-height: 1.7;
       letter-spacing: 1px;
     }
 
-    /* =====================================
-       SCREEN 5: LOCATION
-    ====================================== */
-
-    #locationScreen {
+    .countdown-divider {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 70px 23px;
-      text-align: center;
-      background: var(--ivory);
+      width: 135px;
+      margin: 26px auto 0;
     }
+
+    .countdown-divider::before,
+    .countdown-divider::after {
+      content: "";
+      width: 49px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #dbbd71
+        );
+    }
+
+    .countdown-divider::after {
+      transform: rotate(180deg);
+    }
+
+    .countdown-divider span {
+      width: 7px;
+      height: 7px;
+      margin: 0 8px;
+      border: 1px solid #dbbd71;
+      transform: rotate(45deg);
+    }
+
+    /* =====================================
+       SCREEN 5: VENUE
+    ====================================== */
 
     .location-content {
       position: relative;
@@ -1338,101 +1458,106 @@
       width: 100%;
     }
 
-    .venue-card {
-      margin-top: 31px;
-      padding: 38px 21px;
-      border: 1px solid var(--gold);
-      background: #fffaf0;
-
-      box-shadow:
-        0 16px 38px rgba(80, 66, 31, 0.11);
-    }
-
     .venue-icon {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 18px;
+      width: 62px;
+      height: 62px;
+      margin: 25px auto 18px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border: 1px solid var(--gold);
+      border: 1px solid rgba(230, 199, 117, 0.65);
       border-radius: 50%;
-      color: var(--gold);
-      font-size: 24px;
+
+      background: rgba(224, 189, 101, 0.08);
+      color: #e3c36f;
+      font-size: 25px;
+
+      box-shadow:
+        0 0 25px rgba(228, 196, 111, 0.08);
     }
 
     .venue-name {
-      color: var(--forest);
-      font-size: 26px;
+      color: #fff5dd;
+      font-size: 27px;
       font-weight: normal;
+      line-height: 1.2;
     }
 
     .venue-city {
       margin-top: 8px;
-      color: #716b5c;
+      color: #e7cd89;
       font-family: Arial, sans-serif;
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .venue-address {
-      margin-top: 9px;
-      color: #7b725e;
+      max-width: 245px;
+      margin: 15px auto 0;
+      color: rgba(240, 230, 208, 0.84);
       font-family: Arial, sans-serif;
       font-size: 11px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .venue-date {
       margin-top: 20px;
-      color: #806334;
+      color: #f1d99a;
       font-size: 16px;
-      line-height: 1.7;
+      line-height: 1.8;
+    }
+
+    .venue-divider {
+      width: 75px;
+      height: 1px;
+      margin: 21px auto;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #d6b668,
+          transparent
+        );
     }
 
     .map-button {
       display: inline-block;
-      margin-top: 25px;
-      padding: 14px 25px;
+      margin-top: 4px;
+      padding: 14px 24px;
 
-      border: 1px solid var(--gold);
-      border-radius: 30px;
+      border: 1px solid rgba(230, 198, 115, 0.7);
+      border-radius: 28px;
 
-      background: var(--forest);
-      color: var(--ivory);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(197, 153, 66, 0.92),
+          rgba(113, 77, 29, 0.92)
+        );
 
+      color: #fff7e2;
       text-decoration: none;
 
       font-family: Arial, sans-serif;
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 2px;
       text-transform: uppercase;
+
+      box-shadow:
+        0 8px 18px rgba(16, 15, 11, 0.23);
+    }
+
+    .map-button:active {
+      transform: scale(0.97);
     }
 
     /* =====================================
        SCREEN 6: DUA
     ====================================== */
-
-    #duaScreen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 75px 28px;
-      text-align: center;
-
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(218, 191, 118, 0.12),
-          transparent 40%
-        ),
-        linear-gradient(
-          180deg,
-          #405943,
-          #203729
-        );
-    }
 
     .dua-content {
       position: relative;
@@ -1440,71 +1565,87 @@
       width: 100%;
     }
 
+    .dua-panel {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+
     .dua-arabic {
-      color: var(--gold-light);
+      color: #f0d589;
       font-size: 28px;
-      line-height: 1.9;
+      line-height: 1.85;
+
+      text-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.28);
     }
 
     .dua-transliteration {
       margin-top: 20px;
-      color: #f0e5ca;
-      font-size: 15px;
+      color: #f4ead1;
+      font-size: 14px;
       font-style: italic;
       line-height: 1.65;
     }
 
     .dua-meaning {
-      max-width: 310px;
-      margin: 16px auto 0;
-      color: #cec6b1;
+      max-width: 285px;
+      margin: 15px auto 0;
+      color: rgba(231, 223, 204, 0.84);
       font-family: Arial, sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.8;
     }
 
     .closing-line {
-      width: 70px;
+      width: 75px;
       height: 1px;
-      margin: 32px auto;
-      background: var(--gold);
+      margin: 27px auto;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #d8b869,
+          transparent
+        );
     }
 
     .closing-title {
-      color: var(--ivory);
-      font-size: 29px;
+      color: #fff5dd;
+      font-size: 27px;
+      font-weight: normal;
       font-style: italic;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     .closing-message {
-      max-width: 310px;
-      margin: 20px auto 0;
-      color: #d5cdb9;
+      max-width: 295px;
+      margin: 17px auto 0;
+      color: rgba(235, 226, 205, 0.84);
       font-family: Arial, sans-serif;
-      font-size: 12px;
-      line-height: 1.8;
+      font-size: 11px;
+      line-height: 1.75;
     }
 
     .closing-couple {
-      margin-top: 32px;
-      color: var(--gold-light);
+      margin-top: 26px;
+      color: #efd384;
       font-family: Arial, sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     .restart-button {
-      margin-top: 34px;
-      padding: 11px 20px;
+      margin-top: 27px;
+      padding: 12px 21px;
       cursor: pointer;
 
-      border: 1px solid rgba(220, 191, 116, 0.6);
+      border: 1px solid rgba(225, 194, 111, 0.62);
       border-radius: 25px;
 
-      background: transparent;
-      color: #ddd3ba;
+      background: rgba(31, 34, 27, 0.25);
+      color: #eee1bf;
 
       font-family: Arial, sans-serif;
       font-size: 8px;
@@ -1541,6 +1682,29 @@
 
       .square-date-day {
         font-size: 66px;
+      }
+
+      #countdownScreen,
+      #locationScreen,
+      #duaScreen {
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+
+      .final-screen-panel {
+        padding: 30px 20px;
+      }
+
+      .final-title {
+        font-size: 30px;
+      }
+
+      .dua-arabic {
+        font-size: 23px;
+      }
+
+      .closing-title {
+        font-size: 24px;
       }
     }
 
@@ -1681,7 +1845,7 @@
       </div>
 
       <h1 class="couple-name">
-        SAMEENA SULTANA
+        Tabu
       </h1>
 
       <div class="parent-line">
@@ -1694,7 +1858,7 @@
       </div>
 
       <h1 class="couple-name">
-        Mohammed Faisal Hussain
+        Faizal
       </h1>
 
       <div class="parent-line">
@@ -1804,23 +1968,25 @@
 
   </section>
 
-  <!-- SCREEN 4 -->
+  <!-- SCREEN 4: COUNTDOWN -->
 
   <section id="countdownScreen" class="screen">
 
-    <div class="gold-frame"></div>
+    <div class="final-screen-panel countdown-content">
 
-    <div class="countdown-content">
+      <div class="final-ornament">
+        ◇ ❦ ◇
+      </div>
 
-      <div class="section-label">
+      <div class="final-label">
         Save the Date
       </div>
 
-      <h2 class="countdown-title">
+      <h2 class="final-title">
         Counting Down to Forever
       </h2>
 
-      <div class="countdown-subtitle">
+      <div class="final-subtitle">
         Until our special day
       </div>
 
@@ -1848,73 +2014,82 @@
 
       </div>
 
+      <div class="countdown-divider">
+        <span></span>
+      </div>
+
       <div class="countdown-date">
-        24 December 2026 • 9:00 PM
+        24 December 2026<br>
+        9:00 PM
       </div>
 
     </div>
 
   </section>
 
-  <!-- SCREEN 5 -->
+  <!-- SCREEN 5: VENUE -->
 
   <section id="locationScreen" class="screen">
 
-    <div class="location-content">
+    <div class="final-screen-panel location-content">
 
-      <div class="section-label">
+      <div class="final-ornament">
+        ◇ ❦ ◇
+      </div>
+
+      <div class="final-label">
         Nikah Ceremony
       </div>
 
-      <h2 class="section-title">
+      <h2 class="final-title">
         Venue
       </h2>
 
-      <div class="venue-card">
-
-        <div class="venue-icon">
-          ◉
-        </div>
-
-        <h3 class="venue-name">
-          H-Convention Center
-        </h3>
-
-        <div class="venue-city">
-          Medak
-        </div>
-
-        <div class="venue-address">
-          H-Convention Center, Medak
-        </div>
-
-        <div class="venue-date">
-          24 December 2026<br>
-          9:00 PM
-        </div>
-
-        <a
-          class="map-button"
-          href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          📍 View on Google Maps
-        </a>
-
+      <div class="venue-icon">
+        ◉
       </div>
+
+      <h3 class="venue-name">
+        H-Convention Center
+      </h3>
+
+      <div class="venue-city">
+        Medak
+      </div>
+
+      <div class="venue-address">
+        H-Convention Center, Medak
+      </div>
+
+      <div class="venue-date">
+        24 December 2026<br>
+        9:00 PM
+      </div>
+
+      <div class="venue-divider"></div>
+
+      <a
+        class="map-button"
+        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&amp;g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 View on Google Maps
+      </a>
 
     </div>
 
   </section>
 
-  <!-- SCREEN 6 -->
+  <!-- SCREEN 6: DUA -->
 
   <section id="duaScreen" class="screen">
 
-    <div class="gold-frame"></div>
+    <div class="final-screen-panel dua-panel dua-content">
 
-    <div class="dua-content">
+      <div class="final-ornament">
+        ◇ ❦ ◇
+      </div>
 
       <div class="dua-arabic">
         بَارَكَ اللَّهُ لَكُمَا<br>
@@ -1947,7 +2122,7 @@
       </div>
 
       <div class="closing-couple">
-        SAMEENA SULTANA ♥ Mohammed Faisal Hussain
+        Tabu ♥ Faizal
       </div>
 
       <button
@@ -2317,7 +2492,6 @@
       }
 
       event.preventDefault();
-
       scratching = true;
 
       const point =
@@ -2373,7 +2547,6 @@
 
       lastX = point.x;
       lastY = point.y;
-
       scratchCounter += 1;
 
       if (
@@ -2649,90 +2822,64 @@
       ).getTime();
 
     function updateCountdown() {
-      const now =
+      const distance =
+        weddingDate -
         new Date().getTime();
 
-      const distance =
-        weddingDate - now;
+      const fields = {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
 
-      if (
-        distance <= 0
-      ) {
-        document.getElementById("days")
-          .textContent = "00";
+      if (distance > 0) {
+        fields.days =
+          Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+          );
 
-        document.getElementById("hours")
-          .textContent = "00";
+        fields.hours =
+          Math.floor(
+            (
+              distance %
+              (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+          );
 
-        document.getElementById("minutes")
-          .textContent = "00";
+        fields.minutes =
+          Math.floor(
+            (
+              distance %
+              (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+          );
 
-        document.getElementById("seconds")
-          .textContent = "00";
-
-        return;
+        fields.seconds =
+          Math.floor(
+            (
+              distance %
+              (1000 * 60)
+            ) /
+            1000
+          );
       }
 
-      const days =
-        Math.floor(
-          distance /
-          (1000 * 60 * 60 * 24)
-        );
-
-      const hours =
-        Math.floor(
-          (
-            distance %
-            (1000 * 60 * 60 * 24)
-          ) /
-          (1000 * 60 * 60)
-        );
-
-      const minutes =
-        Math.floor(
-          (
-            distance %
-            (1000 * 60 * 60)
-          ) /
-          (1000 * 60)
-        );
-
-      const seconds =
-        Math.floor(
-          (
-            distance %
-            (1000 * 60)
-          ) /
-          1000
-        );
-
-      document.getElementById("days")
-        .textContent =
-        String(days).padStart(
-          2,
-          "0"
-        );
-
-      document.getElementById("hours")
-        .textContent =
-        String(hours).padStart(
-          2,
-          "0"
-        );
-
-      document.getElementById("minutes")
-        .textContent =
-        String(minutes).padStart(
-          2,
-          "0"
-        );
-
-      document.getElementById("seconds")
-        .textContent =
-        String(seconds).padStart(
-          2,
-          "0"
-        );
+      Object.keys(fields).forEach(
+        function (field) {
+          document.getElementById(field)
+            .textContent =
+            String(
+              fields[field]
+            ).padStart(
+              2,
+              "0"
+            );
+        }
+      );
     }
 
     updateCountdown();
