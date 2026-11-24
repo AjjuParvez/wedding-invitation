@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+<title>Tabu & Faizal | Wedding Invitation</title>
 
 <style>
 * {
@@ -14,6 +14,7 @@
 
 html {
   background: #d8d0bc;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,12 +22,16 @@ body {
   width: 100%;
   max-width: 390px;
   min-height: 100vh;
-  background: #344735;
+  background: #314432;
   color: #f5ecd6;
   font-family: Georgia, "Times New Roman", serif;
   overflow-x: hidden;
   box-shadow: 0 0 45px rgba(0,0,0,.35);
 }
+
+/* =========================
+   OPENING COVER
+========================= */
 
 .cover {
   min-height: 100vh;
@@ -50,6 +55,16 @@ body {
       #354936 48%,
       #223428 100%
     );
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.cover.hide {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
 }
 
 .ornament {
@@ -102,6 +117,11 @@ body {
   color: #cfc6af;
   margin-bottom: 55px;
 }
+
+
+/* =========================
+   ENVELOPE
+========================= */
 
 .envelope-wrap {
   position: relative;
@@ -176,6 +196,11 @@ body {
   z-index: 4;
 }
 
+
+/* =========================
+   CARD INSIDE ENVELOPE
+========================= */
+
 .card {
   position: absolute;
   width: 240px;
@@ -190,6 +215,7 @@ body {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 
   transition:
@@ -208,7 +234,7 @@ body {
 }
 
 .card-title {
-  font-size: 27px;
+  font-size: 26px;
   font-style: italic;
   margin: 8px 0;
 }
@@ -224,6 +250,11 @@ body {
   font-size: 11px;
   letter-spacing: 1px;
 }
+
+
+/* =========================
+   GOLD SEAL
+========================= */
 
 .seal {
   position: absolute;
@@ -260,21 +291,32 @@ body {
     transform .45s ease;
 }
 
+
+/* =========================
+   ENVELOPE OPEN STATE
+========================= */
+
 .open .flap {
   transform: rotateX(180deg);
   z-index: 1;
 }
 
 .open .card {
-  transform: translateY(-125px);
+  transform: translateY(-115px);
 }
 
 .open .seal {
   opacity: 0;
+
   transform:
     translateX(-50%)
     scale(.5);
 }
+
+
+/* =========================
+   OPENING TEXT
+========================= */
 
 .tap {
   margin-top: 45px;
@@ -303,12 +345,380 @@ body {
   0%,100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(7px);
   }
 }
 
+
+/* =========================
+   MAIN INVITATION
+========================= */
+
+.invitation-page {
+  display: none;
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(115,132,98,.22),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #40523e 0%,
+      #263928 100%
+    );
+}
+
+.invitation-page.show {
+  display: block;
+  animation: invitationFade 1.3s ease forwards;
+}
+
+@keyframes invitationFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 55px 25px;
+}
+
+.hero-frame {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(231,207,146,.42);
+  border-radius: 26px;
+  pointer-events: none;
+}
+
+.hero-small {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d5c9a8;
+  margin-bottom: 18px;
+}
+
+.hero-arabic {
+  color: #e7ce8d;
+  font-size: 25px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.together {
+  font-style: italic;
+  font-size: 14px;
+  color: #ded4ba;
+  margin-bottom: 30px;
+}
+
+
+/* =========================
+   COUPLE NAMES
+========================= */
+
+.bride,
+.groom {
+  font-size: 49px;
+  line-height: .95;
+  font-weight: normal;
+  font-style: italic;
+  color: #f6ecd4;
+  text-shadow: 0 3px 12px rgba(0,0,0,.18);
+}
+
+.ampersand {
+  margin: 14px 0;
+  font-size: 26px;
+  color: #d5af57;
+  font-style: italic;
+}
+
+.parents {
+  margin-top: 17px;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  line-height: 1.8;
+  color: #c8c1ad;
+}
+
+.gold-line {
+  width: 70px;
+  height: 1px;
+  background: #caa85d;
+  margin: 30px auto;
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+.date-large {
+  font-size: 23px;
+  letter-spacing: 2px;
+  color: #f0e3c2;
+}
+
+.time {
+  margin-top: 8px;
+  color: #d5b76c;
+  font-size: 17px;
+}
+
+
+/* =========================
+   DETAILS SECTION
+========================= */
+
+.details {
+  position: relative;
+  padding: 65px 24px 75px;
+  background: #f5efdf;
+  color: #354436;
+  text-align: center;
+}
+
+.section-small {
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 9px;
+  color: #9c8551;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 31px;
+  font-weight: normal;
+  font-style: italic;
+  color: #354436;
+  margin-bottom: 30px;
+}
+
+
+/* =========================
+   VENUE CARD
+========================= */
+
+.venue-card {
+  padding: 27px 18px;
+  border: 1px solid #cfb775;
+  background: #fffaf0;
+  box-shadow: 0 12px 30px rgba(67,67,40,.08);
+}
+
+.location-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.venue-card h3 {
+  font-size: 22px;
+  font-weight: normal;
+  color: #344333;
+}
+
+.venue-card p {
+  margin-top: 7px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #6b6b5d;
+}
+
+.map-btn {
+  display: inline-block;
+
+  margin-top: 20px;
+  padding: 12px 22px;
+
+  background: #3d573f;
+  border: 1px solid #c6a95f;
+
+  color: #fff7e5;
+
+  text-decoration: none;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+
+  border-radius: 30px;
+
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+.map-btn:hover {
+  background: #2d4330;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section {
+  position: relative;
+  padding: 70px 20px 80px;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(100,122,91,.26),
+      transparent 55%
+    ),
+    #304431;
+}
+
+.countdown-title {
+  font-size: 31px;
+  font-style: italic;
+  color: #f3e6c8;
+}
+
+.countdown-subtitle {
+  margin-top: 8px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #c2baa7;
+}
+
+.countdown {
+  margin-top: 35px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 8px;
+}
+
+.count-box {
+  min-width: 0;
+
+  padding: 18px 4px;
+
+  border: 1px solid rgba(214,187,116,.45);
+
+  background: rgba(255,255,255,.04);
+
+  border-radius: 7px;
+}
+
+.count-number {
+  display: block;
+
+  color: #e5c574;
+
+  font-size: 25px;
+  line-height: 1;
+}
+
+.count-label {
+  display: block;
+
+  margin-top: 8px;
+
+  font-family: Arial, sans-serif;
+  font-size: 7px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: #ddd4be;
+}
+
+
+/* =========================
+   CLOSING
+========================= */
+
+.closing {
+  position: relative;
+
+  padding: 70px 30px;
+
+  text-align: center;
+
+  background: #f5efdf;
+
+  color: #354436;
+}
+
+.closing-arabic {
+  font-size: 25px;
+  color: #9a7a38;
+  margin-bottom: 20px;
+}
+
+.closing-title {
+  font-size: 27px;
+  font-style: italic;
+}
+
+.closing-text {
+  margin: 18px auto 0;
+  max-width: 290px;
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+
+  color: #6a665b;
+}
+
+.hashtag {
+  margin-top: 30px;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #9c8551;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
 @media (min-width: 391px) {
+
   body {
     min-height: 844px;
   }
@@ -316,13 +726,20 @@ body {
   .cover {
     min-height: 844px;
   }
+
 }
 </style>
 </head>
 
+
 <body>
 
-<section class="cover">
+
+<!-- =====================================
+     OPENING SCREEN
+===================================== -->
+
+<section class="cover" id="cover">
 
   <div class="frame"></div>
 
@@ -339,10 +756,14 @@ body {
       A Celebration of Love & Family
     </div>
 
+
     <div
       class="envelope-wrap"
       id="envelope"
       onclick="openEnvelope()"
+      role="button"
+      tabindex="0"
+      aria-label="Open wedding invitation"
     >
 
       <div class="card">
@@ -352,16 +773,17 @@ body {
         </div>
 
         <div class="card-title">
-          Wedding Invitation
+          Tabu & Faizal
         </div>
 
         <div class="card-line"></div>
 
         <div class="card-text">
-          A beautiful beginning awaits...
+          24 • 12 • 2026
         </div>
 
       </div>
+
 
       <div class="envelope">
 
@@ -371,7 +793,9 @@ body {
 
       </div>
 
+
       <div class="flap"></div>
+
 
       <div class="seal">
         ❦
@@ -379,13 +803,16 @@ body {
 
     </div>
 
+
     <div class="tap" id="tapText">
       Tap to Open
     </div>
 
+
     <div class="tap-sub">
       A special invitation awaits you
     </div>
+
 
     <div class="arrow">
       ↓
@@ -395,8 +822,249 @@ body {
 
 </section>
 
+
+
+<!-- =====================================
+     MAIN INVITATION
+===================================== -->
+
+<main class="invitation-page" id="invitation">
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-frame"></div>
+
+    <div class="hero-arabic">
+      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+    </div>
+
+    <div class="hero-small">
+      Together with their families
+    </div>
+
+    <div class="together">
+      request the honour of your presence
+      at the Nikah celebration of
+    </div>
+
+
+    <h1 class="bride">
+      Tabu
+    </h1>
+
+    <div class="parents">
+      Daughter of<br>
+      Amjad & Begum
+    </div>
+
+
+    <div class="ampersand">
+      &
+    </div>
+
+
+    <h1 class="groom">
+      Faizal
+    </h1>
+
+    <div class="parents">
+      Son of<br>
+      Taher & Begum
+    </div>
+
+
+    <div class="gold-line"></div>
+
+
+    <div class="date-large">
+      24 • DECEMBER • 2026
+    </div>
+
+    <div class="time">
+      9:00 PM
+    </div>
+
+  </section>
+
+
+
+  <!-- VENUE -->
+
+  <section class="details">
+
+    <div class="section-small">
+      Nikah Ceremony
+    </div>
+
+    <h2 class="section-title">
+      Join Us
+    </h2>
+
+
+    <div class="venue-card">
+
+      <div class="location-icon">
+        ❧
+      </div>
+
+      <h3>
+        H-Convention Center
+      </h3>
+
+      <p>
+        Medak
+      </p>
+
+      <p>
+        24 December 2026<br>
+        9:00 PM
+      </p>
+
+
+      <a
+        class="map-btn"
+        href="https://www.google.com/maps/place/H+Convention/@18.0639942,78.276655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcc15dfa5049e01:0xcd1ca00d99403e1e!8m2!3d18.0639942!4d78.2792299!16s%2Fg%2F11l5dl6g9t?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 View Location
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- COUNTDOWN -->
+
+  <section class="countdown-section">
+
+    <div class="section-small">
+      Save The Date
+    </div>
+
+    <h2 class="countdown-title">
+      Counting Down
+    </h2>
+
+    <div class="countdown-subtitle">
+      Until our special day
+    </div>
+
+
+    <div class="countdown">
+
+      <div class="count-box">
+
+        <span
+          class="count-number"
+          id="days"
+        >
+          00
+        </span>
+
+        <span class="count-label">
+          Days
+        </span>
+
+      </div>
+
+
+      <div class="count-box">
+
+        <span
+          class="count-number"
+          id="hours"
+        >
+          00
+        </span>
+
+        <span class="count-label">
+          Hours
+        </span>
+
+      </div>
+
+
+      <div class="count-box">
+
+        <span
+          class="count-number"
+          id="minutes"
+        >
+          00
+        </span>
+
+        <span class="count-label">
+          Minutes
+        </span>
+
+      </div>
+
+
+      <div class="count-box">
+
+        <span
+          class="count-number"
+          id="seconds"
+        >
+          00
+        </span>
+
+        <span class="count-label">
+          Seconds
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CLOSING -->
+
+  <section class="closing">
+
+    <div class="closing-arabic">
+      وَبَارَكَ اللَّهُ لَكُمَا
+    </div>
+
+    <h2 class="closing-title">
+      Your presence will make
+      our celebration complete
+    </h2>
+
+    <div class="closing-text">
+      We would be honoured to celebrate
+      this beautiful beginning with you
+      and your family.
+    </div>
+
+    <div class="hashtag">
+      Tabu ♥ Faizal
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
 <script>
+
+/* =========================
+   OPEN ENVELOPE
+========================= */
+
 let opened = false;
+
 
 function openEnvelope() {
 
@@ -404,16 +1072,201 @@ function openEnvelope() {
 
   opened = true;
 
+
   const envelope =
     document.getElementById("envelope");
 
+  const cover =
+    document.getElementById("cover");
+
+  const invitation =
+    document.getElementById("invitation");
+
+
   envelope.classList.add("open");
 
-  document.getElementById("tapText")
+
+  document
+    .getElementById("tapText")
     .textContent = "Welcome";
 
+
+  /*
+    Allow the envelope animation to
+    complete before showing invitation.
+  */
+
+  setTimeout(function() {
+
+    cover.classList.add("hide");
+
+  }, 1800);
+
+
+  setTimeout(function() {
+
+    cover.style.display = "none";
+
+    invitation.classList.add("show");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+
+  }, 2700);
+
 }
+
+
+/* Keyboard accessibility */
+
+document
+  .getElementById("envelope")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+
+        event.preventDefault();
+
+        openEnvelope();
+
+      }
+
+    }
+  );
+
+
+
+/* =========================
+   LIVE COUNTDOWN
+
+   Target:
+   24 December 2026
+   9:00 PM India Standard Time
+
+   IST = UTC + 05:30
+========================= */
+
+
+const weddingDate =
+  new Date(
+    "2026-12-24T21:00:00+05:30"
+  ).getTime();
+
+
+function updateCountdown() {
+
+  const now =
+    new Date().getTime();
+
+
+  const distance =
+    weddingDate - now;
+
+
+  /*
+    If wedding time has arrived
+  */
+
+  if (distance <= 0) {
+
+    document.getElementById("days")
+      .textContent = "00";
+
+    document.getElementById("hours")
+      .textContent = "00";
+
+    document.getElementById("minutes")
+      .textContent = "00";
+
+    document.getElementById("seconds")
+      .textContent = "00";
+
+    return;
+
+  }
+
+
+  const days =
+    Math.floor(
+      distance /
+      (1000 * 60 * 60 * 24)
+    );
+
+
+  const hours =
+    Math.floor(
+      (
+        distance %
+        (1000 * 60 * 60 * 24)
+      ) /
+      (1000 * 60 * 60)
+    );
+
+
+  const minutes =
+    Math.floor(
+      (
+        distance %
+        (1000 * 60 * 60)
+      ) /
+      (1000 * 60)
+    );
+
+
+  const seconds =
+    Math.floor(
+      (
+        distance %
+        (1000 * 60)
+      ) /
+      1000
+    );
+
+
+  document.getElementById("days")
+    .textContent =
+    String(days).padStart(2, "0");
+
+
+  document.getElementById("hours")
+    .textContent =
+    String(hours).padStart(2, "0");
+
+
+  document.getElementById("minutes")
+    .textContent =
+    String(minutes).padStart(2, "0");
+
+
+  document.getElementById("seconds")
+    .textContent =
+    String(seconds).padStart(2, "0");
+
+}
+
+
+/*
+  Run immediately instead of waiting
+  one second for first update.
+*/
+
+updateCountdown();
+
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
 </script>
+
 
 </body>
 </html>
